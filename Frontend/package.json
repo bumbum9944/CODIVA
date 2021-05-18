@@ -17,7 +17,7 @@
     "test": "npm run prettier && npm run lint && react-scripts test",
     "eject": "react-scripts eject",
     "prettier": "prettier --write --config ./.prettierrc \"**/*.{js,jsx}\"",
-    "lint": "eslint --fix './src/**/*.{js,jsx}'"
+    "lint": "eslint --fix \"./src/**/*.{js,jsx}\""
   },
   "eslintConfig": {
     "extends": [
