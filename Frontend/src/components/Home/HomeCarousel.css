@@ -1,0 +1,15 @@
+.home-carousel-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 4vh;
+  height: 70vh;
+}
+
+.home-carousel {
+  width: 80vw;
+}
+
+.home-carousel-image {
+  width: 100%;
+  height: 70vh;
+}
