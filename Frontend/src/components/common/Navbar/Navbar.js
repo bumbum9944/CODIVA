@@ -1,5 +1,6 @@
-import React from "react";
 import "./Navbar.css";
+import React from "react";
+import { useHistory } from "react-router-dom";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import HomeIcon from "@material-ui/icons/Home";
@@ -10,8 +11,10 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 function Navbar() {
   const [value, setValue] = React.useState("recents");
 
+  const history = useHistory();
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    history.push(newValue);
   };
 
   return (
@@ -21,24 +24,28 @@ function Navbar() {
       onChange={handleChange}
     >
       <BottomNavigationAction
+        key="1"
         className="navbar-text"
         label="Rank"
         value="rank"
         icon={<EqualizerIcon />}
       />
       <BottomNavigationAction
+        key="2"
         className="navbar-text"
         label="Favorite"
         value="favorites"
         icon={<FavoriteIcon />}
       />
       <BottomNavigationAction
+        key="3"
         className="navbar-text"
         label="Home"
-        value="home"
+        value="/"
         icon={<HomeIcon />}
       />
       <BottomNavigationAction
+        key="4"
         className="navbar-text"
         label="MyPage"
         value="acount"
