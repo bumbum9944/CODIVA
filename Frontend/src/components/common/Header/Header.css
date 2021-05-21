@@ -1,0 +1,13 @@
+.header {
+  margin-top: 4vh;
+  margin-bottom: 2vh;
+  display: flex;
+  justify-content: center;
+}
+
+.header-text {
+  border-bottom: 0.3vh solid grey;
+  padding-bottom: 0.4vh;
+  font-size: 4vh;
+  font-weight: bold;
+}
