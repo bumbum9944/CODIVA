@@ -1,2 +1,7 @@
-Backend/python-env/*
+*.DS_Store
+python-env/
 __pycache__
+data/chromedriver
+data/images/
+data/resized_images/
+secret.json
