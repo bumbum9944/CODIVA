@@ -13,7 +13,6 @@ function App() {
         </Switch>
       </BrowserRouter>
       <Navbar />
-      <SearchPage1 />
     </div>
   );
 }
