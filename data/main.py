@@ -31,7 +31,8 @@ async def get_images(links):
         await asyncio.sleep(1.0)
         soup = BeautifulSoup(driver2.page_source, "html.parser")
         images += soup.select("#bigimg")
-    cache[time.ctime] = images  # 현재 시간을 key로 cache 저장(크롤링 중단 대비)
+    cache[str(time.ctime)] = images  # 현재 시간을 key로 cache 저장(크롤링 중단 대비)
+    print(cache)
     with open("./cache.json", "w") as f:
         json.dump(cache, f, indent="\t")
     return images
