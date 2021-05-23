@@ -10,10 +10,10 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/search1" exact component={SearchPage1} />
         </Switch>
       </BrowserRouter>
       <Navbar />
-      <SearchPage1 />
     </div>
   );
 }

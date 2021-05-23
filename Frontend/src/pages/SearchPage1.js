@@ -1,23 +1,27 @@
-import React, { Component } from "react";
-import Grid from "@material-ui/core";
+import React from "react";
+import { Container } from "@material-ui/core";
 import GenderSelect from "../components/searchPage/GenderSelect";
-// import LeftArrow from "../components/common/LeftArrow";
-// import RightArrow from "../components/common/RightArrow";
+import Header from "../components/common/Header/Header";
+import Navbar from "../components/common/Navbar/Navbar";
+
 
 function SearchPage1() {
   return (
-    <center>
-      <div
-        style={{
-          display: "flex",
-          width: "40vw",
-          flexFlow: "row wrap",
-          justifyContent: "center"
-        }}
-      >
-        <GenderSelect name="man" />
-      </div>
-    </center>
+    <Container className="searchPage1">
+      <Header headerText="SEARCH" />
+      <center>
+        <div
+          style={{
+            display: "flex",
+            width: "50vw",
+            justifyContent: "center"
+          }}
+        >
+          <GenderSelect />
+        </div>
+      </center>
+      <Navbar />
+    </Container>
   );
 }
 
