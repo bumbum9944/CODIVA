@@ -4,7 +4,6 @@ import GenderSelect from "../components/searchPage/GenderSelect";
 import Header from "../components/common/Header/Header";
 import Navbar from "../components/common/Navbar/Navbar";
 
-
 function SearchPage1() {
   return (
     <Container className="searchPage1">
