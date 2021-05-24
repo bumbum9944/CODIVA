@@ -14,7 +14,7 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/codies" exact component={Codies} />
           <Route path="/detail/:itemId" exact component={CodyDetailPage} />
-          <Route path="/search1" exact component={SearchPage1} />
+          <Route path="/search/1" exact component={SearchPage1} />
         </Switch>
         <Navbar />
       </BrowserRouter>
