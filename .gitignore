@@ -4,3 +4,4 @@ __pycache__
 data/chromedriver
 data/images/
 data/resized_images/
+data/train_images/
