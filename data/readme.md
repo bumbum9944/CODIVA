@@ -14,7 +14,10 @@
 2. 크롬 버전에 맞는 드라이버 다운로드해서 해당 파일과 같은 경로에 넣어줍니다.
 
 - https://chromedriver.storage.googleapis.com/index.html
-- 아래와 같은 구조로 만들어주시면 됩니다.
+- https://sites.google.com/a/chromium.org/chromedriver/downloads
+- https://chromedriver.chromium.org/downloads
+  <br><br>
+  아래와 같은 구조로 만들어주시면 됩니다.
 
 ```
 .
@@ -57,3 +60,4 @@ img_resizer("images", "resized_images", "w", 346, 525, (300, 300), ext="jpg")
 ## Reference
 
 - [코드 참조] https://velog.io/@bangsy/python-crawling-%EC%9D%B4%EB%AF%B8%EC%A7%80-%ED%81%AC%EB%A1%A4%EB%A7%81
+- [코드 참조] https://hello-bryan.tistory.com/194
