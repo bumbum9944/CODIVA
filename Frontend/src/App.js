@@ -2,7 +2,8 @@ import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Home from "./pages/Home";
-import SearchResult from "./pages/SearchResult";
+import Codies from "./pages/Codies";
+import CodyDetailPage from "./pages/CodyDetailPage";
 import Navbar from "./components/common/Navbar/Navbar";
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/codies" exact component={SearchResult} />
+          <Route path="/codies" exact component={Codies} />
+          <Route path="/detail/:itemId" exact component={CodyDetailPage} />
         </Switch>
         <Navbar />
       </BrowserRouter>
