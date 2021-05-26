@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { styled, makeStyles } from '@material-ui/core/styles';
+import { styled, makeStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import HomeIcon from "@material-ui/icons/Home";
@@ -9,21 +9,20 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const StyledBottomNavigation = styled(BottomNavigation)({
-  position: 'fixed',
+  position: "fixed",
   bottom: 0,
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '100vw',
-  height: '10vh',
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "100vw",
+  height: "10vh"
 });
 
 const useStyles = makeStyles({
   root: {
-    fontSize: '3.5vh',
-  },
+    fontSize: "3.5vh"
+  }
 });
-
 
 function Navbar() {
   const [value, setValue] = React.useState("recents");
@@ -40,7 +39,7 @@ function Navbar() {
       color="secondary"
       showLabels
       onChange={handleChange}
-    > 
+    >
       <BottomNavigationAction
         key="1"
         className="navbar-text"

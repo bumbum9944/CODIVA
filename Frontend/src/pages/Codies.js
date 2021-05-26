@@ -1,10 +1,9 @@
 import { React } from "react";
 import Container from "@material-ui/core/Container";
 import Header from "../components/common/Header/Header";
-import CodyList from "../components/Codies/CodyList"
+import CodyList from "../components/Codies/CodyList";
 
 function Codies() {
-
   const codies = [
     {
       id: 1,
@@ -81,7 +80,7 @@ function Codies() {
     {
       id: 3,
       imageUrl: "/carouselImage/item3.jpg"
-    },
+    }
   ];
 
   return (
