@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function HomeSearchButton() {
   return (
     <div className="searchButton-container">
-      <Link to="/search/1">
+      <Link to="/search/1" style={{ textDecoration: "none" }}>
         <Button
           className="searchButton"
           style={{ fontSize: "2vh" }}

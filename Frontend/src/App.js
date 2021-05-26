@@ -5,6 +5,7 @@ import Codies from "./pages/Codies";
 import CodyDetailPage from "./pages/CodyDetailPage";
 import SearchPage1 from "./pages/SearchPage1";
 import Navbar from "./components/common/Navbar/Navbar";
+import SearchPage2 from "./pages/SearchPage2";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/codies" exact component={Codies} />
           <Route path="/detail/:itemId" exact component={CodyDetailPage} />
           <Route path="/search/1" exact component={SearchPage1} />
+          <Route path="/search/2" exact component={SearchPage2} />
         </Switch>
         <Navbar />
       </BrowserRouter>

@@ -3,6 +3,7 @@ import { Container } from "@material-ui/core";
 import GenderSelect from "../components/searchPage/GenderSelect";
 import Header from "../components/common/Header/Header";
 import Navbar from "../components/common/Navbar/Navbar";
+import GoBack from "../components/common/GoBack";
 
 function SearchPage1() {
   return (
