@@ -2,8 +2,9 @@ import { React } from "react";
 import Container from "@material-ui/core/Container";
 import Header from "../components/common/Header/Header";
 import CodyList from "../components/Codies/CodyList";
+import CodyHeader from "../components/Codies/CodyHeader";
 
-function Codies() {
+function Codies({gender, selectedOption}) {
   const codies = [
     {
       id: 1,
@@ -86,6 +87,7 @@ function Codies() {
   return (
     <Container>
       <Header headerText="CODIES" />
+      <CodyHeader gender={gender} selectedOption={selectedOption} />
       <CodyList codies={codies} />
     </Container>
   );
