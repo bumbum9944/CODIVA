@@ -13,11 +13,13 @@ function App() {
   const [selectedOption, setSelectedOption] = useState({
     top: {
       detail: "반팔티",
-      color: "#FFFFFF"
-    }, 
+      color: "#FFFFFF",
+      selected: false
+    },
     bottom: {
       detail: "청바지",
-      color: "#0000FF"
+      color: "#0000FF",
+      selected: false
     }
   });
 
@@ -36,7 +38,6 @@ function App() {
           <Route path="/search1" component={SearchPage1} />
           <Route path="/search/2" exact component={SearchPage2} />
         </Switch>
-        <Navbar />
       </BrowserRouter>
     </div>
   );
