@@ -12,14 +12,25 @@
 
 
 ## 3. 프로젝트 구성
-1. 필요한 데이터셋<br/>
-    1. AI 모델 평가(TEST)용 데이터 : DeepFashion 속성 예측(Attribute Prediction)<br/>
-        의류 카테고리 및 속성 예측의 성능을 평가하기 위한 데이터셋이며, 다음과 같이 구성.<br />
+1. AI Task 구성
+    1. 코디된 이미지 내 의류 Object Detection 모델
+        1. 데이터셋 : DeepFashion2
+            이미지 내 각 의류를 검출하기 위한 데이터셋이며, 다음과 같이 구성.
+            - train
+                - Img
+                - train.json
+            - valid
+                - img
+                - valid.json
+        2. Pretrained Model : Faster R-CNN
 
-            - Eval: 각 이미지는 50개의 의류 카테고리(의상 품목: 스웨터, 후드, 스커트, 블라우스, 가디건 등)와 1,000개의 의류 속성 (색상, 패턴, 길이)으로 레이블 됨<br />
-            - Img: 289,222개의 옷 이미지(50개 카테고리로 분류됨)<br />
-            - Anno: 각 이미지는 경계 박스(bounding box)와 의상 품목으로 주석 처리됨<br />
-    2. 실제 서비스에 사용할 데이터: 이미지 675장 (약 남(330장)녀(345장))
+
+    2. Object Detection 된 이미지 내 의류 라벨 Classification 모델
+        1. 데이터셋 : Custom Dataset
+            이미지 내 의류 카테고리 및 속성 예측의 성능을 평가하기 위한 데이터셋이며, 다음과 같이 구성.
+            - Img: 각 이미지는 16개의 의류 카테고리(의상 품목: 후드, 스커트, 가디건 등)로 레이블 됨
+        2. Pretrained Model : Xception <br/>
+<br/>     
 
 2. 기술 스택 및 라이브러리
 
