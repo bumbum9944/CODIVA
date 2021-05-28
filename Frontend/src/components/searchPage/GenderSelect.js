@@ -29,12 +29,11 @@ const useStyles = makeStyles(theme => ({
     width: "100%"
   },
   image: {
-    margin: 10,
     position: "relative",
     height: 200,
     [theme.breakpoints.down("xs")]: {
       width: "100% !important", // Overrides inline-style
-      height: "22vh"
+      height: "33.2vh"
     },
     "&:hover, &$focusVisible": {
       zIndex: 1,
@@ -84,7 +83,8 @@ const useStyles = makeStyles(theme => ({
     position: "relative",
     padding: `${theme.spacing(2)}px ${theme.spacing(4)}px ${
       theme.spacing(1) + 6
-    }px`
+    }px`,
+    fontSize: "1.3rem"
   },
   imageMarked: {
     height: 3,
@@ -99,7 +99,7 @@ const useStyles = makeStyles(theme => ({
 
 function GenderSelect() {
   const classes = useStyles();
-
+  
   return (
     <div className={classes.root}>
       {images.map(image => (
@@ -119,7 +119,9 @@ function GenderSelect() {
             }}
           />
           <span className={classes.imageBackdrop} />
-          <span className={classes.imageButton}>
+          <span 
+            className={classes.imageButton}
+            onClick={buttonClick}>
             <Typography
               component="span"
               variant="subtitle1"
