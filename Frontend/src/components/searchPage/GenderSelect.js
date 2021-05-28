@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from "@material-ui/core/Typography";
@@ -97,17 +98,24 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function GenderSelect() {
+function GenderSelect({ gender, selectedOption, changeGender }) {
   const classes = useStyles();
+  const history = useHistory();
 
   return (
-    <div className={classes.root}>
+    <div 
+      className={classes.root} 
+    >
       {images.map(image => (
         <ButtonBase
           focusRipple
           key={image.title}
           className={classes.image}
           focusVisibleClassName={classes.focusVisible}
+          onClick={()=>{
+            changeGender(image.title);
+            history.push("/search/2");
+          }}
           style={{
             width: image.width
           }}

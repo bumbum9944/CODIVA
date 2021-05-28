@@ -1,0 +1,16 @@
+.menu-container {
+  position: absolute;
+  top: 1vh;
+  left: 2vw;
+}
+
+.menu-button.main {
+  font-size: 4vh;
+  color: white;
+}
+
+.menu-button {
+  font-size: 4vh;
+  color: black;
+}
+

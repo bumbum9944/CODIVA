@@ -25,10 +25,10 @@ function CodyHeader({ gender, selectedOption }) {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "#CCCCCC",
+            backgroundColor: "#BEB7A7",
             height: "13vh",
             marginInline: "2vw",
-            borderRadius: "3vw"
+            borderRadius: "2vw"
           }}
           key={index}
         >
@@ -43,7 +43,7 @@ function CodyHeader({ gender, selectedOption }) {
           <Chip
             label={optionDetail}
             style={{
-              backgroundColor: "#1E9E9E",
+              backgroundColor: "#696969",
               fontSize: "1.7vh",
               color: "white"
             }}
@@ -56,7 +56,7 @@ function CodyHeader({ gender, selectedOption }) {
 
   return (
     <>
-      <div>Selected Options</div>
+      {/* <div>Selected Options</div> */}
       <br></br>
       <div
         className="selected-option-header-container"
