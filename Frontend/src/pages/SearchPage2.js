@@ -27,25 +27,27 @@ const images = [
   },
   {
     url: "/images/woman_one_piece.jpg",
-    title: "ONE-PIECE",
+    title: "ONE PIECE",
     width: "100%"
   }
 ];
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: "flex",
-    flex: "auto",
-    minWidth: "65vw",
-    width: "100%"
+    display: "grid",
+    gridTemplateRows: "1fr",
+    gridTemplateColumns: "1fr 1fr",
+    gridAutoRows: "1fr",
+    justifyItems: "center",
+    alignItems: "center",
+    width: "100vw",
+    height: "60vh",
+    marginBottom: "5vh"
   },
   image: {
     position: "relative",
-    height: 200,
-    [theme.breakpoints.down("xs")]: {
-      width: "100% !important", // Overrides inline-style
-      height: "25vh"
-    },
+    width: "100% !important", // Overrides inline-style
+    height: "100%",
     "&:hover, &$focusVisible": {
       zIndex: 1,
       "& $imageBackdrop": {
@@ -114,7 +116,7 @@ function SearchPage2() {
   return (
     <>
       <Header headerText="SEARCH" />
-      <Container>
+      <div>
         <div className={classes.root}>
           {images.map(image => (
             <ButtonBase
@@ -122,9 +124,6 @@ function SearchPage2() {
               key={image.title}
               className={classes.image}
               focusVisibleClassName={classes.focusVisible}
-              style={{
-                width: "50vw"
-              }}
             >
               <span
                 className={classes.imageSrc}
@@ -147,7 +146,7 @@ function SearchPage2() {
             </ButtonBase>
           ))}
         </div>
-      </Container>
+      </div>
       <ShowButton />
     </>
   );

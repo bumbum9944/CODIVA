@@ -1,7 +1,7 @@
 import React from "react";
 import GenderSelect from "../components/searchPage/GenderSelect";
 
-function SearchPage1() {
+function SearchPage1(props) {
   return (
     <div
       style={{
@@ -10,7 +10,7 @@ function SearchPage1() {
         justifyContent: "center"
       }}
     >
-      <GenderSelect />
+      <GenderSelect {...props} />
     </div>
   );
 }

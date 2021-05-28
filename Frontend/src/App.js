@@ -34,9 +34,21 @@ function App() {
               <Codies gender={gender} selectedOption={selectedOption} />
             )}
           />
-          <Route path="/detail/:itemId" exact component={CodyDetailPage} />
-          <Route path="/search1" component={SearchPage1} />
-          <Route path="/search/2" exact component={SearchPage2} />
+          <Route path="/detail/:itemId" component={CodyDetailPage} />
+          <Route 
+            path="/search/1" 
+            render={() => (
+              <SearchPage1 
+                gender={gender}  
+                selectedOption={selectedOption}
+                changeGender={(newGender)=>{
+                  console.log(newGender);
+                  setGender(newGender);
+                }}
+              />
+            )}
+          />
+          <Route path="/search/2" component={SearchPage2} />
         </Switch>
       </BrowserRouter>
     </div>

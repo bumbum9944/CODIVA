@@ -7,8 +7,8 @@ function Menu() {
   const history = useHistory();
   const location = history.location.pathname;
 
-  useEffect(()=>{
-    if(location === "/") {
+  useEffect(() => {
+    if (location === "/") {
       document.querySelector(".menu-button").classList.add("main");
     } else {
       document.querySelector(".menu-button").classList.remove("main");
