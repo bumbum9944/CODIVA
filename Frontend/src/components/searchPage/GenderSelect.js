@@ -99,7 +99,7 @@ const useStyles = makeStyles(theme => ({
 
 function GenderSelect() {
   const classes = useStyles();
-  
+
   return (
     <div className={classes.root}>
       {images.map(image => (
@@ -119,9 +119,7 @@ function GenderSelect() {
             }}
           />
           <span className={classes.imageBackdrop} />
-          <span 
-            className={classes.imageButton}
-            onClick={buttonClick}>
+          <span className={classes.imageButton}>
             <Typography
               component="span"
               variant="subtitle1"

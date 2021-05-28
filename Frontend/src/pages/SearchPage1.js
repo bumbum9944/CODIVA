@@ -2,7 +2,6 @@ import React from "react";
 import GenderSelect from "../components/searchPage/GenderSelect";
 
 function SearchPage1() {
-
   return (
     <div
       style={{

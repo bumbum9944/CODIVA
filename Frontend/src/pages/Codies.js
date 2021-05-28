@@ -4,7 +4,7 @@ import Header from "../components/common/Header/Header";
 import CodyList from "../components/Codies/CodyList";
 import CodyHeader from "../components/Codies/CodyHeader";
 
-function Codies({gender, selectedOption}) {
+function Codies({ gender, selectedOption }) {
   const codies = [
     {
       id: 1,

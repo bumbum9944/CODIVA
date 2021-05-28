@@ -112,9 +112,7 @@ function SearchPage2() {
   return (
     <>
       <Header headerText="SEARCH" />
-      <Container
-        style={{ display: "flex", flexWrap: "row wrap", minWidth: "300px" }}
-      >
+      <Container>
         <div className={classes.root}>
           {images.map(image => (
             <ButtonBase
@@ -123,7 +121,7 @@ function SearchPage2() {
               className={classes.image}
               focusVisibleClassName={classes.focusVisible}
               style={{
-                width: image.width
+                width: "50vw"
               }}
             >
               <span
