@@ -13,11 +13,13 @@ function App() {
   const [selectedOption, setSelectedOption] = useState({
     top: {
       detail: "반팔티",
-      color: "#FFFFFF"
+      color: "#FFFFFF",
+      selected: false
     },
     bottom: {
       detail: "청바지",
-      color: "#0000FF"
+      color: "#0000FF",
+      selected: false
     }
   });
   return (
