@@ -2,7 +2,6 @@ import React from "react";
 import { Container } from "@material-ui/core";
 import GenderSelect from "../components/searchPage/GenderSelect";
 import Header from "../components/common/Header/Header";
-import Navbar from "../components/common/Navbar/Navbar";
 
 function SearchPage1() {
   return (
@@ -19,7 +18,6 @@ function SearchPage1() {
           <GenderSelect />
         </div>
       </center>
-      <Navbar />
     </Container>
   );
 }

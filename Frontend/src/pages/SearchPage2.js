@@ -1,7 +1,6 @@
 import React from "react";
 import { Container } from "@material-ui/core";
 import Header from "../components/common/Header/Header";
-import Navbar from "../components/common/Navbar/Navbar";
 import GoBack from "../components/common/GoBack";
 import CatagorySelect from "../components/searchPage/CatagorySelect";
 
@@ -43,7 +42,6 @@ function SearchPage2() {
           <CatagorySelect />
         </div>
       </center>
-      <Navbar />
     </Container>
   );
 }
