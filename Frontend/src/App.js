@@ -35,13 +35,13 @@ function App() {
             )}
           />
           <Route path="/detail/:itemId" component={CodyDetailPage} />
-          <Route 
-            path="/search/1" 
+          <Route
+            path="/search/1"
             render={() => (
-              <SearchPage1 
-                gender={gender}  
+              <SearchPage1
+                gender={gender}
                 selectedOption={selectedOption}
-                changeGender={(newGender)=>{
+                changeGender={newGender => {
                   console.log(newGender);
                   setGender(newGender);
                 }}

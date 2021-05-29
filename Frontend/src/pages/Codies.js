@@ -7,23 +7,23 @@ function Codies({ gender, selectedOption }) {
   const [codies, setCodies] = useState([
     {
       id: 1,
-      imageUrl: "/carouselImage/item1.jpg",
-      likeCnt: 17,
-      viewCnt: 23,
-      isLiked: true,
-      isSaved: true
-    },
-    {
-      id: 2,
-      imageUrl: "/carouselImage/item2.jpg",
+      imageUrl: "/carouselImage/item6.jpg",
       likeCnt: 17,
       viewCnt: 23,
       isLiked: false,
-      isSaved: true
+      isSaved: false
+    },
+    {
+      id: 2,
+      imageUrl: "/carouselImage/item7.jpg",
+      likeCnt: 17,
+      viewCnt: 23,
+      isLiked: false,
+      isSaved: false
     },
     {
       id: 3,
-      imageUrl: "/carouselImage/item3.jpg",
+      imageUrl: "/carouselImage/item8.jpg",
       likeCnt: 25,
       viewCnt: 23,
       isLiked: false,
@@ -31,15 +31,15 @@ function Codies({ gender, selectedOption }) {
     },
     {
       id: 4,
-      imageUrl: "/carouselImage/item4.jpg",
+      imageUrl: "/carouselImage/item9.jpg",
       likeCnt: 11,
       viewCnt: 23,
-      isLiked: true,
+      isLiked: false,
       isSaved: false
     },
     {
       id: 5,
-      imageUrl: "/carouselImage/item5.jpg",
+      imageUrl: "/carouselImage/item10.jpg",
       likeCnt: 57,
       viewCnt: 23,
       isLiked: false,
@@ -47,7 +47,7 @@ function Codies({ gender, selectedOption }) {
     },
     {
       id: 2,
-      imageUrl: "/carouselImage/item2.jpg",
+      imageUrl: "/carouselImage/item11.jpg",
       likeCnt: 3,
       viewCnt: 23,
       isLiked: true,
@@ -63,11 +63,11 @@ function Codies({ gender, selectedOption }) {
     },
     {
       id: 3,
-      imageUrl: "/carouselImage/item5.jpg",
+      imageUrl: "/carouselImage/item2.jpg",
       likeCnt: 17,
       viewCnt: 23,
       isLiked: false,
-      isSaved: true
+      isSaved: false
     },
     {
       id: 3,
@@ -87,7 +87,7 @@ function Codies({ gender, selectedOption }) {
     },
     {
       id: 3,
-      imageUrl: "/carouselImage/item2.jpg",
+      imageUrl: "/carouselImage/item5.jpg",
       likeCnt: 17,
       viewCnt: 23,
       isLiked: false,
@@ -95,7 +95,7 @@ function Codies({ gender, selectedOption }) {
     },
     {
       id: 3,
-      imageUrl: "/carouselImage/item1.jpg",
+      imageUrl: "/carouselImage/item6.jpg",
       likeCnt: 17,
       viewCnt: 23,
       isLiked: false,
@@ -103,7 +103,7 @@ function Codies({ gender, selectedOption }) {
     },
     {
       id: 3,
-      imageUrl: "/carouselImage/item3.jpg",
+      imageUrl: "/carouselImage/item7.jpg",
       likeCnt: 17,
       viewCnt: 23,
       isLiked: false,
@@ -111,7 +111,7 @@ function Codies({ gender, selectedOption }) {
     },
     {
       id: 3,
-      imageUrl: "/carouselImage/item5.jpg",
+      imageUrl: "/carouselImage/item8.jpg",
       likeCnt: 17,
       viewCnt: 23,
       isLiked: false,
@@ -119,7 +119,7 @@ function Codies({ gender, selectedOption }) {
     },
     {
       id: 3,
-      imageUrl: "/carouselImage/item2.jpg",
+      imageUrl: "/carouselImage/item9.jpg",
       likeCnt: 17,
       viewCnt: 23,
       isLiked: false,
@@ -127,7 +127,7 @@ function Codies({ gender, selectedOption }) {
     },
     {
       id: 3,
-      imageUrl: "/carouselImage/item5.jpg",
+      imageUrl: "/carouselImage/item10.jpg",
       likeCnt: 17,
       viewCnt: 23,
       isLiked: false,
@@ -135,7 +135,7 @@ function Codies({ gender, selectedOption }) {
     },
     {
       id: 3,
-      imageUrl: "/carouselImage/item4.jpg",
+      imageUrl: "/carouselImage/item11.jpg",
       likeCnt: 17,
       viewCnt: 23,
       isLiked: false,
