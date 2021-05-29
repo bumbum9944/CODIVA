@@ -103,16 +103,14 @@ function GenderSelect({ gender, selectedOption, changeGender }) {
   const history = useHistory();
 
   return (
-    <div 
-      className={classes.root} 
-    >
+    <div className={classes.root}>
       {images.map(image => (
         <ButtonBase
           focusRipple
           key={image.title}
           className={classes.image}
           focusVisibleClassName={classes.focusVisible}
-          onClick={()=>{
+          onClick={() => {
             changeGender(image.title);
             history.push("/search/2");
           }}

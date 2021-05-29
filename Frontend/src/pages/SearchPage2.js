@@ -1,13 +1,11 @@
 import React from "react";
-import { Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from "@material-ui/core/Typography";
 
 import Header from "../components/common/Header/Header";
-import GoBack from "../components/common/GoBack";
-import CatagorySelect from "../components/searchPage/CatagorySelect";
-import ShowButton from "../components/searchPage/ShowButton";
+import PageButton from "../components/common/PageButton";
+import OptionTag from "../components/searchPage/OptionTag";
 
 const images = [
   {
@@ -41,8 +39,8 @@ const useStyles = makeStyles(theme => ({
     justifyItems: "center",
     alignItems: "center",
     width: "100vw",
-    height: "60vh",
-    marginBottom: "5vh"
+    height: "72vh",
+    marginBottom: "2vh"
   },
   image: {
     position: "relative",
@@ -110,12 +108,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function SearchPage2() {
+function SearchPage2(props) {
   const classes = useStyles();
 
   return (
     <>
       <Header headerText="SEARCH" />
+      <OptionTag />
       <div>
         <div className={classes.root}>
           {images.map(image => (
@@ -147,7 +146,7 @@ function SearchPage2() {
           ))}
         </div>
       </div>
-      <ShowButton />
+      <PageButton />
     </>
   );
 }
