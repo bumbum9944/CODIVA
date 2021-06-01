@@ -1,19 +1,22 @@
 import { React } from "react";
 import "./HomeSearchButton.css";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
 function HomeSearchButton() {
   return (
-    <div className="searchButton-container">
+    <Link className="searchButton-link" to="/search/1">
       <Button
         className="searchButton"
-        style={{ fontSize: "2vh" }}
-        variant="outlined"
-        color="secondary"
+        variant="contained"
+        style={{
+          fontSize: "3vh",
+          borderRadius: "3vh"
+        }}
       >
         CODY MATCH
       </Button>
-    </div>
+    </Link>
   );
 }
 

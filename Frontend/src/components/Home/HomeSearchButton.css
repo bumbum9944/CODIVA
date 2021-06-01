@@ -1,4 +1,12 @@
-.searchButton-container {
-  display: flex;
-  justify-content: center;
+.searchButton-link {
+  position: absolute;
+  bottom: 12vh;
+  left: 50vw;
+  transform: translateX(-50%);
+  text-decoration: none !important;
+}
+
+.searchButton {
+  width: 55vw;
+  height: 8vh;
 }
