@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 
+
 # class Post(models.Model):
 #     user = models.ForeignKey(User, on_delete=models.CASCADE)
 #     title = models.CharField(max_length=144)
@@ -14,25 +15,41 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=25)
+    category_name = models.CharField(max_length=25)
+    detail_name = models.CharField(max_length=45)
 
+    class Meta:
+        db_table = "category"
 
-class Option(models.Model):
-    name = models.CharField(max_length=45)
-    category_id = models.ForeignKey(Category, on_update=models.CASCADE)
+    def __str__(self):
+        return f"[{self.category_name}] {self.detail_name}"
 
 
 class Color(models.Model):
-    name = models.CharFiled(max_length=25)
+    name = models.CharField(max_length=25)
+    # red = models.PositiveIntegerField(null=False)
+    # green = models.PositiveIntegerField(null=False)
+    # blue = models.PositiveIntegerField(null=False)
+
+    class Meta:
+        db_table = "color"
+
+    def __str__(self):
+        return f"{self.name}"
 
 
 class ApperalCode(models.Model):
-    option_id = models.ForeignKey(Option, on_delete=models.CASCADE)
+    category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
     color_id = models.ForeignKey(Color, on_delete=models.CASCADE)
+    category_name = models.CharField(max_length=25, null=True)
+    detail_name = models.CharField(max_length=45, null=True)
+    color_name = models.CharField(max_length=25, null=True)
 
+    class Meta:
+        db_table = "apperal_code"
 
-class Apperals(models.Model):
-    pass
+    def __str__(self):
+        return f"{self.category_id}{self.color_id}"
 
 
 class Codies(models.Model):
@@ -40,11 +57,24 @@ class Codies(models.Model):
         MAN = "M", _("Man")
         WOMAN = "W", _("Woman")
 
-    year_in_school = models.CharField(
-        max_length=2,
-        choices=YearInSchool.choices,
-        default=YearInSchool.FRESHMAN,
-    )
-    image_url = models.CharField(max_length=255)
+    img_url = models.CharField(max_length=255)
+    origin = models.CharField(max_length=255)
     gender = models.CharField(max_length=1, choices=Gender.choices, default=Gender.MAN)
-    created_date = models.DateField(auto_now_add=True)
+    # created_date = models.DateField(auto_now_add=True)
+
+    class Meta:
+        db_table = "codies"
+
+    def __str__(self):
+        return f"[{self.id}]:{self.img_url}"
+
+
+class Apperals(models.Model):
+    apperal_code = models.ForeignKey(ApperalCode, on_delete=models.CASCADE)
+    image_id = models.ForeignKey(Codies, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = "apperals"
+
+    def __str__(self):
+        return f"[{image_id}]: {apperal_code}"
