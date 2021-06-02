@@ -11,4 +11,5 @@ DB_NAME = os.getenv("DB_NAME")
 SECRET_KEY = os.getenv("SECRET_KEY")
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
 JWT_TOKEN_LOCATION = ["headers"]
+SWAGGER = {"doc_dir": "./app/docs/", "openapi": "3.0.0"}
 # JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=6)

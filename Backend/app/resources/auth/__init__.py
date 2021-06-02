@@ -1,19 +1,15 @@
+import json
 from flask import jsonify, request, Blueprint, abort, Response
-from flask_jwt_extended import (
-    JWTManager,
-    create_access_token,
-    get_jwt_identity,
-    jwt_required,
-)
+from flask_jwt_extended import create_access_token
 from werkzeug.security import generate_password_hash, check_password_hash
 from database import connect_db
-import json
+from flasgger import swag_from
 
-auth = Blueprint("auth", __name__)
-jwt = JWTManager()
+auth = Blueprint("auth", __name__, url_prefix="/auth")
 
 
 @auth.route("/register", methods=["POST"])
+@swag_from("../../docs/auth/register.yml")
 def register():
     email, password, name = dict(request.get_json(force=True)).values()
     if email == "" or password == "" or name == "":
@@ -85,7 +81,7 @@ def login():
             if not check_password_hash(result["password"], password):
                 abort(
                     Response(
-                        status=400,
+                        status=401,
                         response=json.dumps({"message": "Invalid password"}, indent=4),
                         mimetype="application/json",
                     )
