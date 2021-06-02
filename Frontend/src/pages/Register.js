@@ -2,36 +2,39 @@ import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import { Button, Container } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import "./Login.css";
 import axios from "axios";
 
-const token = localStorage.getItem("token");
-const id = localStorage.getItem("user_id");
 const url =
   "http://ec2-13-125-251-225.ap-northeast-2.compute.amazonaws.com:5000/";
 
-function Login() {
-  const [account, setAccount] = useState({ email: "", password: "" });
+function Register(props) {
+  const [account, setAccount] = useState({
+    name: "",
+    email: "",
+    password: "",
+    checkPassword: ""
+  });
   const history = useHistory();
 
   function dataChange(e) {
-    e.preventDefault();
     const { name, value } = e.target;
     setAccount({ ...account, [name]: value });
+    console.log(account);
   }
 
-  async function buttonClick(e) {
+  function buttonClick(e) {
     e.preventDefault();
-    await axios
-      .post(url + "auth/login", account)
-      .then(response => {
-        localStorage.setItem("token", response.data.access_token);
-        localStorage.setItem("user_id", response.data.user.user_id);
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    if (account.password === account.checkPassword) {
+      axios
+        .post(url + "auth/register", {
+          name: account.name,
+          email: account.email,
+          password: account.password
+        })
+        .then(response => history.push("/login"));
+    } else {
+      alert("비밀번호가 다릅니다.");
+    }
   }
 
   return (
@@ -39,9 +42,16 @@ function Login() {
       <div className="codiba">
         <p>CODIBA</p>
       </div>
-      <p style={{ fontSize: "19px", marginLeft: "20px" }}>LOG IN</p>
+      <p style={{ fontSize: "19px", marginLeft: "20px" }}>REGISTER</p>
       <Container style={{ textAlign: "center" }}>
         <form onSubmit={buttonClick}>
+          <TextField
+            name="name"
+            style={{ marginBottom: "12px", width: "85vw" }}
+            label="name"
+            variant="outlined"
+            onChange={dataChange}
+          />
           <TextField
             name="email"
             type="email"
@@ -53,33 +63,26 @@ function Login() {
           <TextField
             name="password"
             type="password"
+            style={{ marginBottom: "12px", width: "85vw" }}
             label="password"
             variant="outlined"
-            style={{ width: "85vw" }}
             onChange={dataChange}
           />
-          <Button
-            type="submit"
-            onClick={() => {
-              console.log(account);
-            }}
-            id="button"
-            variant="contained"
-          >
-            Login
+          <TextField
+            name="checkPassword"
+            type="password"
+            style={{ width: "85vw" }}
+            label="check your password"
+            variant="outlined"
+            onChange={dataChange}
+          />
+          <Button type="submit" id="button" variant="contained">
+            Register
           </Button>
         </form>
-        <p
-          style={{ color: "blue" }}
-          onClick={() => {
-            history.push("/register");
-          }}
-        >
-          register
-        </p>
       </Container>
     </>
   );
 }
 
-export default Login;
+export default Register;

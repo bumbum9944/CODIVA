@@ -8,6 +8,7 @@ import CodyDetailPage from "./pages/CodyDetailPage";
 import SearchPage1 from "./pages/SearchPage1";
 import SearchPage2 from "./pages/SearchPage2";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   const [gender, setGender] = useState("");
@@ -51,6 +52,7 @@ function App() {
           />
           <Route path="/search/2" component={SearchPage2} />
           <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
         </Switch>
       </BrowserRouter>
     </div>
