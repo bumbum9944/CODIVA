@@ -1,19 +1,15 @@
-from flask import jsonify, request, Blueprint, abort, Response
-from flask_jwt_extended import (
-    JWTManager,
-    create_access_token,
-    get_jwt_identity,
-    jwt_required,
-)
-from werkzeug.security import generate_password_hash, check_password_hash
-from database import connection
 import json
+from flask import jsonify, request, Blueprint, abort, Response
+from flask_jwt_extended import create_access_token
+from werkzeug.security import generate_password_hash, check_password_hash
+from database import connect_db
+from flasgger import swag_from
 
-auth = Blueprint("auth", __name__)
-jwt = JWTManager()
+auth = Blueprint("auth", __name__, url_prefix="/auth")
 
 
 @auth.route("/register", methods=["POST"])
+@swag_from("../../docs/auth/register.yml")
 def register():
     email, password, name = dict(request.get_json(force=True)).values()
     if email == "" or password == "" or name == "":
@@ -28,7 +24,7 @@ def register():
             )
         )
 
-    with connection:
+    with connect_db() as connection:
         with connection.cursor() as cursor:
             sql = "SELECT `email` FROM `users` WHERE `email`=%s"
             cursor.execute(sql, (email,))
@@ -67,7 +63,7 @@ def login():
         abort(400)
         abort(Response("email and password can not be NULL."))
 
-    with connection:
+    with connect_db() as connection:
         with connection.cursor() as cursor:
             sql = "SELECT * from `users` WHERE `email`=%s"
             cursor.execute(sql, (email,))
@@ -85,7 +81,7 @@ def login():
             if not check_password_hash(result["password"], password):
                 abort(
                     Response(
-                        status=400,
+                        status=401,
                         response=json.dumps({"message": "Invalid password"}, indent=4),
                         mimetype="application/json",
                     )

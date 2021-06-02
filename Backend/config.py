@@ -9,9 +9,7 @@ DB_HOST = os.getenv("DB_HOST")
 DB_PORT = os.getenv("DB_PORT")
 DB_NAME = os.getenv("DB_NAME")
 SECRET_KEY = os.getenv("SECRET_KEY")
-AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
-REGION = os.getenv("REGION")
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
 JWT_TOKEN_LOCATION = ["headers"]
+SWAGGER = {"doc_dir": "./app/docs/", "openapi": "3.0.0"}
 # JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=6)
