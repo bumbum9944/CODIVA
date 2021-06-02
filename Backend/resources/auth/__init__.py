@@ -6,7 +6,7 @@ from flask_jwt_extended import (
     jwt_required,
 )
 from werkzeug.security import generate_password_hash, check_password_hash
-from database import connection
+from database import connect_db
 import json
 
 auth = Blueprint("auth", __name__)
@@ -28,7 +28,7 @@ def register():
             )
         )
 
-    with connection:
+    with connect_db() as connection:
         with connection.cursor() as cursor:
             sql = "SELECT `email` FROM `users` WHERE `email`=%s"
             cursor.execute(sql, (email,))
@@ -67,7 +67,7 @@ def login():
         abort(400)
         abort(Response("email and password can not be NULL."))
 
-    with connection:
+    with connect_db() as connection:
         with connection.cursor() as cursor:
             sql = "SELECT * from `users` WHERE `email`=%s"
             cursor.execute(sql, (email,))

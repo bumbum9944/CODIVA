@@ -17,11 +17,6 @@ def create_app():
     # api 설정 및 적용
     api = Api(app)
     CORS(app, supports_credentials=True)
-    # set_api_resources(api)
-    # db 적용 및 migrate
-    # db.init_app(app)
-    # db.create_all(app=app)
-    # migrate.init_app(app, db)
 
     @app.route("/")
     def index():
