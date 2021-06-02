@@ -67,7 +67,7 @@ def login():
 
     with connect_db() as connection:
         with connection.cursor() as cursor:
-            sql = "SELECT * from `users` WHERE `email`=%s"
+            sql = "SELECT * FROM `users` WHERE `email`=%s"
             cursor.execute(sql, (email,))
             result = cursor.fetchone()
             if not result:

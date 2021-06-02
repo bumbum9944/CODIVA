@@ -14,9 +14,10 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(config)
 
-    from .resources import auth
+    from .resources import auth, codi
 
     app.register_blueprint(auth.auth)
+    app.register_blueprint(codi.codi)
 
     # extention
     jwt.init_app(app)
