@@ -11,7 +11,8 @@ auth = Blueprint("auth", __name__, url_prefix="/auth")
 @auth.route("/register", methods=["POST"])
 @swag_from("../../docs/auth/register.yml")
 def register():
-    email, password, name = dict(request.get_json(force=True)).values()
+    req = dict(request.get_json(force=True))
+    email, password, name = req["email"], req["password"], req["name"]
     if email == "" or password == "" or name == "":
         abort(
             Response(
@@ -58,7 +59,8 @@ def register():
 
 @auth.route("login", methods=["POST"])
 def login():
-    email, password = dict(request.get_json(force=True)).values()
+    req = dict(request.get_json(force=True))
+    email, password = req["email"], req["password"]
     if email == "" or password == "":
         abort(400)
         abort(Response("email and password can not be NULL."))
