@@ -1,16 +1,25 @@
 .menu-container {
   position: absolute;
-  top: 1vh;
-  left: 2vw;
+  top: 1.5vh;
+  left: 3vw;
+  z-index: 300;
 }
 
 .menu-button.main {
-  font-size: 4vh;
+  font-size: 10vw;
   color: white;
 }
 
 .menu-button {
-  font-size: 4vh;
+  font-size: 10vw;
   color: black;
 }
 
+#dimmed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 300;
+  width: 100%;
+  height: 100%;
+}
