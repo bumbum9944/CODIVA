@@ -2,7 +2,7 @@ import { React } from "react";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
 
 function CodyModalInfo({ item, itemId, toggleLiked }) {
-  function handleToggleSaved() {
+  function handleToggleliked() {
     toggleLiked(itemId);
   }
 
@@ -10,14 +10,14 @@ function CodyModalInfo({ item, itemId, toggleLiked }) {
   if (item.isLiked === true) {
     likeButton = (
       <BsHeartFill
-        onClick={handleToggleSaved}
+        onClick={handleToggleliked}
         style={{ fontSize: "4vh", color: "#FF0000" }}
       />
     );
   } else {
     likeButton = (
       <BsHeart
-        onClick={handleToggleSaved}
+        onClick={handleToggleliked}
         style={{ fontSize: "4vh", color: "#FFFFFF" }}
       />
     );

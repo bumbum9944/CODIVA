@@ -44,7 +44,13 @@ function SlideMenu() {
         CODIBA
       </div>
       <ul className="slide-menu-list">
-        <li className="slide-menu-item">
+        <li
+          className="slide-menu-item"
+          onClick={() => {
+            history.push("/top-codies");
+            closeSlideMenu();
+          }}
+        >
           <BsHeartFill className="slide-menu-icon" />
           TOP CODIES
         </li>
