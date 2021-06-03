@@ -1,15 +1,22 @@
 import { React } from "react";
 import "./HomeSearchButton.css";
 import Button from "@material-ui/core/Button";
+import { useHistory } from "react-router-dom";
 
 function HomeSearchButton() {
+  const history = useHistory();
   return (
-    <div className="searchButton-container">
+    <div className="searchButton-container" to="/search/1">
       <Button
         className="searchButton"
-        style={{ fontSize: "2vh" }}
-        variant="outlined"
-        color="secondary"
+        variant="contained"
+        style={{
+          fontSize: "3vh",
+          borderRadius: "3vh"
+        }}
+        onClick={() => {
+          history.push("/search/1");
+        }}
       >
         CODY MATCH
       </Button>
