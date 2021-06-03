@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import "./SlideMenu.css";
 import CloseIcon from "@material-ui/icons/Close";
 import { BsHeartFill, BsBookmarksFill } from "react-icons/bs";
-import { IoHome } from "react-icons/io5";
 
 function SlideMenu() {
   const history = useHistory();

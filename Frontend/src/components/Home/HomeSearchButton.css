@@ -1,5 +1,6 @@
 .searchButton-container {
   position: absolute;
+  z-index: 10;
   bottom: 12vh;
   left: 50vw;
   transform: translateX(-50%);
