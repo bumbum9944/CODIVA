@@ -30,15 +30,14 @@ function HomeCarousel() {
   };
 
   return (
-    <Slider 
-      className="home-carousel" 
+    <Slider
+      className="home-carousel"
       style={{
         position: "relative",
         height: "100vh",
         overflow: "hidden"
       }}
       {...settings}
-    
     >
       {sliderInner}
     </Slider>
