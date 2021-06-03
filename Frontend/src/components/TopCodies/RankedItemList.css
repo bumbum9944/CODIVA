@@ -20,7 +20,7 @@
 .top-codies-info-container {
   display: flex;
   justify-content: center;
-  margin: 0 2vw;
+  margin: 1vh 3vw 0;
   padding-bottom: 5vh;
 }
 
