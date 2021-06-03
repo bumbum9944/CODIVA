@@ -2,9 +2,9 @@ import { React, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Menu from "./components/common/Menu/Menu";
+import SlideMenu from "./components/common/Menu/SlideMenu";
 import Home from "./pages/Home";
 import Codies from "./pages/Codies";
-import CodyDetailPage from "./pages/CodyDetailPage";
 import SearchPage1 from "./pages/SearchPage1";
 import SearchPage2 from "./pages/SearchPage2";
 import Login from "./pages/Login";
@@ -25,9 +25,10 @@ function App() {
     }
   });
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Menu />
+    <BrowserRouter>
+      <div className="App">
+        <Menu location={location} />
+        <SlideMenu />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route
@@ -36,7 +37,6 @@ function App() {
               <Codies gender={gender} selectedOption={selectedOption} />
             )}
           />
-          <Route path="/detail/:itemId" component={CodyDetailPage} />
           <Route
             path="/search/1"
             render={() => (
@@ -54,8 +54,8 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
         </Switch>
-      </BrowserRouter>
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
