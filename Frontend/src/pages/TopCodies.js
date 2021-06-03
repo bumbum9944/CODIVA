@@ -3,7 +3,6 @@ import Header from "../components/common/Header/Header";
 import RankedItemList from "../components/TopCodies/RankedItemList";
 
 function TopCodies() {
-
   const [rankedItem, setRankedItem] = useState([
     {
       id: 1,
@@ -84,22 +83,22 @@ function TopCodies() {
       viewCnt: 13229,
       isLiked: false,
       isSaved: false
-    },
+    }
   ]);
 
   return (
     <div className="topCodies">
       <Header headerText="TOP CODIES" />
-      <RankedItemList 
+      <RankedItemList
         rankedItem={rankedItem}
-        toggleSaved={(targetIndex)=>{
+        toggleSaved={targetIndex => {
           const copiedTopCodies = JSON.parse(JSON.stringify(rankedItem));
           copiedTopCodies[targetIndex].isSaved =
             !copiedTopCodies[targetIndex].isSaved;
 
           setRankedItem(copiedTopCodies);
         }}
-        toggleLiked={(targetIndex)=>{
+        toggleLiked={targetIndex => {
           const copiedTopCodies = JSON.parse(JSON.stringify(rankedItem));
           if (copiedTopCodies[targetIndex].isLiked) {
             copiedTopCodies[targetIndex].likeCnt =

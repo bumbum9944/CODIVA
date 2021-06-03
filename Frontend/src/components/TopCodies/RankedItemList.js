@@ -1,17 +1,16 @@
-import { React } from 'react';
+import { React } from "react";
 import "./RankedItemList.css";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
 import { BsBookmarkFill, BsBookmark } from "react-icons/bs";
 
-function RankedItemList({rankedItem, toggleSaved, toggleLiked}) {
-
-  const topCodyList = rankedItem.map((element, index)=>{
+function RankedItemList({ rankedItem, toggleSaved, toggleLiked }) {
+  const topCodyList = rankedItem.map((element, index) => {
     let likeButton;
     if (element.isLiked === true) {
       likeButton = (
         <BsHeartFill
           className="top-codies-info-text"
-          onClick={()=>{
+          onClick={() => {
             toggleLiked(index);
           }}
           style={{ fontSize: "6vw", color: "#FF0000" }}
@@ -21,14 +20,14 @@ function RankedItemList({rankedItem, toggleSaved, toggleLiked}) {
       likeButton = (
         <BsHeart
           className="top-codies-info-text"
-          onClick={()=>{
+          onClick={() => {
             toggleLiked(index);
           }}
           style={{ fontSize: "6vw", color: "black" }}
         />
       );
     }
-    
+
     let saveButton;
     if (element.isSaved === true) {
       saveButton = (
@@ -50,12 +49,16 @@ function RankedItemList({rankedItem, toggleSaved, toggleLiked}) {
       );
     }
 
-    return(
+    return (
       <div key={index} className="top-codies-item">
-        <img className="top-codies-item-image" src={element.imageUrl} alt="top-cody-image" />
+        <img
+          className="top-codies-item-image"
+          src={element.imageUrl}
+          alt="top-cody-image"
+        />
         <div
           className="cody-save-button"
-          onClick={()=>{
+          onClick={() => {
             toggleSaved(index);
           }}
         >
@@ -70,7 +73,7 @@ function RankedItemList({rankedItem, toggleSaved, toggleLiked}) {
         >
           <div className="top-codies-like-button">
             {likeButton}
-            <p 
+            <p
               className="top-codies-info-text"
               style={{
                 marginLeft: "2vw"
@@ -85,11 +88,7 @@ function RankedItemList({rankedItem, toggleSaved, toggleLiked}) {
     );
   });
 
-  return(
-    <div className="top-codies-list">
-      {topCodyList}
-    </div>
-  );
+  return <div className="top-codies-list">{topCodyList}</div>;
 }
 
 export default RankedItemList;
