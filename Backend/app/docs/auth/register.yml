@@ -1,0 +1,38 @@
+tags:
+  - auth
+summary: API for register user
+definitions:
+  User:
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+      name:
+        type: string
+    example:
+      email: harasan@elice.io
+      password: youngCha!
+      name: hanrasan
+  Message:
+    type: object
+    properties:
+      message:
+        type: string
+        example: Successfully registered
+parameters:
+  - in: body
+    name: body
+    required: true
+    description: register user
+    schema:
+      $ref: "#/definitions/User"
+    default: all
+responses:
+  "200":
+    description: successful operation
+    content:
+      application/json:
+        schema:
+          $ref: "#/definitions/Message"

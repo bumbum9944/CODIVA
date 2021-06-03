@@ -1,25 +1,38 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import "./Menu.css";
-import { useHistory } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 function Menu() {
-  const history = useHistory();
-  const location = history.location.pathname;
-
-  useEffect(() => {
-    if (location === "/") {
-      document.querySelector(".menu-button").classList.add("main");
-    } else {
-      document.querySelector(".menu-button").classList.remove("main");
-    }
-  }, [location]);
-
-  return (
-    <div className="menu-container">
-      <GiHamburgerMenu className="menu-button main" />
-    </div>
+  let menuButton = (
+    <GiHamburgerMenu className="menu-button" onClick={openSlideMenu} />
   );
+  // let menuButton;
+  // if (location.pathname === "/") {
+  //   menuButton = (
+  //     <GiHamburgerMenu className="menu-button main" onClick={openSlideMenu} />
+  //   );
+  // } else {
+  //   menuButton = (
+  //     <GiHamburgerMenu className="menu-button" onClick={openSlideMenu} />
+  //   );
+  // }
+
+  function openSlideMenu() {
+    document.querySelector("body").classList.add("no-scroll");
+    document.querySelector(".slide-menu-container").classList.add("on");
+    let div = document.createElement("div");
+    div.id = "dimmed";
+    document.querySelector(".App").append(div);
+    document
+      .querySelector("#dimmed")
+      .addEventListener("scroll touchmove touchend mousewheel", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      });
+  }
+
+  return <div className="menu-container">{menuButton}</div>;
 }
 
 export default Menu;

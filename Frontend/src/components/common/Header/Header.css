@@ -1,6 +1,6 @@
 .header {
-  margin-top: 4vh;
-  margin-bottom: 2vh;
+  padding-top: 4vh;
+  padding-bottom: 2vh;
   display: flex;
   justify-content: center;
 }

@@ -15,7 +15,7 @@ function PageButton() {
           }}
           style={{ marginRight: 20 }}
         >
-          Back
+          BACK
         </Button>
         <Button
           variant="contained"
@@ -23,7 +23,7 @@ function PageButton() {
             history.push("/codies");
           }}
         >
-          Next
+          SHOW
         </Button>
       </center>
     </>
