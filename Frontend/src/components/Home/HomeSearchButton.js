@@ -14,8 +14,8 @@ function HomeSearchButton() {
           fontSize: "3vh",
           borderRadius: "3vh"
         }}
-        onClick={()=>{
-          history.push("/search/1")
+        onClick={() => {
+          history.push("/search/1");
         }}
       >
         CODY MATCH

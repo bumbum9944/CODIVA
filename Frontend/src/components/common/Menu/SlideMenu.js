@@ -1,12 +1,11 @@
-import { React } from 'react';
-import { useHistory } from 'react-router-dom';
+import { React } from "react";
+import { useHistory } from "react-router-dom";
 import "./SlideMenu.css";
 import CloseIcon from "@material-ui/icons/Close";
 import { BsHeartFill, BsBookmarksFill } from "react-icons/bs";
 import { IoHome } from "react-icons/io5";
 
-function SlideMenu(){
-
+function SlideMenu() {
   const history = useHistory();
 
   function closeSlideMenu() {
@@ -16,41 +15,42 @@ function SlideMenu(){
   }
 
   let footerButton;
-  footerButton = <div className="slide-menu-footer-btn"
-  >
-    LOG IN
-  </div>;
+  footerButton = <div className="slide-menu-footer-btn">LOG IN</div>;
 
   // <div className="slide-menu-footer-btn"
   // >
   //   LOG IN
   // </div>;
 
-  return(
+  return (
     <div className="slide-menu-container">
-        <CloseIcon
-          className="slide-menu-close-btn" 
-          style={{
-            position: 'absolute',
-            right: 0,
-            paddingTop: '1vh',
-            paddingRight: '3vw',
-            fontSize: "10vw"
-          }}
-          onClick={closeSlideMenu}
-        />
-      <div className="slide-menu-title">CODIBA</div>
+      <CloseIcon
+        className="slide-menu-close-btn"
+        style={{
+          position: "absolute",
+          right: 0,
+          paddingTop: "1vh",
+          paddingRight: "3vw",
+          fontSize: "10vw"
+        }}
+        onClick={closeSlideMenu}
+      />
+      <div
+        className="slide-menu-title"
+        onClick={() => {
+          history.push("/");
+          closeSlideMenu();
+        }}
+      >
+        CODIBA
+      </div>
       <ul className="slide-menu-list">
         <li className="slide-menu-item">
-          <BsHeartFill
-            className="slide-menu-icon"
-          />
+          <BsHeartFill className="slide-menu-icon" />
           TOP CODIES
         </li>
         <li className="slide-menu-item">
-          <BsBookmarksFill 
-            className="slide-menu-icon"
-          />
+          <BsBookmarksFill className="slide-menu-icon" />
           MY PICKS
         </li>
       </ul>
