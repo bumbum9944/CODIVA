@@ -2,18 +2,20 @@ import { React, useEffect, useState } from "react";
 import "./Menu.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 
-function Menu({ location }) {
-  console.log(location.pathname);
-  let menuButton;
-  if (location.pathname === "/") {
-    menuButton = (
-      <GiHamburgerMenu className="menu-button main" onClick={openSlideMenu} />
-    );
-  } else {
-    menuButton = (
-      <GiHamburgerMenu className="menu-button" onClick={openSlideMenu} />
-    );
-  }
+function Menu() {
+  let menuButton = (
+    <GiHamburgerMenu className="menu-button" onClick={openSlideMenu} />
+  );
+  // let menuButton;
+  // if (location.pathname === "/") {
+  //   menuButton = (
+  //     <GiHamburgerMenu className="menu-button main" onClick={openSlideMenu} />
+  //   );
+  // } else {
+  //   menuButton = (
+  //     <GiHamburgerMenu className="menu-button" onClick={openSlideMenu} />
+  //   );
+  // }
 
   function openSlideMenu() {
     document.querySelector("body").classList.add("no-scroll");
@@ -30,12 +32,7 @@ function Menu({ location }) {
       });
   }
 
-  return (
-    <div className="menu-container">
-      {/* <GiHamburgerMenu className="menu-button main" onClick={openSlideMenu} /> */}
-      {menuButton}
-    </div>
-  );
+  return <div className="menu-container">{menuButton}</div>;
 }
 
 export default Menu;

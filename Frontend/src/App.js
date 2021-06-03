@@ -27,7 +27,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Menu location={location} />
+        <Menu />
         <SlideMenu />
         <Switch>
           <Route path="/" exact component={Home} />

@@ -23,6 +23,10 @@
   border-bottom: solid white 0.5vw;
   margin-bottom: 1.5vh;
 }
+.slide-menu-title:hover {
+  /* background-color: rgba(100, 100, 100, 0.4); */
+  cursor: pointer;
+}
 
 .slide-menu-list {
   padding: 0;
@@ -38,7 +42,7 @@
   font-size: 6vw;
 }
 .slide-menu-item:hover {
-  background-color: rgba(100, 100, 100, 0.4);
+  /* background-color: rgba(100, 100, 100, 0.4); */
   cursor: pointer;
 }
 
@@ -71,6 +75,6 @@
 }
 
 .slide-menu-footer-btn:hover {
-  background-color: rgba(100, 100, 100, 0.4);
+  /* background-color: rgba(100, 100, 100, 0.4); */
   cursor: pointer;
 }
