@@ -51,7 +51,17 @@ function App() {
               />
             )}
           />
-          <Route path="/search/2" component={SearchPage2} />
+          <Route
+            path="/search/2"
+            render={() => (
+              <SearchPage2
+                gender={gender}
+                changeGender={newGender => {
+                  setGender(newGender);
+                }}
+              />
+            )}
+          />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/top-codies" component={TopCodies} />
