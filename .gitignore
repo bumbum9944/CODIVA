@@ -4,6 +4,9 @@ __pycache__
 data/chromedriver
 data/images/
 data/resized_images/
+<<<<<<< HEAD
 data/train_images/
 data/test_images/
+=======
+>>>>>>> 73e70ff8cd726850cf0cfd2bc251ce5722c0229a
 *.env

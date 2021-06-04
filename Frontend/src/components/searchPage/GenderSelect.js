@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from "@material-ui/core/Typography";
@@ -29,12 +30,11 @@ const useStyles = makeStyles(theme => ({
     width: "100%"
   },
   image: {
-    margin: 10,
     position: "relative",
     height: 200,
     [theme.breakpoints.down("xs")]: {
       width: "100% !important", // Overrides inline-style
-      height: "22vh"
+      height: "33.2vh"
     },
     "&:hover, &$focusVisible": {
       zIndex: 1,
@@ -84,7 +84,8 @@ const useStyles = makeStyles(theme => ({
     position: "relative",
     padding: `${theme.spacing(2)}px ${theme.spacing(4)}px ${
       theme.spacing(1) + 6
-    }px`
+    }px`,
+    fontSize: "1.3rem"
   },
   imageMarked: {
     height: 3,
@@ -97,8 +98,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function GenderSelect() {
+function GenderSelect({ gender, selectedOption, changeGender }) {
   const classes = useStyles();
+  const history = useHistory();
 
   return (
     <div className={classes.root}>
@@ -108,6 +110,10 @@ function GenderSelect() {
           key={image.title}
           className={classes.image}
           focusVisibleClassName={classes.focusVisible}
+          onClick={() => {
+            changeGender(image.title);
+            history.push("/search/2");
+          }}
           style={{
             width: image.width
           }}

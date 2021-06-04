@@ -1,19 +1,11 @@
-.home-carousel-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 4vh;
-  
-}
-
-.home-carousel {
-  display: flex;
-  flex-direction: column;
-  width: 80vw;
-  height: 65vh;
-}
-
 .home-carousel-image {
-  width: 100%;
-  height: 60vh;
+  width: 100vw;
+  height: 100vh;
    
+}
+
+.slick-dots {
+  position: absolute;
+  height: 10vh;
+  top: 90vh;
 }
