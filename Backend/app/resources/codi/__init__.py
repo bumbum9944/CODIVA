@@ -8,7 +8,17 @@ codi = Blueprint("codi", __name__, url_prefix="/codi")
 
 @codi.route("/", methods=["GET"])
 def get_codies():
-    pass
+    query = request.args.to_dict()
+    count = query["count"] if "count" in query else 20
+    with connect_db() as connection:
+        with connection.cursor() as cursor:
+            sql = f"SELECT c.id, c.url, c.labels, c.hits, l.cnt from `codies` as c LEFT JOIN (SELECT codi_id as id, count(*) as cnt FROM likes GROUP BY codi_id) as l ON c.id = l.id ORDER BY cnt DESC LIMIT {count}"
+            cursor.execute(sql)
+            res = cursor.fetchall()
+            for r in res:
+                r["labels"] = json.loads(r["labels"])
+        connection.commit()
+    return jsonify(data=res)
 
 
 @codi.route("/<codi_id>", methods=["PUT"])
