@@ -1,5 +1,6 @@
 from crawling import ImgCrawler
 from resize import img_resizer
+import requests
 
 # from selenium import webdriver
 # from selenium.webdriver.common.by import By
@@ -13,23 +14,34 @@ headers = {
 }
 
 
-async def crawling(url, selector, id):
+async def crawling(url, selector):
     links = []
-    dname = "bottom/slacks"  # 세부 디렉토리 명칭
-    fname = "slacks"  # 파일명칭
-    # driver.get(url)
-    try:
-        res = requests.get(url, headers=headers)
-        # print(type(res.headers.get("X-Amz-Cf-Id")))
-    except:
-        print("requests error")
+    dname = "top/tee"  # 세부 디렉토리 명칭
+    fname = "test"  # 파일명칭
+    i = 61  # 파일 넘버링
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36"
+    }
+    res = requests.get(url, headers=headers)
     soup = BeautifulSoup(res.text, "html.parser")
-    links += soup.select("a.img-block")
-    images = await get_images(links)
-    for image in images:
-        dload.save(image, f"./train_images/{dname}/{fname}{id}.jpg")
-        id += 1
-    return id
+    links += soup.select(selector)
+
+    print(links)
+    # images = await get_images(links)
+    with open("resource.json", "r") as f:
+        db = json.load(f)
+        for image in links:
+            if "lazyload" in image["class"]:
+                url = "https:" + image["data-original"]
+            else:
+                url = "https:" + image["src"]
+            if not url in db:
+                dload.save(url, f"./test_images/{fname}{i}.jpg")
+                db[url] = f"./test_images/{fname}{i}.jpg"
+                i += 1
+    with open("resource.json", "w") as f:
+        json.dump(db, f, indent="\t")
 
 
 async def get_images(links):
@@ -54,6 +66,13 @@ async def get_images(links):
 
 
 if __name__ == "__main__":
+
+    asyncio.run(
+        crawling(
+            "https://store.musinsa.com/app/codimap/lists",
+            "img.style-list-thumbnail__img",
+        )
+    )
     # 크롬 이미지 검색 크롤링(학습데이터)
     # crawler = ImgCrawler("https://www.google.com")
     # crawler.preprocess("aria-label", "검색", mode="keydown", search="Coat")  # search:검색어
@@ -67,10 +86,9 @@ if __name__ == "__main__":
     # driver2 = webdriver.Chrome("./chromedriver")
 
     # 각 상품 상세페이지로 들어갈 하이퍼링크 수집
-    i = 1
-    for page_num in range(1, 15):
-        url = f"https://search.musinsa.com/category/003008?page={page_num}"
-        i = asyncio.run(crawling(url, "a.img-block", i))
+    # for page_num in range(1, 11):
+    #     url = f"https://search.musinsa.com/category/001001?page={page_num}"
+    #     asyncio.run(crawling(url, "a.img-block"))
 
     # 각 상품에 대한 대표 이미지 수집
     # images = []
