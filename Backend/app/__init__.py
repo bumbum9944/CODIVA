@@ -14,14 +14,17 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(config)
 
-    from .resources import auth, codi
+    from .resources import auth, codi, like
 
     app.register_blueprint(auth.auth)
     app.register_blueprint(codi.codi)
 
+    api.add_resource(like.LikeApi, "/like/<user_id>", "/like/<user_id>/<codi_id>")
+
     # extention
     jwt.init_app(app)
     swagger.init_app(app)
+    api.init_app(app)
     CORS(app, supports_credentials=True)
 
     @app.route("/")
