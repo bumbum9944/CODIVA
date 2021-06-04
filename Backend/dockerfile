@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 
 COPY . /usr/bin/codiba/Backend
 
-# CMD [ "python",  "manage.py", "runserver"]
+CMD [ "python",  "launcher.py"]
