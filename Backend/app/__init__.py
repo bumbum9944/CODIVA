@@ -14,13 +14,19 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(config)
 
-    from .resources import auth, codi, like, directory
+    from .resources import auth, codi, like, directory, saved
 
     app.register_blueprint(auth.auth)
     app.register_blueprint(codi.codi)
 
     api.add_resource(like.LikeApi, "/like/<user_id>", "/like/<user_id>/<codi_id>")
     api.add_resource(directory.DirectoryApi, "/directory/<user_id>")
+    api.add_resource(
+        saved.SavedApi,
+        "/saved/<user_id>",
+        "/saved/<user_id>/<dir_name>",
+        "/saved/<user_id>/<dir_name>/<codi_id>",
+    )
 
     # extention
     jwt.init_app(app)
