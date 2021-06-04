@@ -57,7 +57,7 @@ def register():
     return jsonify(message=f"{email} is successfully registered.")
 
 
-@auth.route("login", methods=["POST"])
+@auth.route("/login", methods=["POST"])
 def login():
     req = dict(request.get_json(force=True))
     email, password = req["email"], req["password"]
