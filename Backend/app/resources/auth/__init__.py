@@ -105,7 +105,7 @@ def login():
                     )
                 )
 
-    access_token = create_access_token(identity=req["email"])
+    access_token = create_access_token(identity=result["id"])
     return jsonify(
         access_token=access_token,
         user={"user_name": result["name"], "user_id": result["id"]},
