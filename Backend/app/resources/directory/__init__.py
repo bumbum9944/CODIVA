@@ -8,7 +8,7 @@ from database import connect_db
 class DirectoryApi(Resource):
     @jwt_required()
     def get(self, user_id):
-        if get_jwt_identity() != user_id:
+        if get_jwt_identity() != int(user_id):
             abort(
                 Response(
                     status=401,
@@ -33,7 +33,7 @@ where d.user_id=%s order by d.created_date desc"""
 
     @jwt_required()
     def post(self, user_id):
-        if get_jwt_identity() != user_id:
+        if get_jwt_identity() != int(user_id):
             abort(
                 Response(
                     status=401,
@@ -74,7 +74,7 @@ where d.user_id=%s order by d.created_date desc"""
 
     @jwt_required()
     def put(self, user_id):
-        if get_jwt_identity() != user_id:
+        if get_jwt_identity() != int(user_id):
             abort(
                 Response(
                     status=401,
@@ -123,7 +123,7 @@ where d.user_id=%s order by d.created_date desc"""
 
     @jwt_required()
     def delete(self, user_id):
-        if get_jwt_identity() != user_id:
+        if get_jwt_identity() != int(user_id):
             abort(
                 Response(
                     status=401,

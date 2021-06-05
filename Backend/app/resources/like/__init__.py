@@ -8,6 +8,14 @@ from database import connect_db
 class LikeApi(Resource):
     @jwt_required()
     def get(self, user_id):
+        if get_jwt_identity() != int(user_id):
+            abort(
+                Response(
+                    status=401,
+                    response=json.dumps({"message": "Unauthorized User"}),
+                    mimetype="application/json",
+                )
+            )
         with connect_db() as connection:
             with connection.cursor() as cursor:
                 sql = "SELECT * FROM `likes` WHERE `user_id`=%s"
@@ -18,6 +26,14 @@ class LikeApi(Resource):
 
     @jwt_required()
     def post(self, user_id, codi_id):
+        if get_jwt_identity() != int(user_id):
+            abort(
+                Response(
+                    status=401,
+                    response=json.dumps({"message": "Unauthorized User"}),
+                    mimetype="application/json",
+                )
+            )
         with connect_db() as connection:
             with connection.cursor() as cursor:
                 sql = "SELECT * FROM `likes` WHERE `user_id`=%s and `codi_id`=%s"
@@ -35,6 +51,8 @@ class LikeApi(Resource):
 
                 sql = "INSERT INTO `likes`(user_id, codi_id) VALUES(%s, %s)"
                 cursor.execute(sql, (user_id, codi_id))
+                sql = "UPDATE `codies` SET likes_cnt=likes_cnt+1 WHERE codi_id=%s"
+                cursor.execute(sql, (codi_id,))
             connection.commit()
         return jsonify(message="Successfully created")
 
@@ -43,6 +61,14 @@ class LikeApi(Resource):
 
     @jwt_required()
     def delete(self, user_id, codi_id):
+        if get_jwt_identity() != int(user_id):
+            abort(
+                Response(
+                    status=401,
+                    response=json.dumps({"message": "Unauthorized User"}),
+                    mimetype="application/json",
+                )
+            )
         with connect_db() as connection:
             with connection.cursor() as cursor:
                 sql = "SELECT * FROM `likes` WHERE `user_id`=%s and `codi_id`=%s"
@@ -58,5 +84,7 @@ class LikeApi(Resource):
 
                 sql = "DELETE FROM `likes` WHERE user_id=%s and codi_id=%s"
                 cursor.execute(sql, (user_id, codi_id))
+                sql = "UPDATE `codies` SET likes_cnt=likes_cnt-1 WHERE codi_id=%s"
+                cursor.execute(sql, (codi_id,))
             connection.commit()
         return jsonify(message="Successfully deleted")
