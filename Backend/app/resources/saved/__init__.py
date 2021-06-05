@@ -20,7 +20,7 @@ class SavedApi(Resource):
         else:
             with connect_db() as connection:
                 with connection.cursor() as cursor:
-                    sql = "select c.url from saved as s left join codies as c on s.codi_id = c.id where s.directory_name=%s and s.directory_user_id=%s order by s.created_data desc"
+                    sql = "select c.url from saved as s left join codies as c on s.codi_id = c.id where s.directory_name=%s and s.directory_user_id=%s order by s.created_date desc"
                     cursor.execute(sql, (dir_name, user_id))
                     res = cursor.fetchall()
                 connection.commit()
