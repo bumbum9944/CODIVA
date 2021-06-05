@@ -1,12 +1,14 @@
-import json
+import os, json
 from flask import jsonify, request, Blueprint, abort, Response
 from database import connect_db
 from flasgger import swag_from
 
 codi = Blueprint("codi", __name__, url_prefix="/codi")
+path = os.path.join(os.getcwd(), "app/docs/codi")
 
 
 @codi.route("/", methods=["GET"])
+@swag_from(os.path.join(path, "get_codies.yml"))
 def get_codies():
     query = request.args.to_dict()
     count = query["count"] if "count" in query else 20
