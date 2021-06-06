@@ -1,0 +1,14 @@
+.folder-detail-header {
+  display: grid;
+  grid-template-columns: 6fr 1fr;
+}
+
+.folder-detail-title {
+  display: flex;
+  align-items: center;
+  font-size: 10vw;
+}
+
+p {
+  margin: 0;
+}

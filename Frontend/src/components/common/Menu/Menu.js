@@ -1,21 +1,22 @@
-import { React, useEffect, useState } from "react";
+import { React } from "react";
+import { useLocation } from "react-router-dom";
 import "./Menu.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 function Menu() {
-  let menuButton = (
-    <GiHamburgerMenu className="menu-button" onClick={openSlideMenu} />
-  );
-  // let menuButton;
-  // if (location.pathname === "/") {
-  //   menuButton = (
-  //     <GiHamburgerMenu className="menu-button main" onClick={openSlideMenu} />
-  //   );
-  // } else {
-  //   menuButton = (
-  //     <GiHamburgerMenu className="menu-button" onClick={openSlideMenu} />
-  //   );
-  // }
+  const location = useLocation();
+  let menuButton;
+  if (location.pathname === "/" || location.pathname === "/search/1") {
+    menuButton = (
+      <GiHamburgerMenu className="menu-button main" onClick={openSlideMenu} />
+    );
+  } else if (location.pathname === "/my-picks/detail") {
+    menuButton = "";
+  } else {
+    menuButton = (
+      <GiHamburgerMenu className="menu-button" onClick={openSlideMenu} />
+    );
+  }
 
   function openSlideMenu() {
     document.querySelector("body").classList.add("no-scroll");

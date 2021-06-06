@@ -54,7 +54,13 @@ function SlideMenu() {
           <BsHeartFill className="slide-menu-icon" />
           TOP CODIES
         </li>
-        <li className="slide-menu-item">
+        <li
+          className="slide-menu-item"
+          onClick={() => {
+            history.push("/my-picks");
+            closeSlideMenu();
+          }}
+        >
           <BsBookmarksFill className="slide-menu-icon" />
           MY PICKS
         </li>

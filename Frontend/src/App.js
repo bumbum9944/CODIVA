@@ -10,6 +10,8 @@ import SearchPage2 from "./pages/SearchPage2";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import TopCodies from "./pages/TopCodies";
+import MyPicks from "./pages/MyPicks";
+import FolderDetail from "./pages/FolderDetail";
 
 function App() {
   const [gender, setGender] = useState("");
@@ -65,6 +67,8 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/top-codies" component={TopCodies} />
+          <Route path="/my-picks" exact component={MyPicks} />
+          <Route path="/my-picks/detail" component={FolderDetail} />
         </Switch>
       </div>
     </BrowserRouter>
