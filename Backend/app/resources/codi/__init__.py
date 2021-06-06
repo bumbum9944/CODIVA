@@ -2,7 +2,7 @@ import os, json
 from flask import jsonify, request, Blueprint, abort, Response
 from database import connect_db
 from flasgger import swag_from
-from elastic_search import connect_es
+from database.elasticsearch import connect_es
 
 codi = Blueprint("codi", __name__, url_prefix="/codi")
 path = os.path.join(os.getcwd(), "app/docs/codi")
@@ -42,11 +42,13 @@ def hit(codi_id):
                     )
                 )
 
+            sql = "UPDATE `codies` SET `hits`=%s WHERE id=%s"
+            cursor.execute(sql, (res["hits"] + 1, codi_id))
+
             with connect_es() as es:
                 es.update("codies", codi_id, {"script": "ctx._source.hits += 1"})
                 es.close()
-            sql = "UPDATE `codies` SET `hits`=%s WHERE id=%s"
-            cursor.execute(sql, (res["hits"] + 1, codi_id))
+
         connection.commit()
     return jsonify(hits=res["hits"] + 1)
 
