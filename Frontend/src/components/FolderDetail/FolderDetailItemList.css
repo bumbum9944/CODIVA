@@ -1,0 +1,13 @@
+.folder-detail-list-container {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: 1fr;
+  justify-items: center;
+}
+
+.folder-detail-image {
+  border-radius: 3vw;
+  width : 30vw;
+  height: 45vw;
+}
