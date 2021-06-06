@@ -1,8 +1,9 @@
 import json
 from flask import jsonify, request, abort, Response
 from flask_restful import reqparse, Api, Resource
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from database import connect_db
+from database.elasticsearch import connect_es
 
 
 class LikeApi(Resource):
@@ -51,8 +52,16 @@ class LikeApi(Resource):
 
                 sql = "INSERT INTO `likes`(user_id, codi_id) VALUES(%s, %s)"
                 cursor.execute(sql, (user_id, codi_id))
-                sql = "UPDATE `codies` SET likes_cnt=likes_cnt+1 WHERE codi_id=%s"
+
+                sql = "UPDATE `codies` SET likes_cnt=likes_cnt+1 WHERE id=%s"
                 cursor.execute(sql, (codi_id,))
+
+                with connect_es() as es:
+                    es.update(
+                        "codies", codi_id, {"script": "ctx._source.like_cnt += 1"}
+                    )
+                    es.close()
+
             connection.commit()
         return jsonify(message="Successfully created")
 
@@ -84,7 +93,15 @@ class LikeApi(Resource):
 
                 sql = "DELETE FROM `likes` WHERE user_id=%s and codi_id=%s"
                 cursor.execute(sql, (user_id, codi_id))
-                sql = "UPDATE `codies` SET likes_cnt=likes_cnt-1 WHERE codi_id=%s"
+
+                sql = "UPDATE `codies` SET likes_cnt=likes_cnt-1 WHERE id=%s"
                 cursor.execute(sql, (codi_id,))
+
+                with connect_es() as es:
+                    es.update(
+                        "codies", codi_id, {"script": "ctx._source.like_cnt -= 1"}
+                    )
+                    es.close()
+
             connection.commit()
         return jsonify(message="Successfully deleted")

@@ -19,5 +19,4 @@ SWAGGER = {
     "openapi": "3.0.0",
     "title": "Codiba API Documentation",
 }
-print(SWAGGER["doc_dir"])
 JWT_ACCESS_TOKEN_EXPIRES = timedelta(days=3)
