@@ -6,6 +6,30 @@ from database.elasticsearch import connect_es
 
 codi = Blueprint("codi", __name__, url_prefix="/codi")
 path = os.path.join(os.getcwd(), "app/docs/codi")
+labels = {
+    "nested": {
+        "path": "apparels",
+        "query": {
+            "bool": {
+                "filter": [
+                    {"match": {"apparels.category": ""}},
+                    {"match": {"apparels.color": ""}},
+                ]
+            }
+        },
+    }
+}
+
+query = {
+    "query": {
+        "function_score": {
+            "query": {"bool": {"must": [{"match": {"gender": "m"}}]}},
+            "script_score": {
+                "script": {"source": "doc['like_cnt'].value + (doc['hits'].value*2)"}
+            },
+        }
+    }
+}
 
 
 @codi.route("/", methods=["GET"])
@@ -53,6 +77,29 @@ def hit(codi_id):
     return jsonify(hits=res["hits"] + 1)
 
 
-@codi.route("/match", methods=["POST"])
+@codi.route("/search", methods=["POST"])
 def search():
-    pass
+    req = request.get_json(force=True)
+    query["query"]["function_score"]["query"]["bool"]["must"][0]["match"][
+        "gender"
+    ] = req["gender"]
+
+    for apparel in req["apparels"]:
+        labels["nested"]["query"]["bool"]["filter"][0]["match"][
+            "apparels.category"
+        ] = apparel["category"]
+        labels["nested"]["query"]["bool"]["filter"][1]["match"][
+            "apparels.color"
+        ] = apparel["color"]
+        query["query"]["function_score"]["query"]["bool"]["must"].append(labels)
+
+    with connect_es() as es:
+        result = es.search(query)
+        result = list(
+            map(
+                lambda x: dict(x["_source"], **{"id": int(x["_id"])}),
+                result["hits"]["hits"],
+            )
+        )
+        es.close()
+    return jsonify(data=result)
