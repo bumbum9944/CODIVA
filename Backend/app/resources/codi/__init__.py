@@ -1,12 +1,39 @@
-import json
+import os, json
 from flask import jsonify, request, Blueprint, abort, Response
 from database import connect_db
 from flasgger import swag_from
+from database.elasticsearch import connect_es
 
 codi = Blueprint("codi", __name__, url_prefix="/codi")
+path = os.path.join(os.getcwd(), "app/docs/codi")
+labels = {
+    "nested": {
+        "path": "apparels",
+        "query": {
+            "bool": {
+                "filter": [
+                    {"match": {"apparels.category": ""}},
+                    {"match": {"apparels.color": ""}},
+                ]
+            }
+        },
+    }
+}
+
+query = {
+    "query": {
+        "function_score": {
+            "query": {"bool": {"must": [{"match": {"gender": "m"}}]}},
+            "script_score": {
+                "script": {"source": "doc['like_cnt'].value + (doc['hits'].value*2)"}
+            },
+        }
+    }
+}
 
 
 @codi.route("/", methods=["GET"])
+@swag_from(os.path.join(path, "get_codies.yml"))
 def get_codies():
     query = request.args.to_dict()
     count = query["count"] if "count" in query else 20
@@ -41,10 +68,38 @@ def hit(codi_id):
 
             sql = "UPDATE `codies` SET `hits`=%s WHERE id=%s"
             cursor.execute(sql, (res["hits"] + 1, codi_id))
+
+            with connect_es() as es:
+                es.update("codies", codi_id, {"script": "ctx._source.hits += 1"})
+                es.close()
+
         connection.commit()
     return jsonify(hits=res["hits"] + 1)
 
 
-@codi.route("/match", methods=["POST"])
+@codi.route("/search", methods=["POST"])
 def search():
-    pass
+    req = request.get_json(force=True)
+    query["query"]["function_score"]["query"]["bool"]["must"][0]["match"][
+        "gender"
+    ] = req["gender"]
+
+    for apparel in req["apparels"]:
+        labels["nested"]["query"]["bool"]["filter"][0]["match"][
+            "apparels.category"
+        ] = apparel["category"]
+        labels["nested"]["query"]["bool"]["filter"][1]["match"][
+            "apparels.color"
+        ] = apparel["color"]
+        query["query"]["function_score"]["query"]["bool"]["must"].append(labels)
+
+    with connect_es() as es:
+        result = es.search(query)
+        result = list(
+            map(
+                lambda x: dict(x["_source"], **{"id": int(x["_id"])}),
+                result["hits"]["hits"],
+            )
+        )
+        es.close()
+    return jsonify(data=result)

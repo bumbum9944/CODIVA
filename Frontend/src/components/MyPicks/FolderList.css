@@ -1,0 +1,33 @@
+.folder-list-container {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  justify-items: center;
+  margin-top: 5vh;
+}
+
+.folder-image {
+  border-radius: 3vw;
+  width : 40vw;
+  height: 60vw;
+}
+
+.folder-basic-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3vw;
+  width : 40vw;
+  height: 60vw;
+  border: rgb(178, 178, 178) solid 1px;
+}
+
+.folder-menu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.folder-text {
+  margin: 0;
+}

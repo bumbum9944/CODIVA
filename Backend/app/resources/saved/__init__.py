@@ -8,7 +8,14 @@ from database import connect_db
 class SavedApi(Resource):
     @jwt_required()
     def get(self, user_id, dir_name=None):
-        print(user_id, dir_name)
+        if get_jwt_identity() != int(user_id):
+            abort(
+                Response(
+                    status=401,
+                    response=json.dumps({"message": "Unauthorized User"}),
+                    mimetype="application/json",
+                )
+            )
         if not dir_name:
             with connect_db() as connection:
                 with connection.cursor() as cursor:
@@ -20,18 +27,28 @@ class SavedApi(Resource):
         else:
             with connect_db() as connection:
                 with connection.cursor() as cursor:
-                    sql = "select c.url from saved as s left join codies as c on s.codi_id = c.id where s.directory_name=%s and s.directory_user_id=%s order by s.created_data desc"
+                    sql = "select c.id, c.url, c.gender, c.apparels, c.hits, c.likes_cnt from (select * from saved where directory_name=%s and directory_user_id=%s) as s left join codies as c on s.codi_id = c.id  order by s.created_date desc"
                     cursor.execute(sql, (dir_name, user_id))
                     res = cursor.fetchall()
+                    for r in res:
+                        r["apparels"] = json.loads(r["apparels"])
                 connection.commit()
-            return jsonify(data=[v["url"] for v in res])
+            return jsonify(data=res)
 
     @jwt_required()
     def post(self, user_id, dir_name, codi_id):
+        if get_jwt_identity() != int(user_id):
+            abort(
+                Response(
+                    status=401,
+                    response=json.dumps({"message": "Unauthorized User"}),
+                    mimetype="application/json",
+                )
+            )
         with connect_db() as connection:
             with connection.cursor() as cursor:
-                sql = "select * from saved where directory_user_id=%s and directory_name=%s and codi_id=%s"
-                cursor.execute(sql, (user_id, dir_name, codi_id))
+                sql = "select * from saved where directory_user_id=%s and codi_id=%s"
+                cursor.execute(sql, (user_id, codi_id))
                 if cursor.fetchone():
                     abort(
                         Response(
@@ -50,6 +67,15 @@ class SavedApi(Resource):
 
     @jwt_required()
     def put(self, user_id, dir_name):
+        if get_jwt_identity() != int(user_id):
+            abort(
+                Response(
+                    status=401,
+                    response=json.dumps({"message": "Unauthorized User"}),
+                    mimetype="application/json",
+                )
+            )
+
         req = request.get_json(force=True)
         if (
             not "targets" in req
@@ -94,6 +120,15 @@ class SavedApi(Resource):
 
     @jwt_required()
     def delete(self, user_id, dir_name):
+        if get_jwt_identity() != int(user_id):
+            abort(
+                Response(
+                    status=401,
+                    response=json.dumps({"message": "Unauthorized User"}),
+                    mimetype="application/json",
+                )
+            )
+
         req = request.get_json(force=True)
         if not "targets" in req:
             abort(

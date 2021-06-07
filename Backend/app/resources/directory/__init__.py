@@ -1,24 +1,47 @@
 import json
 from flask import jsonify, request, abort, Response
 from flask_restful import Api, Resource
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from database import connect_db
 
 
 class DirectoryApi(Resource):
     @jwt_required()
     def get(self, user_id):
+        if get_jwt_identity() != int(user_id):
+            abort(
+                Response(
+                    status=401,
+                    response=json.dumps({"message": "Unauthorized User"}),
+                    mimetype="application/json",
+                )
+            )
+
         with connect_db() as connection:
             with connection.cursor() as cursor:
-                sql = "SELECT name FROM `directory` WHERE user_id=%s ORDER BY created_date"
-                cursor.execute(sql, (user_id))
+                sql = """select d.user_id, d.name, IFNULL(sv.url,"") as url, IFNULL(sv.cnt, 0) as cnt, d.created_date from directory as d 
+left join (select s.directory_user_id, s.directory_name, c.url, count(*) as cnt 
+from (select * from saved where directory_user_id=%s order by created_date desc LIMIT 18446744073709551615) as s 
+left join codies as c on s.codi_id = c.id group by s.directory_name) as sv
+on d.user_id=sv.directory_user_id and d.name=sv.directory_name 
+where d.user_id=%s order by d.created_date desc"""
+                cursor.execute(sql, (user_id, user_id))
                 res = cursor.fetchall()
                 print(res)
             connection.commit()
-        return jsonify(data=[v["name"] for v in res])
+        return jsonify(data=sorted(res, key=lambda x: x["created_date"]))
 
     @jwt_required()
     def post(self, user_id):
+        if get_jwt_identity() != int(user_id):
+            abort(
+                Response(
+                    status=401,
+                    response=json.dumps({"message": "Unauthorized User"}),
+                    mimetype="application/json",
+                )
+            )
+
         req = request.get_json(force=True)
         if not "name" in req or req["name"] == "":
             abort(
@@ -51,6 +74,15 @@ class DirectoryApi(Resource):
 
     @jwt_required()
     def put(self, user_id):
+        if get_jwt_identity() != int(user_id):
+            abort(
+                Response(
+                    status=401,
+                    response=json.dumps({"message": "Unauthorized User"}),
+                    mimetype="application/json",
+                )
+            )
+
         req = request.get_json(force=True)
         if (
             not "name" in req
@@ -91,6 +123,15 @@ class DirectoryApi(Resource):
 
     @jwt_required()
     def delete(self, user_id):
+        if get_jwt_identity() != int(user_id):
+            abort(
+                Response(
+                    status=401,
+                    response=json.dumps({"message": "Unauthorized User"}),
+                    mimetype="application/json",
+                )
+            )
+
         req = request.get_json(force=True)
         if not "name" in req or req["name"] == "":
             abort(
