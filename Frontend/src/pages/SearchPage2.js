@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from "@material-ui/core/Typography";
@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Header from "../components/common/Header/Header";
 import PageButton from "../components/common/PageButton";
 import OptionTag from "../components/searchPage/OptionTag";
+import ChooseDetail from "../components/searchPage/ChooseDetail";
 
 const images = [
   {
@@ -110,6 +111,15 @@ const useStyles = makeStyles(theme => ({
 
 function SearchPage2(props) {
   const classes = useStyles();
+  const [detailOpen, setDetailOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setDetailOpen(true);
+  };
+
+  const handleClose = () => {
+    setDetailOpen(false);
+  };
 
   return (
     <>
@@ -123,6 +133,7 @@ function SearchPage2(props) {
               key={image.title}
               className={classes.image}
               focusVisibleClassName={classes.focusVisible}
+              onClick={handleClickOpen}
             >
               <span
                 className={classes.imageSrc}
@@ -144,6 +155,7 @@ function SearchPage2(props) {
               </span>
             </ButtonBase>
           ))}
+          <ChooseDetail handleClose={handleClose} detailOpen={detailOpen} />
         </div>
       </div>
       <PageButton />
