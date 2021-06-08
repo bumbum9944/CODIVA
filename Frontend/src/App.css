@@ -1,13 +1,9 @@
 #root {
   position: relative;
-  display: flex;
   width: 100vw;
   height: 100vh;
 }
 
-.App {
-  display: flex;
-}
 * {
   font-family: "Staatliches", cursive;
 }

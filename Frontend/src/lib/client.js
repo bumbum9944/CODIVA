@@ -11,7 +11,7 @@ export const request = (method, url, data = null) =>
     url,
     data,
     headers: {
-      "Access-Control-Allow-Origin": "*"
+      "Content-Type": "application/json"
     }
   });
 
@@ -21,7 +21,7 @@ export const requestWithJWT = (method, url, data = null) =>
     url,
     data,
     headers: {
-      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("token")}`
     }
   });
