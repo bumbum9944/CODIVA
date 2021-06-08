@@ -6,29 +6,31 @@ from database.elasticsearch import connect_es
 
 codi = Blueprint("codi", __name__, url_prefix="/codi")
 path = os.path.join(os.getcwd(), "app/docs/codi")
-labels = {
-    "nested": {
-        "path": "apparels",
-        "query": {
-            "bool": {
-                "filter": [
-                    {"match": {"apparels.category": ""}},
-                    {"match": {"apparels.color": ""}},
-                ]
-            }
-        },
+
+
+def make_match(key, value):
+    return {"match": {key: value}}
+
+
+labels = json.dumps(
+    {
+        "nested": {
+            "path": "apparels",
+            "query": {"bool": {"filter": []}},
+        }
     }
-}
+)
 
 query = {
+    "size": 20,
     "query": {
         "function_score": {
-            "query": {"bool": {"must": [{"match": {"gender": "m"}}]}},
+            "query": {"bool": {"must": []}},
             "script_score": {
                 "script": {"source": "doc['like_cnt'].value + (doc['hits'].value*2)"}
             },
-        }
-    }
+        },
+    },
 }
 
 
@@ -79,20 +81,24 @@ def hit(codi_id):
 
 @codi.route("/search", methods=["POST"])
 def search():
+    query_param = request.args.to_dict()
     req = request.get_json(force=True)
-    query["query"]["function_score"]["query"]["bool"]["must"][0]["match"][
-        "gender"
-    ] = req["gender"]
+
+    query["from"] = query_param["from"] if "from" in query_param else 0
+    query["query"]["function_score"]["query"]["bool"]["must"].append(
+        make_match("gender", req["gender"])
+    )
 
     for apparel in req["apparels"]:
-        labels["nested"]["query"]["bool"]["filter"][0]["match"][
-            "apparels.category"
-        ] = apparel["category"]
-        labels["nested"]["query"]["bool"]["filter"][1]["match"][
-            "apparels.color"
-        ] = apparel["color"]
-        query["query"]["function_score"]["query"]["bool"]["must"].append(labels)
-
+        label = json.loads(labels)
+        label["nested"]["query"]["bool"]["filter"].append(
+            make_match("apparels.category", apparel["category"])
+        )
+        if apparel["color"] != "all":
+            label["nested"]["query"]["bool"]["filter"].append(
+                make_match("apparels.color", apparel["color"])
+            )
+        query["query"]["function_score"]["query"]["bool"]["must"].append(label)
     with connect_es() as es:
         result = es.search(query)
         result = list(
