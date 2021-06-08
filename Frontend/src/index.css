@@ -2,3 +2,13 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+body.no-scroll {
+  height: 100%;
+  overflow: hidden;
+}
+
+body.no-scroll2 {
+  height: 100%;
+  overflow: hidden;
+}

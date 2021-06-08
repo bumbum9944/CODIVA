@@ -1,14 +1,14 @@
 .folder-add-container {
   position: fixed;
-  bottom: -60vh;
-  z-index: 400;
+  bottom: -65vh;
+  z-index: 500;
   width: 89%;
   height: 60vh;
   transition: bottom 0.1s ease-in-out;
   background-color: white;
   color: black;
   padding: 0 5% 0 5%;
-  border: solid black 0.5vw;
+  border: solid #999999 0.5vw;
 }
 
 .folder-add-container.on {

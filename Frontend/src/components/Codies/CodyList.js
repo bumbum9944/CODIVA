@@ -2,7 +2,7 @@ import { React } from "react";
 import CodyCard from "./CodyCard";
 import "./CodyList.css";
 
-function CodyList({ codies, toggleSaved, toggleLiked, viewCntIncrease }) {
+function CodyList({ codies, toggleSaved, toggleLiked, viewCntIncrease, onChangeSelectedItem }) {
   const codyCardList = codies.map((item, index) => {
     return (
       <CodyCard
@@ -12,6 +12,7 @@ function CodyList({ codies, toggleSaved, toggleLiked, viewCntIncrease }) {
         toggleSaved={toggleSaved}
         toggleLiked={toggleLiked}
         viewCntIncrease={viewCntIncrease}
+        onChangeSelectedItem={onChangeSelectedItem}
       />
     );
   });

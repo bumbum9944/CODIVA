@@ -2,8 +2,11 @@ import { React, useState } from "react";
 import Header from "../components/common/Header/Header";
 import CodyList from "../components/Codies/CodyList";
 import CodyHeader from "../components/Codies/CodyHeader";
+import FolderAdd from "../components/common/Folder/FolderAdd";
+import FolderListSlide from "../components/common/Folder/FolderListSlide";
 
-function Codies({ gender, selectedOption }) {
+function Codies({ gender, selectedOption, folderList, addFolder }) {
+  const [selectedItem, setSelectedItem] = useState("");
   const [codies, setCodies] = useState([
     {
       id: 1,
@@ -143,19 +146,26 @@ function Codies({ gender, selectedOption }) {
     }
   ]);
 
+  function toggleSaved(targetIndex) {
+    const copiedCodies = JSON.parse(JSON.stringify(codies));
+    copiedCodies[targetIndex].isSaved =
+      !copiedCodies[targetIndex].isSaved;
+
+      setCodies(copiedCodies);
+  }
+
+  function onChangeSelectedItem(itemId) {
+    setSelectedItem(itemId);
+  }
+
   return (
     <div>
       <Header headerText="CODIES" />
       <CodyHeader gender={gender} selectedOption={selectedOption} />
       <CodyList
         codies={codies}
-        toggleSaved={targetIndex => {
-          const copiedCodies = JSON.parse(JSON.stringify(codies));
-          copiedCodies[targetIndex].isSaved =
-            !copiedCodies[targetIndex].isSaved;
-
-          setCodies(copiedCodies);
-        }}
+        onChangeSelectedItem={onChangeSelectedItem}
+        toggleSaved={toggleSaved}
         toggleLiked={targetIndex => {
           const copiedCodies = JSON.parse(JSON.stringify(codies));
           if (copiedCodies[targetIndex].isLiked) {
@@ -175,6 +185,14 @@ function Codies({ gender, selectedOption }) {
             copiedCodies[targetIndex].viewCnt + 1;
           setCodies(copiedCodies);
         }}
+      />
+      <FolderAdd addFolder={addFolder} />
+      <FolderListSlide
+        selectedItem={selectedItem}
+        onChangeSelectedItem={onChangeSelectedItem}
+        folderList={folderList}
+        addFolder={addFolder}
+        toggleSaved={toggleSaved}
       />
     </div>
   );

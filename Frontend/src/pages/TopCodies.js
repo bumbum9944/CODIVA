@@ -1,8 +1,11 @@
 import { React, useState } from "react";
 import Header from "../components/common/Header/Header";
 import RankedItemList from "../components/TopCodies/RankedItemList";
+import FolderAdd from "../components/common/Folder/FolderAdd";
+import FolderListSlide from "../components/common/Folder/FolderListSlide";
 
-function TopCodies() {
+function TopCodies({ folderList, addFolder }) {
+  const [selectedItem, setSelectedItem] = useState("");
   const [rankedItem, setRankedItem] = useState([
     {
       id: 1,
@@ -86,18 +89,25 @@ function TopCodies() {
     }
   ]);
 
+  function toggleSaved(targetIndex) {
+    const copiedTopCodies = JSON.parse(JSON.stringify(rankedItem));
+    copiedTopCodies[targetIndex].isSaved =
+      !copiedTopCodies[targetIndex].isSaved;
+
+    setRankedItem(copiedTopCodies);
+  }
+
+  function onChangeSelectedItem(itemId) {
+    setSelectedItem(itemId);
+  }
+
   return (
     <div className="topCodies">
       <Header headerText="TOP CODIES" />
       <RankedItemList
+        onChangeSelectedItem={onChangeSelectedItem}
         rankedItem={rankedItem}
-        toggleSaved={targetIndex => {
-          const copiedTopCodies = JSON.parse(JSON.stringify(rankedItem));
-          copiedTopCodies[targetIndex].isSaved =
-            !copiedTopCodies[targetIndex].isSaved;
-
-          setRankedItem(copiedTopCodies);
-        }}
+        toggleSaved={toggleSaved}
         toggleLiked={targetIndex => {
           const copiedTopCodies = JSON.parse(JSON.stringify(rankedItem));
           if (copiedTopCodies[targetIndex].isLiked) {
@@ -111,6 +121,14 @@ function TopCodies() {
             !copiedTopCodies[targetIndex].isLiked;
           setRankedItem(copiedTopCodies);
         }}
+      />
+      <FolderAdd addFolder={addFolder} />
+      <FolderListSlide
+        selectedItem={selectedItem}
+        onChangeSelectedItem={onChangeSelectedItem}
+        folderList={folderList}
+        addFolder={addFolder}
+        toggleSaved={toggleSaved}
       />
     </div>
   );

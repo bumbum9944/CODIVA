@@ -1,14 +1,29 @@
 .folder-detail-header {
-  display: grid;
-  grid-template-columns: 6fr 1fr;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10vh;
+  border-bottom: rgb(178, 178, 178) solid 1px;
 }
 
 .folder-detail-title {
   display: flex;
   align-items: center;
-  font-size: 10vw;
+  font-size: 9vw;
+  width: 75vw;
+}
+
+.folder-detail-edit-button {
+  width: 25vw;
+  text-align: center;
+  font-size: 5vw;
 }
 
 p {
   margin: 0;
+}
+
+.folder-detail-edit-button {
+  color: #87CEEB;
+  font-weight: bold;
 }

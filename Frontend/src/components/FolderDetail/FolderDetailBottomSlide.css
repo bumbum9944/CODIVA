@@ -1,0 +1,25 @@
+.folder-detail-bottom-slide-container {
+  position: fixed;
+  bottom: -15vh;
+  z-index: 400;
+  transition: bottom 0.1s ease-in-out;
+}
+
+.folder-detail-bottom-slide-container.on {
+  bottom: 0;  
+}
+
+.folder-detail-bottom-slide-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8vh;
+}
+
+.bottom-slide-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  height: 100%;
+}
