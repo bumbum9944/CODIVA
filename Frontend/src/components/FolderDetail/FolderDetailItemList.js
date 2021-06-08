@@ -1,8 +1,9 @@
 import "./FolderDetailItemList.css";
-import { React } from "react";
+import { React, useState } from "react";
 import CodyModal from "../common/Cody/CodyModal";
+import {  FaCheckCircle } from "react-icons/fa";
 
-function FolderDetailItemList({ items, folderId, toggleLiked }) {
+function FolderDetailItemList({ items, folderId, toggleLiked, mode, selectedItem, onChangeSelectedItem }) {
   function openModal(targetId) {
     document.querySelector("body").classList.add("no-scroll");
     document.querySelector(`#modal-${targetId}`).classList.remove("hidden");
@@ -10,8 +11,50 @@ function FolderDetailItemList({ items, folderId, toggleLiked }) {
 
   const itemList = items.map((element, index) => {
     const imageUrl = element.imageUrl;
-    return (
-      <div key={index} className="folder-detail-item">
+    let innerItem;
+    if(mode==="edit") {
+      let checkButton;
+      if(selectedItem.has(index)) {
+        checkButton = <FaCheckCircle  
+          style={{
+            position: "absolute",
+            top: "1vw",
+            right: "1vw",
+            color: "#87CEEB",
+            fontSize: "6vw"
+          }}
+        />
+      } else {
+        checkButton = <FaCheckCircle  
+          style={{
+            position: "absolute",
+            top: "1vw",
+            right: "1vw",
+            color: "white",
+            fontSize: "6vw"
+          }}
+        />
+      }
+
+      innerItem = <div 
+        key={index}
+        className="folder-detail-item"
+        style={{
+          position: "relative"
+        }}
+        onClick={()=>{
+          onChangeSelectedItem(index);
+        }}
+      >
+        <img
+          className="folder-detail-image"
+          src={imageUrl}
+          alt="folder-detail-image"
+        />
+        {checkButton}
+      </div>;
+    } else {
+      innerItem = <div key={index} className="folder-detail-item">
         <img
           className="folder-detail-image"
           src={imageUrl}
@@ -20,13 +63,10 @@ function FolderDetailItemList({ items, folderId, toggleLiked }) {
             openModal(index);
           }}
         />
-        {/* <div className="folder-detail-info">
-          <p className="folder-detail-text" >{folderName}</p>
-          <p className="folder-detail-text">{itemCnt} items</p>
-        </div> */}
         <CodyModal item={element} itemId={index} toggleLiked={toggleLiked} />
-      </div>
-    );
+      </div>;
+    }
+    return innerItem;
   });
 
   return <div className="folder-detail-list-container">{itemList}</div>;

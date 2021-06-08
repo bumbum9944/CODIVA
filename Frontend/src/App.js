@@ -14,6 +14,26 @@ import MyPicks from "./pages/MyPicks";
 import FolderDetail from "./pages/FolderDetail";
 
 function App() {
+  const [folderList, setFolderList] = useState([
+    {
+      id: 1,
+      folderName: "기본서랍",
+      itemCnt: 4,
+      imageUrl: "/carouselImage/item11.jpg"
+    },
+    {
+      id: 2,
+      folderName: "청바지",
+      itemCnt: 1,
+      imageUrl: "/carouselImage/item4.jpg"
+    },
+    {
+      id: 1,
+      folderName: "가디건",
+      itemCnt: 6,
+      imageUrl: "/carouselImage/item7.jpg"
+    }
+  ]);
   const [gender, setGender] = useState("");
   const [detail, setDetail] = useState("");
   const [selectedOption, setSelectedOption] = useState({
@@ -22,6 +42,17 @@ function App() {
   });
   const [apparels, setApparels] = useState([]);
 
+
+  function addFolder(newFolderName) {
+    const copiedFolderList = JSON.parse(JSON.stringify(folderList));
+    copiedFolderList.push({
+      id: copiedFolderList.length,
+      folderName: newFolderName,
+      itemCnt: 0,
+      imageUrl: ""
+    });
+    setFolderList(copiedFolderList);
+  }
   return (
     <BrowserRouter>
       <div className="App">
@@ -32,7 +63,12 @@ function App() {
           <Route
             path="/codies"
             render={() => (
-              <Codies gender={gender} selectedOption={selectedOption} />
+              <Codies 
+                gender={gender} 
+                selectedOption={selectedOption}
+                addFolder={addFolder}
+                folderList={folderList}
+              />
             )}
           />
           <Route
@@ -71,9 +107,25 @@ function App() {
           />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-          <Route path="/top-codies" component={TopCodies} />
-          <Route path="/my-picks" exact component={MyPicks} />
-          <Route path="/my-picks/detail" component={FolderDetail} />
+          <Route
+            path="/top-codies"
+            render={() => (
+              <TopCodies folderList={folderList} addFolder={addFolder} />
+            )}
+          />
+          <Route
+            path="/my-picks"
+            exact
+            render={() => (
+              <MyPicks folderList={folderList} addFolder={addFolder} />
+            )}
+          />
+          <Route 
+            path="/my-picks/detail" 
+            render={() => (
+              <FolderDetail folderList={folderList} addFolder={addFolder} />
+            )}
+          />
         </Switch>
       </div>
     </BrowserRouter>
