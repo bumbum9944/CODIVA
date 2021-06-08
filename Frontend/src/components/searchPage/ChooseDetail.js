@@ -29,17 +29,31 @@ const categoryOnepiece = ["one-piece"];
 function ChooseDetail({
   detail,
   setDetail,
+  setDetailOpen,
   selectedOption,
   setSelectedOption,
   apparels,
   setApparels,
   changeDetail,
-  detailOpen,
-  handleClose
+  detailOpen
 }) {
   const history = useHistory();
+  const [categoryWarnig, setCategoryWarning] = useState(false);
+
+  const handleClose = () => {
+    setDetailOpen(false);
+    setSelectedOption({
+      category: "",
+      color: "all"
+    });
+    setCategoryWarning(false);
+    console.log(setSelectedOption);
+  };
 
   function handleChange(e, name) {
+    if (name === "category") {
+      setCategoryWarning(false);
+    }
     const { value } = e.target;
     setSelectedOption({ ...selectedOption, [name]: value });
     console.log(selectedOption);
@@ -48,7 +62,7 @@ function ChooseDetail({
   function buttonClick(e) {
     e.preventDefault();
     if (selectedOption.category.length === 0) {
-      alert("카테고리를 선택해주세요");
+      setCategoryWarning(true);
     } else {
       console.log(apparels);
       setApparels([...apparels, selectedOption]);
@@ -148,6 +162,12 @@ function ChooseDetail({
         >
           선택완료
         </Button>
+        {categoryWarnig && (
+          <Alert severity="warning">
+            <AlertTitle>Warning</AlertTitle>
+            카테고리를 선택해주세요🧐
+          </Alert>
+        )}
       </Dialog>
     </>
   );
