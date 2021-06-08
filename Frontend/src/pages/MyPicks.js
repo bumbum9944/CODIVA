@@ -32,9 +32,7 @@ function MyPicks({ folderList, addFolder }) {
         }}
         onClick={openSlideMenu}
       />
-      <FolderAdd 
-        addFolder={addFolder}
-      />
+      <FolderAdd addFolder={addFolder} />
       <FolderList
         folderList={folderList}
         // onChangeSaved={(folderId, itemId) => {

@@ -66,20 +66,21 @@ function FolderDetail({ folderList, addFolder }) {
   // }
   function onChangeSelectedItem(targetIndex) {
     const copiedSelectedItem = new Set(selectedItem);
-    if(copiedSelectedItem.has(targetIndex)) {
+    if (copiedSelectedItem.has(targetIndex)) {
       copiedSelectedItem.delete(targetIndex, 1);
     } else {
       copiedSelectedItem.add(targetIndex);
     }
     setSelectedItem(copiedSelectedItem);
   }
-  
 
   function changeFolder() {
-    document.querySelector(".folder-detail-bottom-slide-container").classList.remove("on");
+    document
+      .querySelector(".folder-detail-bottom-slide-container")
+      .classList.remove("on");
     const temp = [];
     for (let i = 0; i < items.length; i++) {
-      if(!selectedItem.has(i)) {
+      if (!selectedItem.has(i)) {
         temp.push(items[i]);
       }
     }
@@ -89,10 +90,12 @@ function FolderDetail({ folderList, addFolder }) {
   }
 
   function deleteItems() {
-    document.querySelector(".folder-detail-bottom-slide-container").classList.remove("on");
+    document
+      .querySelector(".folder-detail-bottom-slide-container")
+      .classList.remove("on");
     const temp = [];
     for (let i = 0; i < items.length; i++) {
-      if(!selectedItem.has(i)) {
+      if (!selectedItem.has(i)) {
         temp.push(items[i]);
       }
     }
@@ -103,13 +106,13 @@ function FolderDetail({ folderList, addFolder }) {
 
   return (
     <div className="folder-detail-container">
-      <FolderDetailHeader 
-        folderName={folderName} 
+      <FolderDetailHeader
+        folderName={folderName}
         mode={mode}
-        resetSelectedItem={()=>{
-          setSelectedItem(new Set([]))
+        resetSelectedItem={() => {
+          setSelectedItem(new Set([]));
         }}
-        onChangeMode={(newMode)=>{
+        onChangeMode={newMode => {
           setMode(newMode);
         }}
       />
@@ -130,7 +133,10 @@ function FolderDetail({ folderList, addFolder }) {
           setItems(copiedItems);
         }}
       />
-      <FolderDetailBottomSlide selectedItem={selectedItem} deleteItems={deleteItems} />
+      <FolderDetailBottomSlide
+        selectedItem={selectedItem}
+        deleteItems={deleteItems}
+      />
       <FolderAdd addFolder={addFolder} />
       <FolderListSlide
         selectedItem={selectedItem}

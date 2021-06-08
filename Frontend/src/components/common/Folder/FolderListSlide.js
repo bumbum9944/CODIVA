@@ -5,7 +5,13 @@ import Button from "@material-ui/core/Button";
 import { BsPlus } from "react-icons/bs";
 import { BsBookmarkFill } from "react-icons/bs";
 
-function FolderListSlide({ selectedItem, onChangeSelectedItem, folderList, toggleSaved, changeFolder }) {
+function FolderListSlide({
+  selectedItem,
+  onChangeSelectedItem,
+  folderList,
+  toggleSaved,
+  changeFolder
+}) {
   function closeSlideMenu() {
     document.querySelector("body").classList.remove("no-scroll2");
     document.querySelector("#dimmed2").remove();
@@ -30,7 +36,7 @@ function FolderListSlide({ selectedItem, onChangeSelectedItem, folderList, toggl
   }
 
   function saveItem() {
-    if(selectedItem.size === undefined) {
+    if (selectedItem.size === undefined) {
       toggleSaved(selectedItem);
       onChangeSelectedItem("");
     } else {
@@ -55,14 +61,13 @@ function FolderListSlide({ selectedItem, onChangeSelectedItem, folderList, toggl
     }
 
     return (
-      <div 
-        key={index} 
+      <div
+        key={index}
         className="folder-list-slide-item slide-inner"
-        onClick={()=>{
+        onClick={() => {
           saveItem();
           closeSlideMenu();
         }}
-      
       >
         {innerIamge}
         <div>{folderName}</div>

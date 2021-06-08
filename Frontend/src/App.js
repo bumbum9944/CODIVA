@@ -42,7 +42,6 @@ function App() {
   });
   const [apparels, setApparels] = useState([]);
 
-
   function addFolder(newFolderName) {
     const copiedFolderList = JSON.parse(JSON.stringify(folderList));
     copiedFolderList.push({
@@ -63,8 +62,8 @@ function App() {
           <Route
             path="/codies"
             render={() => (
-              <Codies 
-                gender={gender} 
+              <Codies
+                gender={gender}
                 selectedOption={selectedOption}
                 addFolder={addFolder}
                 folderList={folderList}
@@ -120,8 +119,8 @@ function App() {
               <MyPicks folderList={folderList} addFolder={addFolder} />
             )}
           />
-          <Route 
-            path="/my-picks/detail" 
+          <Route
+            path="/my-picks/detail"
             render={() => (
               <FolderDetail folderList={folderList} addFolder={addFolder} />
             )}

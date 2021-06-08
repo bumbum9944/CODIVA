@@ -2,7 +2,13 @@ import { React } from "react";
 import CodyCard from "./CodyCard";
 import "./CodyList.css";
 
-function CodyList({ codies, toggleSaved, toggleLiked, viewCntIncrease, onChangeSelectedItem }) {
+function CodyList({
+  codies,
+  toggleSaved,
+  toggleLiked,
+  viewCntIncrease,
+  onChangeSelectedItem
+}) {
   const codyCardList = codies.map((item, index) => {
     return (
       <CodyCard
