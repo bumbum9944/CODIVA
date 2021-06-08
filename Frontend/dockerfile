@@ -1,0 +1,11 @@
+FROM node:12
+
+WORKDIR /usr/bin/codiba/Frontend
+
+COPY package.json ./
+
+RUN npm install
+
+COPY ./ /usr/bin/codiba/Frontend
+
+CMD ["npm", "start"]

@@ -1,5 +1,13 @@
-.App {
+#root {
   position: relative;
   width: 100vw;
   height: 100vh;
+}
+
+* {
+  font-family: "Staatliches", cursive;
+}
+
+a {
+  text-decoration: none;
 }

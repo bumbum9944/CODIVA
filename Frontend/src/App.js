@@ -1,17 +1,18 @@
-import { React, useState } from "react";
+import { React, useState, useContext, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import "./App.css";
-import Menu from "./components/common/Menu/Menu";
-import SlideMenu from "./components/common/Menu/SlideMenu";
-import Home from "./pages/Home";
-import Codies from "./pages/Codies";
-import SearchPage1 from "./pages/SearchPage1";
-import SearchPage2 from "./pages/SearchPage2";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import TopCodies from "./pages/TopCodies";
-import MyPicks from "./pages/MyPicks";
-import FolderDetail from "./pages/FolderDetail";
+import "App.css";
+import Menu from "components/common/Menu/Menu";
+import SlideMenu from "components/common/Menu/SlideMenu";
+import Home from "pages/Home";
+import Codies from "pages/Codies";
+import SearchPage1 from "pages/SearchPage1";
+import SearchPage2 from "pages/SearchPage2";
+import TopCodies from "pages/TopCodies";
+import MyPicks from "pages/MyPicks";
+import FolderDetail from "pages/FolderDetail";
+import UserContext from "contexts/user";
+import LoginForm from "components/Auth/LoginForm";
+import RegisterForm from "components/Auth/RegisterForm";
 
 function App() {
   const [folderList, setFolderList] = useState([
@@ -58,18 +59,35 @@ function App() {
     });
     setFolderList(copiedFolderList);
   }
+  const { state, actions } = useContext(UserContext);
+  const { user } = state;
+  const { setUser, setToken } = actions;
+
+  const loadUser = () => {
+    setUser(localStorage.getItem("user_id"));
+    setToken(localStorage.getItem("token"));
+    if (!user) return;
+    // 검증 작업 필요
+  };
+
+  useEffect(() => {
+    loadUser();
+  }, [user]);
+
   return (
     <BrowserRouter>
       <div className="App">
         <Menu />
         <SlideMenu />
+        <LoginForm />
+        <RegisterForm />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route
             path="/codies"
             render={() => (
-              <Codies 
-                gender={gender} 
+              <Codies
+                gender={gender}
                 selectedOption={selectedOption}
                 addFolder={addFolder}
                 folderList={folderList}
@@ -100,8 +118,6 @@ function App() {
               />
             )}
           />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
           <Route
             path="/top-codies"
             render={() => (
@@ -115,8 +131,8 @@ function App() {
               <MyPicks folderList={folderList} addFolder={addFolder} />
             )}
           />
-          <Route 
-            path="/my-picks/detail" 
+          <Route
+            path="/my-picks/detail"
             render={() => (
               <FolderDetail folderList={folderList} addFolder={addFolder} />
             )}
