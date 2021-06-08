@@ -11,9 +11,9 @@ import {
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { Alert, AlertTitle } from "@material-ui/lab";
 
-const url =
-  "http://ec2-13-125-251-225.ap-northeast-2.compute.amazonaws.com:5000/";
+const url = "http://ec2-13-125-251-225.ap-northeast-2.compute.amazonaws.com/";
 const categoryOuter = ["cardigan", "coat", "jacket", "vest"];
 const categoryTop = [
   "sleeveless",
@@ -47,7 +47,7 @@ function ChooseDetail({
 
   function buttonClick(e) {
     e.preventDefault();
-    if (selectedOption.category === "") {
+    if (selectedOption.category.length === 0) {
       alert("카테고리를 선택해주세요");
     } else {
       console.log(apparels);

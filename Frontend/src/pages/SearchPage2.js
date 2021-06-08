@@ -120,6 +120,8 @@ function SearchPage2(props) {
 
   const handleClose = () => {
     setDetailOpen(false);
+    props.setApparels([]);
+    console.log(props.apparels);
   };
 
   return (

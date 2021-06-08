@@ -10,10 +10,9 @@ import {
 } from "@material-ui/core";
 import axios from "axios";
 
-const url =
-  "http://ec2-13-125-251-225.ap-northeast-2.compute.amazonaws.com:5000/";
+const url = "http://ec2-13-125-251-225.ap-northeast-2.compute.amazonaws.com/";
 
-function Popup({ apparels, setApparels }) {
+function Popup({ apparels, setApparels, gender }) {
   const [open, setOpen] = useState(false);
   const history = useHistory();
 
@@ -23,15 +22,21 @@ function Popup({ apparels, setApparels }) {
 
   const handleClose = () => {
     setOpen(false);
+    setApparels([]);
   };
 
   async function buttonClick(e) {
     e.preventDefault();
-    await axios.post(url + "codi/search", apparels).then(response => {
-      handleClose();
-      setApparels([]);
-      history.push("/codies");
-    });
+    if (apparels.length === 0) {
+      alert("검색할 옷을 선택해주세요");
+    } else {
+      await axios
+        .post(url + "codi/search", { gender: gender, apparels: apparels })
+        .then(response => {
+          handleClose();
+          history.push("/codies");
+        });
+    }
   }
 
   return (

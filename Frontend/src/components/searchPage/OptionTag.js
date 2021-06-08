@@ -34,7 +34,7 @@ function OptionTag({ gender }) {
   return (
     <>
       <Paper component="ul" className={classes.root}>
-        <Chip style={{ marginLeft: 10 }} label={gender} />
+        <Chip className={classes.chip} label={gender} />
         {chipData.map(data => {
           return (
             <li key={data.key}>
