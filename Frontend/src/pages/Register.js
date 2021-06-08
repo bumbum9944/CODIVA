@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import TextField from "@material-ui/core/TextField";
-import { Button, Container } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
-
-const url =
-  "http://ec2-13-125-251-225.ap-northeast-2.compute.amazonaws.com:5000/";
+import PageTemplate from "components/common/PageTemplate";
+import * as client from "lib/client";
 
 function Register(props) {
   const [account, setAccount] = useState({
@@ -14,7 +12,9 @@ function Register(props) {
     password: "",
     checkPassword: ""
   });
+  const [error, setError] = useState(null);
   const history = useHistory();
+  const { name, email, password, checkPassword } = account;
 
   function dataChange(e) {
     const { name, value } = e.target;
@@ -22,66 +22,72 @@ function Register(props) {
     console.log(account);
   }
 
-  function buttonClick(e) {
+  async function buttonClick(e) {
     e.preventDefault();
-    if (account.password === account.checkPassword) {
-      axios
-        .post(url + "auth/register", {
-          name: account.name,
-          email: account.email,
-          password: account.password
-        })
-        .then(response => history.push("/login"));
-    } else {
-      alert("비밀번호가 다릅니다.");
+    if (account.password !== account.checkPassword) {
+      setError("비밀번호와 비밀번호 확인이 다릅니다.");
+      return;
     }
+    await client
+      .request("post", "/auth/register", { name, email, password })
+      .then(response => history.push("/login"))
+      .catch(err => setError(err.response.data?.message));
   }
 
   return (
-    <>
-      <div className="codiba">
-        <p>CODIBA</p>
-      </div>
-      <p style={{ fontSize: "19px", marginLeft: "20px" }}>REGISTER</p>
-      <Container style={{ textAlign: "center" }}>
-        <form onSubmit={buttonClick}>
-          <TextField
-            name="name"
-            style={{ marginBottom: "12px", width: "85vw" }}
-            label="name"
-            variant="outlined"
-            onChange={dataChange}
-          />
-          <TextField
-            name="email"
-            type="email"
-            style={{ marginBottom: "12px", width: "85vw" }}
-            label="email"
-            variant="outlined"
-            onChange={dataChange}
-          />
-          <TextField
-            name="password"
-            type="password"
-            style={{ marginBottom: "12px", width: "85vw" }}
-            label="password"
-            variant="outlined"
-            onChange={dataChange}
-          />
-          <TextField
-            name="checkPassword"
-            type="password"
-            style={{ width: "85vw" }}
-            label="check your password"
-            variant="outlined"
-            onChange={dataChange}
-          />
-          <Button type="submit" id="button" variant="contained">
-            Register
-          </Button>
-        </form>
-      </Container>
-    </>
+    <PageTemplate>
+      {error ? (
+        <Alert severity="error" style={{ margin: "0 25px" }}>
+          {error}
+        </Alert>
+      ) : null}
+      <h1 style={{ textAlign: "left", margin: "10px 30px" }}>CODIBA</h1>
+      <p
+        style={{
+          fontSize: "19px",
+          textAlign: "left",
+          margin: "10px 40px"
+        }}
+      >
+        REGISTER
+      </p>
+      <form onSubmit={buttonClick}>
+        <TextField
+          name="name"
+          style={{ marginBottom: "12px", width: "85vw" }}
+          label="name"
+          variant="outlined"
+          onChange={dataChange}
+        />
+        <TextField
+          name="email"
+          type="email"
+          style={{ marginBottom: "12px", width: "85vw" }}
+          label="email"
+          variant="outlined"
+          onChange={dataChange}
+        />
+        <TextField
+          name="password"
+          type="password"
+          style={{ marginBottom: "12px", width: "85vw" }}
+          label="password"
+          variant="outlined"
+          onChange={dataChange}
+        />
+        <TextField
+          name="checkPassword"
+          type="password"
+          style={{ width: "85vw" }}
+          label="check your password"
+          variant="outlined"
+          onChange={dataChange}
+        />
+        <Button type="submit" id="button" variant="contained">
+          Register
+        </Button>
+      </form>
+    </PageTemplate>
   );
 }
 
