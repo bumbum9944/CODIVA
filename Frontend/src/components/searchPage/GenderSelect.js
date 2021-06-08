@@ -7,17 +7,17 @@ import Typography from "@material-ui/core/Typography";
 const images = [
   {
     url: "/images/image_man.png",
-    title: "Man",
+    title: "MAN",
     width: "100%"
   },
   {
     url: "/images/image_woman.png",
-    title: "Woman",
+    title: "WOMAN",
     width: "100%"
   },
   {
     url: "/images/image_all.png",
-    title: "All",
+    title: "ALL",
     width: "100%"
   }
 ];
@@ -33,8 +33,8 @@ const useStyles = makeStyles(theme => ({
     position: "relative",
     height: 200,
     [theme.breakpoints.down("xs")]: {
-      width: "100% !important", // Overrides inline-style
-      height: "33.2vh"
+      width: "100% !important",
+      height: "27.2vh"
     },
     "&:hover, &$focusVisible": {
       zIndex: 1,

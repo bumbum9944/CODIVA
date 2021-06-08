@@ -15,17 +15,10 @@ import FolderDetail from "./pages/FolderDetail";
 
 function App() {
   const [gender, setGender] = useState("");
+  const [detail, setDetail] = useState("");
   const [selectedOption, setSelectedOption] = useState({
-    top: {
-      detail: "반팔티",
-      color: "#FFFFFF",
-      selected: false
-    },
-    bottom: {
-      detail: "청바지",
-      color: "#0000FF",
-      selected: false
-    }
+    category: "",
+    color: "all"
   });
   return (
     <BrowserRouter>
@@ -58,8 +51,16 @@ function App() {
             render={() => (
               <SearchPage2
                 gender={gender}
+                detail={detail}
+                setDetail={setDetail}
+                selectedOption={selectedOption}
+                setSelectedOption={setSelectedOption}
                 changeGender={newGender => {
                   setGender(newGender);
+                }}
+                changeDetail={newDetail => {
+                  console.log(newDetail);
+                  setDetail(newDetail);
                 }}
               />
             )}

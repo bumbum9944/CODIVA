@@ -15,8 +15,8 @@ import { useHistory } from "react-router-dom";
 
 const url =
   "http://ec2-13-125-251-225.ap-northeast-2.compute.amazonaws.com:5000/";
-const catagoryOuter = ["cardigan", "coat", "jacket", "vest"];
-const catagoryTop = [
+const categoryOuter = ["cardigan", "coat", "jacket", "vest"];
+const categoryTop = [
   "sleeveless",
   "tee(short)",
   "tee(long)",
@@ -24,32 +24,46 @@ const catagoryTop = [
   "hood",
   "shirts"
 ];
-const catagoryBottom = ["jeans", "leggings", "slacks", "skirts", "training"];
-const catagoryOnepiece = ["one-piece"];
+const categoryBottom = ["jeans", "leggings", "slacks", "skirts", "training"];
+const categoryOnepiece = ["one-piece"];
 
-function ChooseDetail({ detailOpen, handleClose }) {
-  const [catagory, setCatagory] = useState("");
+function ChooseDetail({
+  detail,
+  setDetail,
+  selectedOption,
+  setSelectedOption,
+  changeDetail,
+  detailOpen,
+  handleClose
+}) {
+  const [category, setCategory] = useState("");
   const [color, setColor] = useState("all");
   const history = useHistory();
 
-  const handleChange = (e, type) => {
-    e.preventDefault();
-    console.log(e.target.value);
-    const value = e.target.value;
-    type === "catagory" ? setCatagory(value) : setColor(value);
-  };
+  // const handleChange = (e, type) => {
+  //   e.preventDefault();
+  //   console.log(e.target.value);
+  //   const value = e.target.value;
+  //   type === "category" ? setCategory(value) : setColor(value);
+  // };
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setSelectedOption({ ...selectedOption, [name]: value });
+    console.log(selectedOption);
+  }
 
   // const buttonClick = useCallback(() => {
   //   console.log(detail);
-  // }, [catagory, color]);
+  // }, [category, color]);
 
   /*{  // async function buttonClick(e) {
   //   e.preventDefault();
   //   useCallback(() => {
-  //     const detail = `${catagory}, ${color}`;
+  //     const detail = `${category}, ${color}`;
   //     console.log(detail);
-  //   }, [catagory, color]);
-  //   if (catagory === "") {alert("카테고리를 선택해주세요!");} else {
+  //   }, [category, color]);
+  //   if (category === "") {alert("카테고리를 선택해주세요!");} else {
   //     await axios
   //       .post(url + "codi/search", apparels)
   //       .then(response => handleClose());
@@ -59,13 +73,50 @@ function ChooseDetail({ detailOpen, handleClose }) {
 
   function buttonClick(e) {
     e.preventDefault();
-    if (catagory === "") {
+    if (category === "") {
       alert("카테고리를 선택해주세요");
     } else {
-      const apparels = `${catagory}, ${color}`;
+      const apparels = `${category}, ${color}`;
       console.log(apparels);
       handleClose();
     }
+  }
+
+  function ChooseCategory({ detail }) {
+    let categoryList;
+    if (detail === "OUTER") {
+      categoryList = categoryOuter.map((category, idx) => {
+        return (
+          <MenuItem key={idx} name={category}>
+            {category}
+          </MenuItem>
+        );
+      });
+    } else if (detail === "TOP") {
+      categoryList = categoryTop.map((category, idx) => {
+        return (
+          <MenuItem key={idx} name={category}>
+            {category}
+          </MenuItem>
+        );
+      });
+    } else if (detail === "BOTTOM") {
+      categoryList = categoryBottom.map((category, idx) => {
+        return (
+          <MenuItem key={idx} name={category}>
+            {category}
+          </MenuItem>
+        );
+      });
+    } else {
+      categoryList = (
+        <MenuItem name="category" value="one_piece">
+          One piece
+        </MenuItem>
+      );
+    }
+
+    return <>{categoryList}</>;
   }
 
   return (
@@ -77,28 +128,12 @@ function ChooseDetail({ detailOpen, handleClose }) {
         </DialogContent>
         <center>
           <FormControl style={{ marginBottom: "20px" }}>
-            <InputLabel>👕 catagory</InputLabel>
+            <InputLabel>👕 category</InputLabel>
             <Select
               style={{ width: "50vw" }}
-              onChange={e => handleChange(e, "catagory")}
+              onChange={e => handleChange(e, "category")}
             >
-              {/* {
-                catagory{option}.map((catagory, idx) => {
-                  return <MenuItem key={idx} name={catagory}>{catagory}</MenuItem>
-                })
-              } */}
-              <MenuItem name="catagory" value="cardigan">
-                cardigan
-              </MenuItem>
-              <MenuItem name="catagory" value="coat">
-                coat
-              </MenuItem>
-              <MenuItem name="catagory" value="vest">
-                vest
-              </MenuItem>
-              <MenuItem name="catagory" value="jacket">
-                jacket
-              </MenuItem>
+              <ChooseCategory detail={detail} />
             </Select>
           </FormControl>
           <FormControl>

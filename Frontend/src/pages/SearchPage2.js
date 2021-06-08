@@ -8,29 +8,6 @@ import PageButton from "../components/common/PageButton";
 import OptionTag from "../components/searchPage/OptionTag";
 import ChooseDetail from "../components/searchPage/ChooseDetail";
 
-const images = [
-  {
-    url: "/images/woman_outer.jpg",
-    title: "OUTER",
-    width: "100%"
-  },
-  {
-    url: "/images/woman_top.jpg",
-    title: "TOP",
-    width: "100%"
-  },
-  {
-    url: "/images/woman_bottom.jpg",
-    title: "BOTTOM",
-    width: "100%"
-  },
-  {
-    url: "/images/woman_one_piece.jpg",
-    title: "ONE PIECE",
-    width: "100%"
-  }
-];
-
 const useStyles = makeStyles(theme => ({
   root: {
     display: "grid",
@@ -110,8 +87,32 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function SearchPage2(props) {
+  const images = [
+    {
+      url: `/images/${props.gender}_outer.jpg`,
+      title: "OUTER",
+      width: "100%"
+    },
+    {
+      url: `/images/${props.gender}_top.jpg`,
+      title: "TOP",
+      width: "100%"
+    },
+    {
+      url: `/images/${props.gender}_bottom.jpg`,
+      title: "BOTTOM",
+      width: "100%"
+    },
+    {
+      url: `/images/${props.gender}_one_piece.jpg`,
+      title: "ONE PIECE",
+      width: "100%"
+    }
+  ];
+
   const classes = useStyles();
   const [detailOpen, setDetailOpen] = useState(false);
+  const [category, setCategory] = useState("");
 
   const handleClickOpen = () => {
     setDetailOpen(true);
@@ -124,7 +125,7 @@ function SearchPage2(props) {
   return (
     <>
       <Header headerText="SEARCH" />
-      <OptionTag />
+      <OptionTag {...props} />
       <div>
         <div className={classes.root}>
           {images.map(image => (
@@ -133,7 +134,10 @@ function SearchPage2(props) {
               key={image.title}
               className={classes.image}
               focusVisibleClassName={classes.focusVisible}
-              onClick={handleClickOpen}
+              onClick={() => {
+                props.changeDetail(image.title);
+                handleClickOpen();
+              }}
             >
               <span
                 className={classes.imageSrc}
@@ -155,7 +159,11 @@ function SearchPage2(props) {
               </span>
             </ButtonBase>
           ))}
-          <ChooseDetail handleClose={handleClose} detailOpen={detailOpen} />
+          <ChooseDetail
+            {...props}
+            handleClose={handleClose}
+            detailOpen={detailOpen}
+          />
         </div>
       </div>
       <PageButton />
