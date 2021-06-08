@@ -20,6 +20,8 @@ function App() {
     category: "",
     color: "all"
   });
+  const [apparels, setApparels] = useState([]);
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -53,6 +55,8 @@ function App() {
                 gender={gender}
                 detail={detail}
                 setDetail={setDetail}
+                apparels={apparels}
+                setApparels={setApparels}
                 selectedOption={selectedOption}
                 setSelectedOption={setSelectedOption}
                 changeGender={newGender => {

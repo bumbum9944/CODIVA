@@ -8,8 +8,12 @@ import {
   DialogContent,
   Typography
 } from "@material-ui/core";
+import axios from "axios";
 
-function Popup() {
+const url =
+  "http://ec2-13-125-251-225.ap-northeast-2.compute.amazonaws.com:5000/";
+
+function Popup({ apparels, setApparels }) {
   const [open, setOpen] = useState(false);
   const history = useHistory();
 
@@ -20,6 +24,15 @@ function Popup() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  async function buttonClick(e) {
+    e.preventDefault();
+    await axios.post(url + "codi/search", apparels).then(response => {
+      handleClose();
+      setApparels([]);
+      history.push("/codies");
+    });
+  }
 
   return (
     <>
@@ -32,12 +45,7 @@ function Popup() {
           <Typography>옵션 선택을 완료하셨나요?</Typography>
         </DialogContent>
         <DialogActions>
-          <Button
-            variant="contained"
-            onClick={() => {
-              history.push("/codies");
-            }}
-          >
+          <Button variant="contained" onClick={buttonClick}>
             네, 검색할게요
           </Button>
           <Button variant="outlined" onClick={handleClose}>

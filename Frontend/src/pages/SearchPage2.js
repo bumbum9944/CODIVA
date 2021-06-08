@@ -166,7 +166,7 @@ function SearchPage2(props) {
           />
         </div>
       </div>
-      <PageButton />
+      <PageButton {...props} />
     </>
   );
 }
