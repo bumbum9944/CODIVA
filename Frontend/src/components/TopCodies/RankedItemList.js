@@ -3,7 +3,12 @@ import "./RankedItemList.css";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
 import { BsBookmarkFill, BsBookmark } from "react-icons/bs";
 
-function RankedItemList({ onChangeSelectedItem, rankedItem, toggleSaved, toggleLiked }) {
+function RankedItemList({
+  onChangeSelectedItem,
+  rankedItem,
+  toggleSaved,
+  toggleLiked
+}) {
   function openFolderListSlide(item, index) {
     if (item.isSaved) {
       toggleSaved(index);

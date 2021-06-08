@@ -3,19 +3,28 @@ import { useHistory } from "react-router-dom";
 import "./FolderDetailHeader.css";
 import { IoChevronBack } from "react-icons/io5";
 
-function FolderDetailHeader({ folderName, onChangeMode, mode, resetSelectedItem }) {
+function FolderDetailHeader({
+  folderName,
+  onChangeMode,
+  mode,
+  resetSelectedItem
+}) {
   const history = useHistory();
-  
+
   function openSlideMenu() {
-    document.querySelector(".folder-detail-bottom-slide-container").classList.add("on");
+    document
+      .querySelector(".folder-detail-bottom-slide-container")
+      .classList.add("on");
   }
 
   function closeSlideMenu() {
-    document.querySelector(".folder-detail-bottom-slide-container").classList.remove("on");
+    document
+      .querySelector(".folder-detail-bottom-slide-container")
+      .classList.remove("on");
   }
 
   function handleClick() {
-    if(mode==="edit") {
+    if (mode === "edit") {
       onChangeMode("");
       closeSlideMenu();
       resetSelectedItem();
@@ -26,10 +35,18 @@ function FolderDetailHeader({ folderName, onChangeMode, mode, resetSelectedItem 
   }
 
   let editButton;
-  if(mode==="edit") {
-    editButton = <p className="folder-detail-edit-button" onClick={handleClick}>CANCEL</p>;
+  if (mode === "edit") {
+    editButton = (
+      <p className="folder-detail-edit-button" onClick={handleClick}>
+        CANCEL
+      </p>
+    );
   } else {
-    editButton = <p className="folder-detail-edit-button" onClick={handleClick}>EDIT</p>;
+    editButton = (
+      <p className="folder-detail-edit-button" onClick={handleClick}>
+        EDIT
+      </p>
+    );
   }
 
   return (

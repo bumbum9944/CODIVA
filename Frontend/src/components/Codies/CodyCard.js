@@ -3,8 +3,14 @@ import "./CodyCard.css";
 import CodyModal from "../common/Cody/CodyModal";
 import { BsBookmarkFill, BsBookmark } from "react-icons/bs";
 
-function CodyCard({ item, itemId, toggleSaved, toggleLiked, viewCntIncrease, onChangeSelectedItem }) {
-
+function CodyCard({
+  item,
+  itemId,
+  toggleSaved,
+  toggleLiked,
+  viewCntIncrease,
+  onChangeSelectedItem
+}) {
   function openFolderListSlide(item, index) {
     if (item.isSaved) {
       toggleSaved(index);
@@ -71,7 +77,7 @@ function CodyCard({ item, itemId, toggleSaved, toggleLiked, viewCntIncrease, onC
           right: "1vw",
           top: "0"
         }}
-        onClick={()=>{
+        onClick={() => {
           openFolderListSlide(item, itemId);
         }}
       >

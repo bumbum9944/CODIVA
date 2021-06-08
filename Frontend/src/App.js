@@ -17,7 +17,7 @@ function App() {
   const [folderList, setFolderList] = useState([
     {
       id: 1,
-      folderName: "기본서랍",
+      folderName: "기본 폴더",
       itemCnt: 4,
       imageUrl: "/carouselImage/item11.jpg"
     },
@@ -58,6 +58,19 @@ function App() {
     });
     setFolderList(copiedFolderList);
   }
+
+  function deleteFolder(targetIndex) {
+    const copiedFolderList = JSON.parse(JSON.stringify(folderList));
+    copiedFolderList.splice(targetIndex, 1);
+    setFolderList(copiedFolderList);
+  }
+
+  function changeFolderName(targetIndex, newFolderName) {
+    const copiedFolderList = JSON.parse(JSON.stringify(folderList));
+    copiedFolderList[targetIndex].folderName = newFolderName;
+    setFolderList(copiedFolderList);
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -68,8 +81,8 @@ function App() {
           <Route
             path="/codies"
             render={() => (
-              <Codies 
-                gender={gender} 
+              <Codies
+                gender={gender}
                 selectedOption={selectedOption}
                 addFolder={addFolder}
                 folderList={folderList}
@@ -112,13 +125,21 @@ function App() {
             path="/my-picks"
             exact
             render={() => (
-              <MyPicks folderList={folderList} addFolder={addFolder} />
+              <MyPicks 
+                folderList={folderList} 
+                addFolder={addFolder} 
+                deleteFolder={deleteFolder} 
+                changeFolderName={changeFolderName} 
+              />
             )}
           />
-          <Route 
-            path="/my-picks/detail" 
+          <Route
+            path="/my-picks/detail"
             render={() => (
-              <FolderDetail folderList={folderList} addFolder={addFolder} />
+              <FolderDetail 
+                folderList={folderList} 
+                addFolder={addFolder} 
+              />
             )}
           />
         </Switch>

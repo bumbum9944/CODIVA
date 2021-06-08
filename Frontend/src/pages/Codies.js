@@ -148,10 +148,9 @@ function Codies({ gender, selectedOption, folderList, addFolder }) {
 
   function toggleSaved(targetIndex) {
     const copiedCodies = JSON.parse(JSON.stringify(codies));
-    copiedCodies[targetIndex].isSaved =
-      !copiedCodies[targetIndex].isSaved;
+    copiedCodies[targetIndex].isSaved = !copiedCodies[targetIndex].isSaved;
 
-      setCodies(copiedCodies);
+    setCodies(copiedCodies);
   }
 
   function onChangeSelectedItem(itemId) {

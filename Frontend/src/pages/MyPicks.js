@@ -1,10 +1,23 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import FolderList from "../components/MyPicks/FolderList";
 import Header from "../components/common/Header/Header";
 import { FiFolderPlus } from "react-icons/fi";
 import FolderAdd from "../components/common/Folder/FolderAdd";
+import FolderDeleteModal from "../components/MyPicks/FolderDeleteModal";
 
-function MyPicks({ folderList, addFolder }) {
+
+function MyPicks({ folderList, addFolder, deleteFolder, changeFolderName }) {
+  const [selectedFolder, setSelectedFolder] = useState("");
+  const [oldName, setOldName] = useState("");
+
+  useEffect(()=>{
+    if(selectedFolder !== "") {
+      setOldName(folderList[selectedFolder].folderName);
+    } else {
+      setOldName("");
+    }
+  }, [selectedFolder])
+
   function openSlideMenu() {
     document.querySelector("body").classList.add("no-scroll");
     document.querySelector(".folder-add-container").classList.add("on");
@@ -33,47 +46,14 @@ function MyPicks({ folderList, addFolder }) {
         onClick={openSlideMenu}
       />
       <FolderAdd 
-        addFolder={addFolder}
+        addFolder={addFolder} 
+        selectedFolder={selectedFolder}
+        oldName={oldName}
+        setSelectedFolder={setSelectedFolder}
+        changeFolderName={changeFolderName}
       />
-      <FolderList
-        folderList={folderList}
-        // onChangeSaved={(folderId, itemId) => {
-        //   const copiedMyPicks = JSON.parse(JSON.stringify(myPicks));
-        //   copiedMyPicks[folderId].items.splice(itemId, 1);
-        //   setMyPicks(copiedMyPicks);
-        // }}
-        // onChangeLiked={(folderId, itemId) => {
-        //   const copiedMyPicks = JSON.parse(JSON.stringify(myPicks));
-        //   if (copiedMyPicks[folderId].items[itemId].isLiked) {
-        //     copiedMyPicks[folderId].items[itemId].likeCnt -= 1;
-        //   } else {
-        //     copiedMyPicks[folderId].items[itemId].likeCnt += 1;
-        //   }
-        //   copiedMyPicks[folderId].items[itemId].isLiked =
-        //     !copiedMyPicks[folderId].items[itemId].isLiked;
-        //   setMyPicks(copiedMyPicks);
-        // }}
-        // deleteFolder={folderId => {
-        //   const copiedMyPicks = JSON.parse(JSON.stringify(myPicks));
-        //   copiedMyPicks.splice(folderId, 1);
-        //   setMyPicks(copiedMyPicks);
-        // }}
-        // onChangeFolderName={(folderId, newFolderName) => {
-        //   const copiedMyPicks = JSON.parse(JSON.stringify(myPicks));
-        //   copiedMyPicks[folderId].folderName = newFolderName;
-        //   setMyPicks(copiedMyPicks);
-        // }}
-        // addFolder={newFolderName => {
-        //   const copiedMyPicks = JSON.parse(JSON.stringify(myPicks));
-        //   copiedMyPicks.push({
-        //     id: copiedMyPicks.length,
-        //     folderName: newFolderName,
-        //     itemCnt: 0,
-        //     imageUrl: ""
-        //   });
-        //   setMyPicks(copiedMyPicks);
-        // }}
-      />
+      <FolderList folderList={folderList} setSelectedFolder={setSelectedFolder} selectedFolder={selectedFolder} setOldName={setOldName} />
+      <FolderDeleteModal selectedFolder={selectedFolder} setSelectedFolder={setSelectedFolder} deleteFolder={deleteFolder} />
     </div>
   );
 }
