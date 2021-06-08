@@ -3,7 +3,30 @@ import "./CodyCard.css";
 import CodyModal from "../common/Cody/CodyModal";
 import { BsBookmarkFill, BsBookmark } from "react-icons/bs";
 
-function CodyCard({ item, itemId, toggleSaved, toggleLiked, viewCntIncrease }) {
+function CodyCard({ item, itemId, toggleSaved, toggleLiked, viewCntIncrease, onChangeSelectedItem }) {
+
+  function openFolderListSlide(item, index) {
+    if (item.isSaved) {
+      toggleSaved(index);
+    } else {
+      onChangeSelectedItem(index);
+      document.querySelector("body").classList.add("no-scroll2");
+      document
+        .querySelector(".folder-list-slide-container")
+        .classList.add("on");
+      let div = document.createElement("div");
+      div.id = "dimmed2";
+      document.querySelector(".App").append(div);
+      document
+        .querySelector("#dimmed2")
+        .addEventListener("scroll touchmove touchend mousewheel", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        });
+    }
+  }
+
   let saveButton;
   if (item.isSaved === true) {
     saveButton = (
@@ -23,10 +46,6 @@ function CodyCard({ item, itemId, toggleSaved, toggleLiked, viewCntIncrease }) {
         }}
       />
     );
-  }
-
-  function handleToggleSaved() {
-    toggleSaved(itemId);
   }
 
   function openModal() {
@@ -52,7 +71,9 @@ function CodyCard({ item, itemId, toggleSaved, toggleLiked, viewCntIncrease }) {
           right: "1vw",
           top: "0"
         }}
-        onClick={handleToggleSaved}
+        onClick={()=>{
+          openFolderListSlide(item, itemId);
+        }}
       >
         {saveButton}
       </div>

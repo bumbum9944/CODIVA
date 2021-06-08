@@ -2,11 +2,16 @@ import { React, useState } from "react";
 import { useLocation } from "react-router-dom";
 import FolderDetailHeader from "../components/FolderDetail/FolderDetailHeader";
 import FolderDetailItemList from "../components/FolderDetail/FolderDetailItemList";
+import FolderDetailBottomSlide from "../components/FolderDetail/FolderDetailBottomSlide";
+import FolderAdd from "../components/common/Folder/FolderAdd";
+import FolderListSlide from "../components/common/Folder/FolderListSlide";
 
-function FolderDetail() {
+function FolderDetail({ folderList, addFolder }) {
   const location = useLocation();
   const folderName = location.state.folderName;
   const folderId = location.state.folderId;
+  const [mode, setMode] = useState("");
+  const [selectedItem, setSelectedItem] = useState(new Set([]));
   const [items, setItems] = useState([
     {
       id: 1,
@@ -50,12 +55,70 @@ function FolderDetail() {
     }
   ]);
 
+  // function onChangeSelectedItem(targetIndex) {
+  //   const copiedSelectedItem = selectedItem.slice();
+  //   if(copiedSelectedItem.includes(targetIndex)) {
+  //     copiedSelectedItem.splice(targetIndex, 1);
+  //   } else {
+  //     copiedSelectedItem.push(targetIndex);
+  //   }
+  //   setSelectedItem(copiedSelectedItem);
+  // }
+  function onChangeSelectedItem(targetIndex) {
+    const copiedSelectedItem = new Set(selectedItem);
+    if(copiedSelectedItem.has(targetIndex)) {
+      copiedSelectedItem.delete(targetIndex, 1);
+    } else {
+      copiedSelectedItem.add(targetIndex);
+    }
+    setSelectedItem(copiedSelectedItem);
+  }
+  
+
+  function changeFolder() {
+    document.querySelector(".folder-detail-bottom-slide-container").classList.remove("on");
+    const temp = [];
+    for (let i = 0; i < items.length; i++) {
+      if(!selectedItem.has(i)) {
+        temp.push(items[i]);
+      }
+    }
+    setMode("");
+    setItems(temp);
+    setSelectedItem(new Set([]));
+  }
+
+  function deleteItems() {
+    document.querySelector(".folder-detail-bottom-slide-container").classList.remove("on");
+    const temp = [];
+    for (let i = 0; i < items.length; i++) {
+      if(!selectedItem.has(i)) {
+        temp.push(items[i]);
+      }
+    }
+    setMode("");
+    setItems(temp);
+    setSelectedItem(new Set([]));
+  }
+
   return (
     <div className="folder-detail-container">
-      <FolderDetailHeader folderName={folderName} />
+      <FolderDetailHeader 
+        folderName={folderName} 
+        mode={mode}
+        resetSelectedItem={()=>{
+          setSelectedItem(new Set([]))
+        }}
+        onChangeMode={(newMode)=>{
+          setMode(newMode);
+        }}
+      />
       <FolderDetailItemList
+        selectedItem={selectedItem}
+        mode={mode}
         items={items}
         folderId={folderId}
+        onChangeSelectedItem={onChangeSelectedItem}
         toggleLiked={targetId => {
           const copiedItems = JSON.parse(JSON.stringify(items));
           if (copiedItems[targetId].isLiked) {
@@ -66,6 +129,14 @@ function FolderDetail() {
           copiedItems[targetId].isLiked = !copiedItems[targetId].isLiked;
           setItems(copiedItems);
         }}
+      />
+      <FolderDetailBottomSlide selectedItem={selectedItem} deleteItems={deleteItems} />
+      <FolderAdd addFolder={addFolder} />
+      <FolderListSlide
+        selectedItem={selectedItem}
+        folderList={folderList}
+        addFolder={addFolder}
+        changeFolder={changeFolder}
       />
     </div>
   );

@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { BsBookmarkFill, BsPencil, BsThreeDotsVertical } from "react-icons/bs";
 import { ImBin } from "react-icons/im";
 
-function FolderList({ myPicks }) {
+function FolderList({ folderList, addFolder }) {
   const history = useHistory();
   function pushToFolderDetail(folderName, folderId) {
     history.push({
@@ -24,7 +24,7 @@ function FolderList({ myPicks }) {
     }
   }
 
-  const folderList = myPicks.map((element, index) => {
+  const folderListInner = folderList.map((element, index) => {
     let folderCover;
     if (element.itemCnt > 0) {
       const imageUrl = element.imageUrl;
@@ -66,7 +66,7 @@ function FolderList({ myPicks }) {
     );
   });
 
-  return <div className="folder-list-container">{folderList}</div>;
+  return <div className="folder-list-container">{folderListInner}</div>;
 }
 
 export default FolderList;
