@@ -21,17 +21,21 @@ labels = json.dumps(
     }
 )
 
-query = {
-    "size": 20,
-    "query": {
-        "function_score": {
-            "query": {"bool": {"must": []}},
-            "script_score": {
-                "script": {"source": "doc['like_cnt'].value + (doc['hits'].value*2)"}
+query = json.dumps(
+    {
+        "size": 20,
+        "query": {
+            "function_score": {
+                "query": {"bool": {"must": []}},
+                "script_score": {
+                    "script": {
+                        "source": "doc['like_cnt'].value + (doc['hits'].value*2)"
+                    }
+                },
             },
         },
-    },
-}
+    }
+)
 
 
 @codi.route("/", methods=["GET"])
@@ -84,8 +88,9 @@ def search():
     query_param = request.args.to_dict()
     req = request.get_json(force=True)
 
-    query["from"] = query_param["from"] if "from" in query_param else 0
-    query["query"]["function_score"]["query"]["bool"]["must"].append(
+    q = json.loads(query)
+    q["from"] = query_param["from"] if "from" in query_param else 0
+    q["query"]["function_score"]["query"]["bool"]["must"].append(
         make_match("gender", req["gender"])
     )
 
@@ -98,9 +103,9 @@ def search():
             label["nested"]["query"]["bool"]["filter"].append(
                 make_match("apparels.color", apparel["color"])
             )
-        query["query"]["function_score"]["query"]["bool"]["must"].append(label)
+        q["query"]["function_score"]["query"]["bool"]["must"].append(label)
     with connect_es() as es:
-        result = es.search(query)
+        result = es.search(q)
         result = list(
             map(
                 lambda x: dict(x["_source"], **{"id": int(x["_id"])}),
