@@ -119,7 +119,7 @@ class SavedApi(Resource):
         )
 
     @jwt_required()
-    def delete(self, user_id, dir_name):
+    def delete(self, user_id, dir_name=None):
         if get_jwt_identity() != int(user_id):
             abort(
                 Response(
@@ -130,7 +130,19 @@ class SavedApi(Resource):
             )
 
         req = request.get_json(force=True)
-        if not "targets" in req:
+        if not dir_name and not "id" in req:
+            abort(
+                Response(
+                    status=400,
+                    response=json.dumps(
+                        {
+                            "message": "Invalid input: check that id is an integer or not null."
+                        }
+                    ),
+                    mimetype="application/json",
+                )
+            )
+        if dir_name and not "targets" in req:
             abort(
                 Response(
                     status=400,
@@ -144,7 +156,13 @@ class SavedApi(Resource):
             )
         with connect_db() as connection:
             with connection.cursor() as cursor:
-                sql = "delete from saved where directory_user_id=%s and directory_name=%s and codi_id in %s"
-                cursor.execute(sql, (user_id, dir_name, tuple(req["targets"])))
+                if dir_name:
+                    sql = "delete from saved where directory_user_id=%s and directory_name=%s and codi_id in %s"
+                    cursor.execute(sql, (user_id, dir_name, tuple(req["targets"])))
+                else:
+                    sql = "delete from saved where directory_user_id=%s and codi_id=%s"
+                    cursor.execute(sql, (user_id, req["id"]))
             connection.commit()
-        return jsonify(message=f"Successfully delete {len(req['targets'])} images.")
+        return jsonify(
+            message=f"Successfully delete {len(req['targets']) if dir_name else 1} images."
+        )
