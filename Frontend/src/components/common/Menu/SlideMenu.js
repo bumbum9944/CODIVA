@@ -1,20 +1,21 @@
-import { React } from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import "./SlideMenu.css";
 import CloseIcon from "@material-ui/icons/Close";
 import { BsHeartFill, BsBookmarksFill } from "react-icons/bs";
+import UserContext from "contexts/user";
 
 function SlideMenu() {
   const history = useHistory();
+  const { state, actions } = useContext(UserContext);
+  const { user } = state;
+  const { setUser, setToken } = actions;
 
   function closeSlideMenu() {
     document.querySelector("body").classList.remove("no-scroll");
     document.querySelector("#dimmed").remove();
     document.querySelector(".slide-menu-container").classList.remove("on");
   }
-
-  let footerButton;
-  footerButton = <div className="slide-menu-footer-btn">LOG IN</div>;
 
   // <div className="slide-menu-footer-btn"
   // >
@@ -67,7 +68,22 @@ function SlideMenu() {
       </ul>
       <div className="slide-menu-footer">
         <div className="slide-menu-white-line"></div>
-        {footerButton}
+        <div
+          className="slide-menu-footer-btn"
+          onClick={() => {
+            closeSlideMenu();
+            if (!user) {
+              // modal창
+              document.querySelector("#login-modal").click();
+            } else {
+              localStorage.clear();
+              setToken(null);
+              setUser(null);
+            }
+          }}
+        >
+          {!user ? "LOG IN" : "LOGOUT"}
+        </div>
         {/* <div className="slide-menu-home-btn">SIGN IN</div>
         <div className="slide-menu-home-btn">SIGN UP</div> */}
       </div>
