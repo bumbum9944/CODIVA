@@ -17,11 +17,6 @@ function SlideMenu() {
     document.querySelector(".slide-menu-container").classList.remove("on");
   }
 
-  // <div className="slide-menu-footer-btn"
-  // >
-  //   LOG IN
-  // </div>;
-
   return (
     <div className="slide-menu-container">
       <CloseIcon
@@ -58,6 +53,11 @@ function SlideMenu() {
         <li
           className="slide-menu-item"
           onClick={() => {
+            if (!user) {
+              closeSlideMenu();
+              document.querySelector("#login-modal").click();
+              return;
+            }
             history.push("/my-picks");
             closeSlideMenu();
           }}

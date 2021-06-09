@@ -11,8 +11,8 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center"
   },
   paper: {
-    position: "absolute",
-    top: "20%",
+    top: "50%",
+    width: "80%",
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 5)
@@ -101,42 +101,62 @@ function Register(props) {
           >
             REGISTER
           </p>
-          <form onSubmit={buttonClick}>
-            <TextField
-              name="name"
-              style={{ marginBottom: "12px", width: "85vw" }}
-              label="name"
-              variant="outlined"
-              onChange={dataChange}
-            />
-            <TextField
-              name="email"
-              type="email"
-              style={{ marginBottom: "12px", width: "85vw" }}
-              label="email"
-              variant="outlined"
-              onChange={dataChange}
-            />
-            <TextField
-              name="password"
-              type="password"
-              style={{ marginBottom: "12px", width: "85vw" }}
-              label="password"
-              variant="outlined"
-              onChange={dataChange}
-            />
-            <TextField
-              name="checkPassword"
-              type="password"
-              style={{ width: "85vw" }}
-              label="check your password"
-              variant="outlined"
-              onChange={dataChange}
-            />
-            <Button type="submit" id="button" variant="contained">
-              Register
-            </Button>
-          </form>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <form
+              onSubmit={buttonClick}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignContent: "stretch",
+                width: "80vw"
+              }}
+            >
+              <TextField
+                name="name"
+                style={{ marginBottom: "12px" }}
+                label="name"
+                variant="outlined"
+                onChange={dataChange}
+              />
+              <TextField
+                name="email"
+                type="email"
+                style={{ marginBottom: "12px" }}
+                label="email"
+                variant="outlined"
+                onChange={dataChange}
+              />
+              <TextField
+                name="password"
+                type="password"
+                style={{ marginBottom: "12px" }}
+                label="password"
+                variant="outlined"
+                onChange={dataChange}
+              />
+              <TextField
+                name="checkPassword"
+                type="password"
+                label="check your password"
+                variant="outlined"
+                onChange={dataChange}
+              />
+              <Button type="submit" className="form-button" variant="contained">
+                Register
+              </Button>
+              <Button
+                className="form-button"
+                variant="outlined"
+                style={{ borderColor: "#424242", color: "#424242" }}
+                onClick={() => {
+                  handleClose();
+                  document.querySelector("#login-modal").click();
+                }}
+              >
+                Log In
+              </Button>
+            </form>
+          </div>
         </div>
       </Modal>
     </>

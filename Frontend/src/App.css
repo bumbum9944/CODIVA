@@ -5,9 +5,13 @@
 }
 
 * {
-  font-family: "Staatliches", cursive;
+  font-family: "Staatliches", "Do Hyeon", sans-serif;
 }
 
 a {
   text-decoration: none;
+}
+
+button.form-button {
+  margin-top: 12px;
 }
