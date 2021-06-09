@@ -54,16 +54,7 @@ function FolderDetail({ folderList, addFolder }) {
       isSaved: true
     }
   ]);
-
-  // function onChangeSelectedItem(targetIndex) {
-  //   const copiedSelectedItem = selectedItem.slice();
-  //   if(copiedSelectedItem.includes(targetIndex)) {
-  //     copiedSelectedItem.splice(targetIndex, 1);
-  //   } else {
-  //     copiedSelectedItem.push(targetIndex);
-  //   }
-  //   setSelectedItem(copiedSelectedItem);
-  // }
+  
   function onChangeSelectedItem(targetIndex) {
     const copiedSelectedItem = new Set(selectedItem);
     if (copiedSelectedItem.has(targetIndex)) {

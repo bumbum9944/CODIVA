@@ -44,6 +44,13 @@ function FolderListSlide({
     }
   }
 
+  function openSaveToast() {
+    document.querySelector("#save").classList.add("reveal");
+    setTimeout(() => {
+      document.querySelector("#save").classList.remove("reveal");
+    }, 2000);
+  }
+
   const folderListInner = folderList.map((element, index) => {
     const itemCnt = element.itemCnt;
     const imageUrl = element.imageUrl;
@@ -67,6 +74,7 @@ function FolderListSlide({
         onClick={() => {
           saveItem();
           closeSlideMenu();
+          openSaveToast();
         }}
       >
         {innerIamge}

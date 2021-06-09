@@ -12,6 +12,8 @@ import Register from "./pages/Register";
 import TopCodies from "./pages/TopCodies";
 import MyPicks from "./pages/MyPicks";
 import FolderDetail from "./pages/FolderDetail";
+import SaveToastMsg from "./components/common/Folder/SaveToastMsg";
+import DeleteToastMsg from "./components/common/Folder/DeleteToastMsg";
 
 function App() {
   const [folderList, setFolderList] = useState([
@@ -125,24 +127,23 @@ function App() {
             path="/my-picks"
             exact
             render={() => (
-              <MyPicks 
-                folderList={folderList} 
-                addFolder={addFolder} 
-                deleteFolder={deleteFolder} 
-                changeFolderName={changeFolderName} 
+              <MyPicks
+                folderList={folderList}
+                addFolder={addFolder}
+                deleteFolder={deleteFolder}
+                changeFolderName={changeFolderName}
               />
             )}
           />
           <Route
             path="/my-picks/detail"
             render={() => (
-              <FolderDetail 
-                folderList={folderList} 
-                addFolder={addFolder} 
-              />
+              <FolderDetail folderList={folderList} addFolder={addFolder} />
             )}
           />
         </Switch>
+        <SaveToastMsg />
+        <DeleteToastMsg />
       </div>
     </BrowserRouter>
   );

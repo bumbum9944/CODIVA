@@ -3,17 +3,25 @@ import "./FolderAdd.css";
 import CloseIcon from "@material-ui/icons/Close";
 import Button from "@material-ui/core/Button";
 
-function FolderAdd({ addFolder, selectedFolder, setSelectedFolder, oldName, changeFolderName }) {
+function FolderAdd({
+  addFolder,
+  selectedFolder,
+  setSelectedFolder,
+  oldName,
+  changeFolderName
+}) {
   const [folderInputValue, setFolderInputValue] = useState("");
 
-  useEffect(()=>{
-    if(oldName !== undefined) {
+  useEffect(() => {
+    if (oldName !== undefined) {
       setFolderInputValue(oldName);
     }
-  }, [oldName])
+  }, [oldName]);
   function closeSlideMenu() {
-    if(selectedFolder !== undefined && selectedFolder !== "") {
-      document.querySelector(`#dropbox-inner-${selectedFolder}`).classList.remove("on");
+    if (selectedFolder !== undefined && selectedFolder !== "") {
+      document
+        .querySelector(`#dropbox-inner-${selectedFolder}`)
+        .classList.remove("on");
       document.querySelector(`#layer-${selectedFolder}`).classList.remove("on");
       setSelectedFolder("");
     }
@@ -65,10 +73,10 @@ function FolderAdd({ addFolder, selectedFolder, setSelectedFolder, oldName, chan
   }
 
   let title;
-  if(oldName !== undefined && oldName !== "") {
-    title = <div className="folder-add-title">폴더 이름 수정</div>
+  if (oldName !== undefined && oldName !== "") {
+    title = <div className="folder-add-title">폴더 이름 수정</div>;
   } else {
-    title = <div className="folder-add-title">폴더추가</div>
+    title = <div className="folder-add-title">폴더추가</div>;
   }
 
   return (

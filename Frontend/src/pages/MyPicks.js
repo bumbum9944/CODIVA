@@ -5,18 +5,17 @@ import { FiFolderPlus } from "react-icons/fi";
 import FolderAdd from "../components/common/Folder/FolderAdd";
 import FolderDeleteModal from "../components/MyPicks/FolderDeleteModal";
 
-
 function MyPicks({ folderList, addFolder, deleteFolder, changeFolderName }) {
   const [selectedFolder, setSelectedFolder] = useState("");
   const [oldName, setOldName] = useState("");
 
-  useEffect(()=>{
-    if(selectedFolder !== "") {
+  useEffect(() => {
+    if (selectedFolder !== "") {
       setOldName(folderList[selectedFolder].folderName);
     } else {
       setOldName("");
     }
-  }, [selectedFolder])
+  }, [selectedFolder]);
 
   function openSlideMenu() {
     document.querySelector("body").classList.add("no-scroll");
@@ -45,15 +44,24 @@ function MyPicks({ folderList, addFolder, deleteFolder, changeFolderName }) {
         }}
         onClick={openSlideMenu}
       />
-      <FolderAdd 
-        addFolder={addFolder} 
+      <FolderAdd
+        addFolder={addFolder}
         selectedFolder={selectedFolder}
         oldName={oldName}
         setSelectedFolder={setSelectedFolder}
         changeFolderName={changeFolderName}
       />
-      <FolderList folderList={folderList} setSelectedFolder={setSelectedFolder} selectedFolder={selectedFolder} setOldName={setOldName} />
-      <FolderDeleteModal selectedFolder={selectedFolder} setSelectedFolder={setSelectedFolder} deleteFolder={deleteFolder} />
+      <FolderList
+        folderList={folderList}
+        setSelectedFolder={setSelectedFolder}
+        selectedFolder={selectedFolder}
+        setOldName={setOldName}
+      />
+      <FolderDeleteModal
+        selectedFolder={selectedFolder}
+        setSelectedFolder={setSelectedFolder}
+        deleteFolder={deleteFolder}
+      />
     </div>
   );
 }

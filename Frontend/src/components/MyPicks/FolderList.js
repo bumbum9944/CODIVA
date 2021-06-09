@@ -3,7 +3,12 @@ import { React, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { BsBookmarkFill, BsThreeDotsVertical } from "react-icons/bs";
 
-function FolderList({ folderList, addFolder, setSelectedFolder, selectedFolder }) {
+function FolderList({
+  folderList,
+  addFolder,
+  setSelectedFolder,
+  selectedFolder
+}) {
   const history = useHistory();
   function pushToFolderDetail(folderName, folderId) {
     history.push({
@@ -21,10 +26,12 @@ function FolderList({ folderList, addFolder, setSelectedFolder, selectedFolder }
     document.querySelector("body").classList.add("no-scroll");
     document.querySelector(`#layer-${targetIndex}`).classList.add("on");
   }
-  
+
   function closeMenu(targetIndex) {
     setSelectedFolder("");
-    document.querySelector(`#dropbox-inner-${targetIndex}`).classList.remove("on");
+    document
+      .querySelector(`#dropbox-inner-${targetIndex}`)
+      .classList.remove("on");
     document.querySelector("body").classList.remove("no-scroll");
     document.querySelector(`#layer-${targetIndex}`).classList.remove("on");
   }
@@ -73,30 +80,37 @@ function FolderList({ folderList, addFolder, setSelectedFolder, selectedFolder }
     const itemCnt = element.itemCnt;
 
     let threeDotsButton;
-    if(folderName === "기본 폴더") {
-      threeDotsButton = ""
+    if (folderName === "기본 폴더") {
+      threeDotsButton = "";
     } else {
       threeDotsButton = (
-        <div 
+        <div
           className="folder-dropbox"
-          onClick={()=>{
+          onClick={() => {
             onClickSelect(index);
           }}
         >
-          <BsThreeDotsVertical 
+          <BsThreeDotsVertical
             style={{
               fontSize: "7vw"
             }}
           />
           <ul className="folder-dropbox-inner" id={`dropbox-inner-${index}`}>
-            <li className="folder-dropbox-inner-text" onClick={()=>{
-              openSlideMenu(index);
-            }}>폴더 이름 변경</li>
-            <li 
-              className="folder-dropbox-inner-text" 
-              style={{borderTop: "solid black 1px"}}
+            <li
+              className="folder-dropbox-inner-text"
+              onClick={() => {
+                openSlideMenu(index);
+              }}
+            >
+              폴더 이름 변경
+            </li>
+            <li
+              className="folder-dropbox-inner-text"
+              style={{ borderTop: "solid black 1px" }}
               onClick={openDeleteModal}
-            >폴더 삭제</li>
+            >
+              폴더 삭제
+            </li>
           </ul>
         </div>
       );
@@ -117,23 +131,24 @@ function FolderList({ folderList, addFolder, setSelectedFolder, selectedFolder }
             <p className="folder-text">{itemCnt} items</p>
           </div>
           {threeDotsButton}
-          <div className="folder-layer" id={`layer-${index}`} onClick={()=>{
-            setSelectedFolder("");
-            document.querySelector(`#dropbox-inner-${index}`).classList.remove("on");
-            document.querySelector("body").classList.remove("no-scroll");
-            document.querySelector(`#layer-${index}`).classList.remove("on");
-          }}>
-          </div>
+          <div
+            className="folder-layer"
+            id={`layer-${index}`}
+            onClick={() => {
+              setSelectedFolder("");
+              document
+                .querySelector(`#dropbox-inner-${index}`)
+                .classList.remove("on");
+              document.querySelector("body").classList.remove("no-scroll");
+              document.querySelector(`#layer-${index}`).classList.remove("on");
+            }}
+          ></div>
         </div>
       </div>
     );
   });
 
-  return (
-    <div className="folder-list-container">
-      {folderListInner}
-    </div>
-  );
+  return <div className="folder-list-container">{folderListInner}</div>;
 }
 
 export default FolderList;
