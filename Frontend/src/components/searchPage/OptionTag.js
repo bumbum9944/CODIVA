@@ -20,12 +20,6 @@ const useStyles = makeStyles(theme => ({
 
 function OptionTag({ apparels, setApparels, gender }) {
   const classes = useStyles();
-  const [chipData, setChipData] = React.useState([
-    { key: 0, label: "Angular" },
-    { key: 1, label: "jQuery" },
-    { key: 2, label: "Polymer" },
-    { key: 3, label: "React" }
-  ]);
 
   const handleDelete = chipToDelete => () => {
     setApparels(chips =>
