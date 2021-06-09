@@ -27,6 +27,10 @@ function Popup({ apparels, setApparels, setSelectedCategory, gender }) {
     setOpen(false);
   };
 
+  const warningClose = () => {
+    setDetailWarning(false);
+  };
+
   async function buttonClick(e) {
     e.preventDefault();
     if (apparels.length === 0) {
@@ -55,23 +59,22 @@ function Popup({ apparels, setApparels, setSelectedCategory, gender }) {
         SHOW
       </Button>
       <Dialog onClose={handleClose} open={open}>
-        {detailWarning && (
-          <Snackbar
-            open={detailWarning}
-            autoHideDuration={1500}
-            onClose={handleClose}
-            style={{ height: "50%" }}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "center"
-            }}
-          >
-            <Alert severity="warning">
-              <AlertTitle>Warning</AlertTitle>
-              카테고리를 선택해주세요🧐
-            </Alert>
-          </Snackbar>
-        )}
+        <Snackbar
+          open={detailWarning}
+          autoHideDuration={1500}
+          onClose={warningClose}
+          style={{ height: "60%" }}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "center"
+          }}
+        >
+          <Alert severity="warning">
+            <AlertTitle>Warning</AlertTitle>
+            카테고리를 선택해주세요🧐
+          </Alert>
+        </Snackbar>
+
         <DialogTitle onClose={handleClose}>알림</DialogTitle>
         <DialogContent>
           <Typography>옵션 선택을 완료하셨나요?</Typography>

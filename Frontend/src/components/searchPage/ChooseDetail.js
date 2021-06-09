@@ -49,20 +49,13 @@ function ChooseDetail({
       category: "",
       color: "all"
     });
-    setCategoryWarning(false);
   };
 
-  const warningClose = (e, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
+  const warningClose = () => {
     setCategoryWarning(false);
   };
 
   function handleChange(e, name) {
-    if (name === "category") {
-      setCategoryWarning(false);
-    }
     const { value } = e.target;
     setSelectedOption({ ...selectedOption, [name]: value });
     console.log(selectedOption);
@@ -83,23 +76,22 @@ function ChooseDetail({
   return (
     <>
       <Dialog onClose={handleClose} open={detailOpen}>
-        {categoryWarning && (
-          <Snackbar
-            open={categoryWarning}
-            autoHideDuration={1500}
-            onClose={warningClose}
-            style={{ height: "50%" }}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "center"
-            }}
-          >
-            <Alert severity="warning">
-              <AlertTitle>Warning</AlertTitle>
-              카테고리를 선택해주세요🧐
-            </Alert>
-          </Snackbar>
-        )}
+        <Snackbar
+          open={categoryWarning}
+          autoHideDuration={1500}
+          onClose={warningClose}
+          style={{ height: "50%" }}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "center"
+          }}
+        >
+          <Alert severity="warning">
+            <AlertTitle>Warning</AlertTitle>
+            카테고리를 선택해주세요🧐
+          </Alert>
+        </Snackbar>
+
         <DialogTitle onClose={handleClose}>Detail</DialogTitle>
         <DialogContent>
           <Typography>추가 옵션을 선택해주세요🙂 </Typography>

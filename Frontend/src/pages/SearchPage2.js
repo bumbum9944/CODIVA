@@ -175,18 +175,17 @@ function SearchPage2(props) {
               vertical: "top",
               horizontal: "center"
             }}
-            autoHideDuration={1000}
+            autoHideDuration={1500}
             onClose={handleClose}
           >
             <Alert
-              severity="error"
+              severity="warning"
               action={
                 <React.Fragment>
                   <IconButton
                     size="small"
                     aria-label="close"
-                    color="error"
-                    display="flex"
+                    color="warning"
                     onClick={handleClose}
                   >
                     <CloseIcon fontSize="small" />
@@ -194,6 +193,7 @@ function SearchPage2(props) {
                 </React.Fragment>
               }
             >
+              <AlertTitle>Warning</AlertTitle>
               이미 선택하신 카테고리 입니다👕
             </Alert>
           </Snackbar>
