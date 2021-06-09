@@ -5,8 +5,14 @@ import FolderDetailItemList from "../components/FolderDetail/FolderDetailItemLis
 import FolderDetailBottomSlide from "../components/FolderDetail/FolderDetailBottomSlide";
 import FolderAdd from "../components/common/Folder/FolderAdd";
 import FolderListSlide from "../components/common/Folder/FolderListSlide";
+import CodyDeleteModal from "../components/FolderDetail/CodyDeleteModal";
 
-function FolderDetail({ folderList, addFolder }) {
+function FolderDetail({
+  folderList,
+  addFolder,
+  selectedFolder,
+  setSelectedFolder
+}) {
   const location = useLocation();
   const folderName = location.state.folderName;
   const folderId = location.state.folderId;
@@ -55,31 +61,23 @@ function FolderDetail({ folderList, addFolder }) {
     }
   ]);
 
-  // function onChangeSelectedItem(targetIndex) {
-  //   const copiedSelectedItem = selectedItem.slice();
-  //   if(copiedSelectedItem.includes(targetIndex)) {
-  //     copiedSelectedItem.splice(targetIndex, 1);
-  //   } else {
-  //     copiedSelectedItem.push(targetIndex);
-  //   }
-  //   setSelectedItem(copiedSelectedItem);
-  // }
   function onChangeSelectedItem(targetIndex) {
     const copiedSelectedItem = new Set(selectedItem);
-    if(copiedSelectedItem.has(targetIndex)) {
+    if (copiedSelectedItem.has(targetIndex)) {
       copiedSelectedItem.delete(targetIndex, 1);
     } else {
       copiedSelectedItem.add(targetIndex);
     }
     setSelectedItem(copiedSelectedItem);
   }
-  
 
   function changeFolder() {
-    document.querySelector(".folder-detail-bottom-slide-container").classList.remove("on");
+    document
+      .querySelector(".folder-detail-bottom-slide-container")
+      .classList.remove("on");
     const temp = [];
     for (let i = 0; i < items.length; i++) {
-      if(!selectedItem.has(i)) {
+      if (!selectedItem.has(i)) {
         temp.push(items[i]);
       }
     }
@@ -89,10 +87,9 @@ function FolderDetail({ folderList, addFolder }) {
   }
 
   function deleteItems() {
-    document.querySelector(".folder-detail-bottom-slide-container").classList.remove("on");
     const temp = [];
     for (let i = 0; i < items.length; i++) {
-      if(!selectedItem.has(i)) {
+      if (!selectedItem.has(i)) {
         temp.push(items[i]);
       }
     }
@@ -103,15 +100,16 @@ function FolderDetail({ folderList, addFolder }) {
 
   return (
     <div className="folder-detail-container">
-      <FolderDetailHeader 
-        folderName={folderName} 
+      <FolderDetailHeader
+        folderName={folderName}
         mode={mode}
-        resetSelectedItem={()=>{
-          setSelectedItem(new Set([]))
+        resetSelectedItem={() => {
+          setSelectedItem(new Set([]));
         }}
-        onChangeMode={(newMode)=>{
+        onChangeMode={newMode => {
           setMode(newMode);
         }}
+        setSelectedFolder={setSelectedFolder}
       />
       <FolderDetailItemList
         selectedItem={selectedItem}
@@ -130,13 +128,20 @@ function FolderDetail({ folderList, addFolder }) {
           setItems(copiedItems);
         }}
       />
-      <FolderDetailBottomSlide selectedItem={selectedItem} deleteItems={deleteItems} />
+      <FolderDetailBottomSlide selectedItem={selectedItem} />
       <FolderAdd addFolder={addFolder} />
       <FolderListSlide
+        selectedFolder={selectedFolder}
+        setSelectedFolder={setSelectedFolder}
         selectedItem={selectedItem}
         folderList={folderList}
         addFolder={addFolder}
         changeFolder={changeFolder}
+      />
+      <CodyDeleteModal
+        deleteItems={deleteItems}
+        setSelectedItem={setSelectedItem}
+        setMode={setMode}
       />
     </div>
   );

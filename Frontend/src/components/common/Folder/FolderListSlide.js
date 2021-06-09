@@ -1,11 +1,38 @@
 import { React, useState } from "react";
+import { useLocation } from "react-router-dom";
 import "./FolderListSlide.css";
 import CloseIcon from "@material-ui/icons/Close";
 import Button from "@material-ui/core/Button";
 import { BsPlus } from "react-icons/bs";
 import { BsBookmarkFill } from "react-icons/bs";
 
-function FolderListSlide({ selectedItem, onChangeSelectedItem, folderList, toggleSaved, changeFolder }) {
+function FolderListSlide({
+  selectedItem,
+  onChangeSelectedItem,
+  folderList,
+  toggleSaved,
+  changeFolder,
+  selectedFolder,
+  setSelectedFolder
+}) {
+  const location = useLocation();
+  let openToast;
+  if (location.pathname === "/my-picks/detail") {
+    openToast = function () {
+      document.querySelector("#change").classList.add("reveal");
+      setTimeout(() => {
+        document.querySelector("#change").classList.remove("reveal");
+      }, 2000);
+    };
+  } else {
+    openToast = function () {
+      document.querySelector("#save").classList.add("reveal");
+      setTimeout(() => {
+        document.querySelector("#save").classList.remove("reveal");
+      }, 2000);
+    };
+  }
+
   function closeSlideMenu() {
     document.querySelector("body").classList.remove("no-scroll2");
     document.querySelector("#dimmed2").remove();
@@ -30,7 +57,7 @@ function FolderListSlide({ selectedItem, onChangeSelectedItem, folderList, toggl
   }
 
   function saveItem() {
-    if(selectedItem.size === undefined) {
+    if (selectedItem.size === undefined) {
       toggleSaved(selectedItem);
       onChangeSelectedItem("");
     } else {
@@ -43,6 +70,13 @@ function FolderListSlide({ selectedItem, onChangeSelectedItem, folderList, toggl
     const imageUrl = element.imageUrl;
     const folderName = element.folderName;
 
+    if (
+      selectedFolder !== undefined &&
+      selectedFolder !== "" &&
+      selectedFolder === index
+    ) {
+      return "";
+    }
     let innerIamge;
     if (imageUrl === "") {
       innerIamge = (
@@ -55,14 +89,14 @@ function FolderListSlide({ selectedItem, onChangeSelectedItem, folderList, toggl
     }
 
     return (
-      <div 
-        key={index} 
+      <div
+        key={index}
         className="folder-list-slide-item slide-inner"
-        onClick={()=>{
+        onClick={() => {
           saveItem();
           closeSlideMenu();
+          openToast();
         }}
-      
       >
         {innerIamge}
         <div>{folderName}</div>
