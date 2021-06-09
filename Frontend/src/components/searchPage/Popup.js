@@ -12,7 +12,7 @@ import axios from "axios";
 
 const url = "http://ec2-13-125-251-225.ap-northeast-2.compute.amazonaws.com/";
 
-function Popup({ apparels, setApparels, gender }) {
+function Popup({ apparels, setApparels, setSelectedCategory, gender }) {
   const [open, setOpen] = useState(false);
   const history = useHistory();
 
@@ -35,6 +35,12 @@ function Popup({ apparels, setApparels, gender }) {
           console.log(response);
           handleClose();
           setApparels([]);
+          setSelectedCategory({
+            OUTER: false,
+            TOP: false,
+            BOTTOM: false,
+            "ONE PIECE": false
+          });
           history.push("/codies");
         });
     }

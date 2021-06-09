@@ -33,6 +33,8 @@ function ChooseDetail({
   setDetailOpen,
   selectedOption,
   setSelectedOption,
+  selectedCategory,
+  setSelectedCategory,
   apparels,
   setApparels,
   changeDetail,
@@ -72,6 +74,7 @@ function ChooseDetail({
       setCategoryWarning(true);
     } else {
       setApparels([...apparels, selectedOption]);
+      setSelectedCategory({ ...selectedCategory, [detail]: true });
       console.log(apparels);
       handleClose();
     }

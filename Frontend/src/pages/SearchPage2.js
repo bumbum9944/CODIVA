@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { Alert } from "@material-ui/lab";
 import ButtonBase from "@material-ui/core/ButtonBase";
+import CloseIcon from "@material-ui/icons/Close";
+import IconButton from "@material-ui/core/IconButton";
+import Snackbar from "@material-ui/core/Snackbar";
 import Typography from "@material-ui/core/Typography";
 
 import Header from "../components/common/Header/Header";
@@ -114,13 +118,18 @@ function SearchPage2(props) {
 
   const classes = useStyles();
   const [detailOpen, setDetailOpen] = useState(false);
-  const [selectedOuter, setSelectedOuter] = useState(false);
-  const [selectedTop, setSelectedTop] = useState(false);
-  const [selectedBottom, setSelectedBottom] = useState(false);
-  const [selectedOnepiece, setSelectedOnepiece] = useState(false);
+  const [detailWarning, setDetailWarning] = useState(false);
 
   const handleClickOpen = () => {
-    setDetailOpen(true);
+    if (props.selectedCategory[props.detail]) {
+      setDetailWarning(true);
+    } else {
+      setDetailOpen(true);
+    }
+  };
+
+  const handleClose = () => {
+    setDetailWarning(false);
   };
 
   return (
@@ -160,16 +169,36 @@ function SearchPage2(props) {
               </span>
             </ButtonBase>
           ))}
-          {(props.detail === "OUTER" && selectedOuter) ||
-          (props.detail === "TOP" && selectedTop) ||
-          (props.detail === "BOTTOM" && selectedBottom) ||
-          (props.detail === "ONE PIECE" && selectedOnepiece) ? (
-            <Dialog>
-              <Alert>
-                <AlertTitle>Warning</AlertTitle>
+          {props.selectedCategory[props.detail] ? (
+            <Snackbar
+              open={detailWarning}
+              style={{ height: "100%" }}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "center"
+              }}
+              autoHideDuration={1000}
+              onClose={handleClose}
+            >
+              <Alert
+                severity="error"
+                action={
+                  <React.Fragment>
+                    <IconButton
+                      size="small"
+                      aria-label="close"
+                      color="error"
+                      display="flex"
+                      onClick={handleClose}
+                    >
+                      <CloseIcon fontSize="small" />
+                    </IconButton>
+                  </React.Fragment>
+                }
+              >
                 이미 선택하신 카테고리 입니다👕
               </Alert>
-            </Dialog>
+            </Snackbar>
           ) : (
             <ChooseDetail
               {...props}
