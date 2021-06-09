@@ -9,11 +9,14 @@ import {
   Typography
 } from "@material-ui/core";
 import axios from "axios";
+import { Alert, AlertTitle } from "@material-ui/lab";
+import Snackbar from "@material-ui/core/Snackbar";
 
 const url = "http://ec2-13-125-251-225.ap-northeast-2.compute.amazonaws.com/";
 
 function Popup({ apparels, setApparels, setSelectedCategory, gender }) {
   const [open, setOpen] = useState(false);
+  const [detailWarning, setDetailWarning] = useState(false);
   const history = useHistory();
 
   const handleClickOpen = () => {
@@ -27,7 +30,7 @@ function Popup({ apparels, setApparels, setSelectedCategory, gender }) {
   async function buttonClick(e) {
     e.preventDefault();
     if (apparels.length === 0) {
-      alert("검색할 옷을 선택해주세요");
+      setDetailWarning(true);
     } else {
       await axios
         .post(url + "codi/search", { gender: gender, apparels: apparels })
@@ -52,6 +55,23 @@ function Popup({ apparels, setApparels, setSelectedCategory, gender }) {
         SHOW
       </Button>
       <Dialog onClose={handleClose} open={open}>
+        {detailWarning && (
+          <Snackbar
+            open={detailWarning}
+            autoHideDuration={1500}
+            onClose={handleClose}
+            style={{ height: "50%" }}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "center"
+            }}
+          >
+            <Alert severity="warning">
+              <AlertTitle>Warning</AlertTitle>
+              카테고리를 선택해주세요🧐
+            </Alert>
+          </Snackbar>
+        )}
         <DialogTitle onClose={handleClose}>알림</DialogTitle>
         <DialogContent>
           <Typography>옵션 선택을 완료하셨나요?</Typography>

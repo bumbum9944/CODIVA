@@ -86,7 +86,7 @@ function ChooseDetail({
         {categoryWarning && (
           <Snackbar
             open={categoryWarning}
-            autoHideDuration={2000}
+            autoHideDuration={1500}
             onClose={warningClose}
             style={{ height: "50%" }}
             anchorOrigin={{

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Alert } from "@material-ui/lab";
+import { Alert, AlertTitle } from "@material-ui/lab";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
@@ -11,8 +11,6 @@ import Header from "../components/common/Header/Header";
 import PageButton from "../components/common/PageButton";
 import OptionTag from "../components/searchPage/OptionTag";
 import ChooseDetail from "../components/searchPage/ChooseDetail";
-import { Dialog } from "@material-ui/core";
-import { Alert, AlertTitle } from "@material-ui/lab";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -177,11 +175,11 @@ function SearchPage2(props) {
                 vertical: "top",
                 horizontal: "center"
               }}
-              autoHideDuration={1000}
+              autoHideDuration={1500}
               onClose={handleClose}
             >
               <Alert
-                severity="error"
+                severity="warning"
                 action={
                   <React.Fragment>
                     <IconButton
@@ -196,6 +194,7 @@ function SearchPage2(props) {
                   </React.Fragment>
                 }
               >
+                <AlertTitle>Warning</AlertTitle>
                 이미 선택하신 카테고리 입니다👕
               </Alert>
             </Snackbar>
