@@ -56,7 +56,6 @@ function ChooseDetail({
   function handleChange(e, name) {
     const { value } = e.target;
     setSelectedOption({ ...selectedOption, [name]: value });
-    console.log(selectedOption);
   }
 
   function buttonClick(e) {
@@ -66,7 +65,6 @@ function ChooseDetail({
     } else {
       setApparels([...apparels, selectedOption]);
       setSelectedCategory({ ...selectedCategory, [detail]: true });
-      console.log(apparels);
       handleClose();
     }
   }

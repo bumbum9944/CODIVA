@@ -41,7 +41,6 @@ function Popup({ apparels, setApparels, setSelectedCategory, gender }) {
       await axios
         .post(url + "codi/search", { gender: gender, apparels: apparels })
         .then(response => {
-          console.log(response);
           handleClose();
           setApparels([]);
           setSelectedCategory({
