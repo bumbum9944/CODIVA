@@ -6,7 +6,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 function Menu() {
   const location = useLocation();
   let menuButton;
-  if (location.pathname === "/" || location.pathname === "/search/1") {
+  if (location.pathname === "/") {
     menuButton = (
       <GiHamburgerMenu className="menu-button main" onClick={openSlideMenu} />
     );

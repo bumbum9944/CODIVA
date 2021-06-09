@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
-import { Button, TextField, Grid, Modal } from "@material-ui/core";
+import { Button, TextField, Modal } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
-import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import * as client from "lib/client";
 import UserContext from "contexts/user";
@@ -13,8 +12,8 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center"
   },
   paper: {
-    position: "absolute",
-    top: "25%",
+    top: "50%",
+    width: "80%",
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3)
@@ -31,10 +30,8 @@ function Login() {
   const [open, setOpen] = React.useState(false);
   const [account, setAccount] = useState(initialState);
   const [error, setError] = useState(null);
-  //   const history = useHistory();
   const { email, password } = account;
-  const { state, actions } = useContext(UserContext);
-  //   const { user, token } = state;
+  const { actions } = useContext(UserContext);
   const { setUser, setToken } = actions;
 
   const handleOpen = () => {
@@ -94,8 +91,6 @@ function Login() {
         onClose={handleClose}
         className={classes.modal}
       >
-        {/* <PageTemplate>
-          <Grid item> */}
         <div style={{ margin: "0 auto" }} className={classes.paper}>
           {error ? (
             <Alert severity="error" style={{ margin: "0" }}>
@@ -112,55 +107,61 @@ function Login() {
           >
             LOG IN
           </p>
-          <div style={{ display: "flex" }}>
-            <Grid
-              container
-              direction="column"
-              justify="center"
-              alignItems="stretch"
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <form
+              onSubmit={buttonClick}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignContent: "stretch",
+                width: "80vw"
+              }}
             >
-              <form onSubmit={buttonClick} style={{ margin: "0 auto" }}>
-                <TextField
-                  name="email"
-                  type="email"
-                  style={{ marginBottom: "12px", width: "85vw" }}
-                  label="email"
-                  variant="outlined"
-                  value={email}
-                  onChange={dataChange}
-                />
+              <TextField
+                name="email"
+                type="email"
+                style={{ marginBottom: "12px" }}
+                label="email"
+                variant="outlined"
+                value={email}
+                onChange={dataChange}
+              />
 
-                <TextField
-                  name="password"
-                  type="password"
-                  label="password"
-                  variant="outlined"
-                  style={{ width: "85vw" }}
-                  value={password}
-                  onChange={dataChange}
-                />
-                <Button type="submit" id="button" variant="contained">
-                  Login
-                </Button>
-              </form>
-            </Grid>
+              <TextField
+                name="password"
+                type="password"
+                label="password"
+                variant="outlined"
+                style={{}}
+                value={password}
+                onChange={dataChange}
+              />
+              <Button type="submit" className="form-button" variant="contained">
+                Login
+              </Button>
+              <Button
+                // variant="outlined"
+                // style={{
+                //   color: "#4286f4",
+                //   margin: "16px 0px",
+                //   textAlign: "center"
+                // }}
+                className="form-button"
+                style={{
+                  borderColor: "#2196f3",
+                  color: "#2196f3",
+                  margin: "12px 0px"
+                }}
+                onClick={() => {
+                  handleClose();
+                  document.querySelector("#register-modal").click();
+                }}
+              >
+                register
+              </Button>
+            </form>
           </div>
-          <p
-            style={{
-              color: "#4286f4",
-              margin: "20px 0px",
-              textAlign: "center"
-            }}
-            onClick={() => {
-              handleClose();
-              document.querySelector("#register-modal").click();
-            }}
-          >
-            register
-          </p>
         </div>
-        {/* </Grid>
-        </PageTemplate> */}
       </Modal>
     </>
   );

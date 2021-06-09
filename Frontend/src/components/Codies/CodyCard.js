@@ -11,9 +11,17 @@ function CodyCard({
   viewCntIncrease,
   onChangeSelectedItem
 }) {
+  function openDeleteToast() {
+    document.querySelector("#delete").classList.add("reveal");
+    setTimeout(() => {
+      document.querySelector("#delete").classList.remove("reveal");
+    }, 2000);
+  }
+
   function openFolderListSlide(item, index) {
     if (item.isSaved) {
       toggleSaved(index);
+      openDeleteToast();
     } else {
       onChangeSelectedItem(index);
       document.querySelector("body").classList.add("no-scroll2");

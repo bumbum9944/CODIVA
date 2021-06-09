@@ -1,17 +1,44 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import "./FolderAdd.css";
 import CloseIcon from "@material-ui/icons/Close";
 import Button from "@material-ui/core/Button";
 
-function FolderAdd({ addFolder }) {
+function FolderAdd({
+  addFolder,
+  selectedFolder,
+  setSelectedFolder,
+  oldName,
+  changeFolderName
+}) {
   const [folderInputValue, setFolderInputValue] = useState("");
 
+  useEffect(() => {
+    if (oldName !== undefined) {
+      setFolderInputValue(oldName);
+    }
+  }, [oldName]);
   function closeSlideMenu() {
+    if (selectedFolder !== undefined && selectedFolder !== "") {
+      document
+        .querySelector(`#dropbox-inner-${selectedFolder}`)
+        .classList.remove("on");
+      document.querySelector(`#layer-${selectedFolder}`).classList.remove("on");
+      setSelectedFolder("");
+    }
     document.querySelector("body").classList.remove("no-scroll");
     document.querySelector("#dimmed").remove();
     document.querySelector(".folder-add-container").classList.remove("on");
   }
 
+  function handleClick() {
+    if (oldName !== "" && oldName !== undefined) {
+      changeFolderName(selectedFolder, folderInputValue);
+    } else {
+      addFolder(folderInputValue);
+    }
+    setFolderInputValue("");
+    closeSlideMenu();
+  }
   let addButton;
   if (folderInputValue.length > 0) {
     addButton = (
@@ -24,11 +51,7 @@ function FolderAdd({ addFolder }) {
           marginTop: "15%",
           fontSize: "5vw"
         }}
-        onClick={() => {
-          addFolder(folderInputValue);
-          setFolderInputValue("");
-          closeSlideMenu();
-        }}
+        onClick={handleClick}
       >
         완료
       </Button>
@@ -48,6 +71,14 @@ function FolderAdd({ addFolder }) {
       </Button>
     );
   }
+
+  let title;
+  if (oldName !== undefined && oldName !== "") {
+    title = <div className="folder-add-title">폴더 이름 수정</div>;
+  } else {
+    title = <div className="folder-add-title">폴더추가</div>;
+  }
+
   return (
     <div className="folder-add-container">
       <CloseIcon
@@ -60,7 +91,7 @@ function FolderAdd({ addFolder }) {
         }}
         onClick={closeSlideMenu}
       />
-      <div className="folder-add-title">폴더추가</div>
+      {title}
       <input
         className="folder-add-input"
         type="text"
