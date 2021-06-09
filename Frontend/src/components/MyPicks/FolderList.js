@@ -1,5 +1,5 @@
 import "./FolderList.css";
-import { React, useState } from "react";
+import { React } from "react";
 import { useHistory } from "react-router-dom";
 import { BsBookmarkFill, BsThreeDotsVertical } from "react-icons/bs";
 
@@ -61,7 +61,7 @@ function FolderList({
     if (element.itemCnt > 0) {
       const imageUrl = element.imageUrl;
       folderCover = (
-        <img className="folder-image" src={imageUrl} alt="folder-image" />
+        <img className="folder-image" src={imageUrl} alt="folder" />
       );
     } else {
       folderCover = (

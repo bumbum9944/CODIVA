@@ -21,11 +21,7 @@ function CodyModal({ itemId, item, toggleLiked }) {
         <CloseIcon style={{ fontSize: "4vh", color: "white" }} />
       </Button>
       <div className="modal-content">
-        <img
-          className="modal-card-image"
-          src={item.imageUrl}
-          alt="cody-image"
-        />
+        <img className="modal-card-image" src={item.imageUrl} alt="cody" />
         <CodyModalInfo item={item} itemId={itemId} toggleLiked={toggleLiked} />
       </div>
     </div>

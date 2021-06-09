@@ -11,10 +11,8 @@ import {
   Snackbar
 } from "@material-ui/core";
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { Alert, AlertTitle } from "@material-ui/lab";
 
-const url = "http://ec2-13-125-251-225.ap-northeast-2.compute.amazonaws.com/";
 const categoryOuter = ["cardigan", "coat", "jacket", "vest"];
 const categoryTop = [
   "sleeveless",
@@ -25,7 +23,6 @@ const categoryTop = [
   "shirts"
 ];
 const categoryBottom = ["jeans", "leggings", "slacks", "skirts", "training"];
-const categoryOnepiece = ["one-piece"];
 
 function ChooseDetail({
   detail,
@@ -40,7 +37,6 @@ function ChooseDetail({
   changeDetail,
   detailOpen
 }) {
-  const history = useHistory();
   const [categoryWarning, setCategoryWarning] = useState(false);
 
   const handleClose = () => {

@@ -1,7 +1,7 @@
 import { React } from "react";
 import "./RankedItemList.css";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
-import { BsBookmarkFill, BsBookmark } from "react-icons/bs";
+import { BsBookmarkFill } from "react-icons/bs";
 
 function RankedItemList({
   onChangeSelectedItem,
@@ -87,9 +87,9 @@ function RankedItemList({
     return (
       <div key={index} className="top-codies-item">
         <img
-          className="top-codies-item-image"
+          className="top-codies-item"
           src={element.imageUrl}
-          alt="top-cody-image"
+          alt="top-cody"
         />
         <div
           className="cody-save-button"
