@@ -4,6 +4,25 @@ import Button from "@material-ui/core/Button";
 import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
 
+const categoryDetail = {
+  cardigan: "OUTER",
+  coat: "OUTER",
+  jacket: "OUTER",
+  vest: "OUTER",
+  sleeveless: "TOP",
+  "tee(short)": "TOP",
+  "tee(long)": "TOP",
+  mtm: "TOP",
+  hood: "TOP",
+  shirts: "TOP",
+  jeans: "BOTTOM",
+  leggings: "BOTTOM",
+  slacks: "BOTTOM",
+  skirts: "BOTTOM",
+  training: "BOTTOM",
+  "one-piece": "ONE PIECE"
+};
+
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
@@ -18,13 +37,24 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function OptionTag({ apparels, setApparels, gender }) {
+function OptionTag({
+  apparels,
+  setApparels,
+  selectedCategory,
+  setSelectedCategory,
+  detail,
+  gender
+}) {
   const classes = useStyles();
 
   const handleDelete = chipToDelete => () => {
     setApparels(chips =>
       chips.filter(chip => chip.category !== chipToDelete.category)
     );
+    setSelectedCategory({
+      ...selectedCategory,
+      [categoryDetail[chipToDelete.category]]: false
+    });
   };
 
   return (
@@ -33,17 +63,13 @@ function OptionTag({ apparels, setApparels, gender }) {
         <Chip className={classes.chip} label={gender} />
         {apparels.map((data, index) => {
           return (
-            console.log(data),
-            console.log(index),
-            (
-              <li key={index}>
-                <Chip
-                  label={data.category + ", " + data.color}
-                  onDelete={handleDelete(data)}
-                  className={classes.chip}
-                />
-              </li>
-            )
+            <li key={index}>
+              <Chip
+                label={data.category + ", " + data.color}
+                onDelete={handleDelete(data)}
+                className={classes.chip}
+              />
+            </li>
           );
         })}
       </Paper>

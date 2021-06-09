@@ -14,6 +14,12 @@ function PageButton(props) {
           variant="contained"
           onClick={() => {
             props.setApparels([]);
+            props.setSelectedCategory({
+              OUTER: false,
+              TOP: false,
+              BOTTOM: false,
+              "ONE PIECE": false
+            });
             history.push("/search/1");
           }}
           style={{ marginRight: 20 }}

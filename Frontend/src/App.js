@@ -42,6 +42,12 @@ function App() {
     color: "all"
   });
   const [apparels, setApparels] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState({
+    OUTER: false,
+    TOP: false,
+    BOTTOM: false,
+    "ONE PIECE": false
+  });
 
   function addFolder(newFolderName) {
     const copiedFolderList = JSON.parse(JSON.stringify(folderList));
@@ -112,6 +118,8 @@ function App() {
                 setApparels={setApparels}
                 selectedOption={selectedOption}
                 setSelectedOption={setSelectedOption}
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
                 changeGender={newGender => {
                   setGender(newGender);
                 }}
