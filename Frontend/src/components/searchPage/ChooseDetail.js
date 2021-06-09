@@ -7,7 +7,8 @@ import {
   MenuItem,
   InputLabel,
   Button,
-  FormControl
+  FormControl,
+  Snackbar
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -49,6 +50,13 @@ function ChooseDetail({
     setCategoryWarning(false);
   };
 
+  const warningClose = (e, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setCategoryWarning(false);
+  };
+
   function handleChange(e, name) {
     if (name === "category") {
       setCategoryWarning(false);
@@ -72,6 +80,23 @@ function ChooseDetail({
   return (
     <>
       <Dialog onClose={handleClose} open={detailOpen}>
+        {categoryWarning && (
+          <Snackbar
+            open={categoryWarning}
+            autoHideDuration={2000}
+            onClose={warningClose}
+            style={{ height: "50%" }}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "center"
+            }}
+          >
+            <Alert severity="warning">
+              <AlertTitle>Warning</AlertTitle>
+              카테고리를 선택해주세요🧐
+            </Alert>
+          </Snackbar>
+        )}
         <DialogTitle onClose={handleClose}>Detail</DialogTitle>
         <DialogContent>
           <Typography>추가 옵션을 선택해주세요🙂 </Typography>
@@ -160,12 +185,6 @@ function ChooseDetail({
         >
           선택완료
         </Button>
-        {categoryWarning && (
-          <Alert severity="warning">
-            <AlertTitle>Warning</AlertTitle>
-            카테고리를 선택해주세요🧐
-          </Alert>
-        )}
       </Dialog>
     </>
   );

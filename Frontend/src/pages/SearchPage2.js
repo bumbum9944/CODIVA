@@ -7,6 +7,8 @@ import Header from "../components/common/Header/Header";
 import PageButton from "../components/common/PageButton";
 import OptionTag from "../components/searchPage/OptionTag";
 import ChooseDetail from "../components/searchPage/ChooseDetail";
+import { Dialog } from "@material-ui/core";
+import { Alert, AlertTitle } from "@material-ui/lab";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -162,7 +164,12 @@ function SearchPage2(props) {
           (props.detail === "TOP" && selectedTop) ||
           (props.detail === "BOTTOM" && selectedBottom) ||
           (props.detail === "ONE PIECE" && selectedOnepiece) ? (
-            alert("이선카")
+            <Dialog>
+              <Alert>
+                <AlertTitle>Warning</AlertTitle>
+                이미 선택하신 카테고리 입니다👕
+              </Alert>
+            </Dialog>
           ) : (
             <ChooseDetail
               {...props}
