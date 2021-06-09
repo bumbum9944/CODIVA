@@ -3,7 +3,7 @@ import "./FolderDetailBottomSlide.css";
 import { FaExchangeAlt, FaTrash } from "react-icons/fa";
 import { colors } from "@material-ui/core";
 
-function FolderDetailBottomSlide({ selectedItem, deleteItems }) {
+function FolderDetailBottomSlide({ selectedItem }) {
   function openFolderListSlide() {
     document.querySelector("body").classList.add("no-scroll2");
     document.querySelector(".folder-list-slide-container").classList.add("on");
@@ -17,6 +17,17 @@ function FolderDetailBottomSlide({ selectedItem, deleteItems }) {
         e.stopPropagation();
         return false;
       });
+  }
+
+  function openDeleteModal() {
+    document.querySelector("body").classList.add("no-scroll");
+    document.querySelector(".cody-delete-modal").classList.remove("hidden");
+  }
+
+  function closeBottomSlide() {
+    document
+      .querySelector(".folder-detail-bottom-slide-container")
+      .classList.remove("on");
   }
 
   let bottomButton;
@@ -42,7 +53,13 @@ function FolderDetailBottomSlide({ selectedItem, deleteItems }) {
           />
           <div>폴더변경</div>
         </div>
-        <div className="bottom-slide-item" onClick={deleteItems}>
+        <div
+          className="bottom-slide-item"
+          onClick={() => {
+            openDeleteModal();
+            closeBottomSlide();
+          }}
+        >
           <FaTrash
             style={{
               marginRight: "3vw"

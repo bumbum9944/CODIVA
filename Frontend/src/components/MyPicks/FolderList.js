@@ -121,6 +121,7 @@ function FolderList({
           className="folder-image-container"
           onClick={() => {
             pushToFolderDetail(folderName, folderId);
+            setSelectedFolder(index);
           }}
         >
           {folderCover}

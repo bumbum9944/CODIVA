@@ -7,7 +7,8 @@ function FolderDetailHeader({
   folderName,
   onChangeMode,
   mode,
-  resetSelectedItem
+  resetSelectedItem,
+  setSelectedFolder
 }) {
   const history = useHistory();
 
@@ -56,6 +57,7 @@ function FolderDetailHeader({
           className="folder-detail-back-button"
           onClick={() => {
             history.push("/my-picks");
+            setSelectedFolder("");
           }}
         />
         <p className="folder-detail-name">{folderName}</p>

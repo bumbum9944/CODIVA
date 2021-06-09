@@ -5,8 +5,14 @@ import { FiFolderPlus } from "react-icons/fi";
 import FolderAdd from "../components/common/Folder/FolderAdd";
 import FolderDeleteModal from "../components/MyPicks/FolderDeleteModal";
 
-function MyPicks({ folderList, addFolder, deleteFolder, changeFolderName }) {
-  const [selectedFolder, setSelectedFolder] = useState("");
+function MyPicks({
+  folderList,
+  addFolder,
+  deleteFolder,
+  changeFolderName,
+  selectedFolder,
+  setSelectedFolder
+}) {
   const [oldName, setOldName] = useState("");
 
   useEffect(() => {

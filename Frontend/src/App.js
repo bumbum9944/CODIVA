@@ -14,8 +14,10 @@ import MyPicks from "./pages/MyPicks";
 import FolderDetail from "./pages/FolderDetail";
 import SaveToastMsg from "./components/common/Folder/SaveToastMsg";
 import DeleteToastMsg from "./components/common/Folder/DeleteToastMsg";
+import ChangeToastMsg from "./components/common/Folder/ChangeToastMsg";
 
 function App() {
+  const [selectedFolder, setSelectedFolder] = useState("");
   const [folderList, setFolderList] = useState([
     {
       id: 1,
@@ -132,18 +134,26 @@ function App() {
                 addFolder={addFolder}
                 deleteFolder={deleteFolder}
                 changeFolderName={changeFolderName}
+                selectedFolder={selectedFolder}
+                setSelectedFolder={setSelectedFolder}
               />
             )}
           />
           <Route
             path="/my-picks/detail"
             render={() => (
-              <FolderDetail folderList={folderList} addFolder={addFolder} />
+              <FolderDetail
+                folderList={folderList}
+                addFolder={addFolder}
+                selectedFolder={selectedFolder}
+                setSelectedFolder={setSelectedFolder}
+              />
             )}
           />
         </Switch>
         <SaveToastMsg />
         <DeleteToastMsg />
+        <ChangeToastMsg />
       </div>
     </BrowserRouter>
   );
