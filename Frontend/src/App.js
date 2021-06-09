@@ -104,6 +104,7 @@ function App() {
             render={() => (
               <Codies
                 gender={gender}
+                apparels={apparels}
                 selectedOption={selectedOption}
                 addFolder={addFolder}
                 folderList={folderList}
