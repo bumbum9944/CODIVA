@@ -112,7 +112,10 @@ function SearchPage2(props) {
 
   const classes = useStyles();
   const [detailOpen, setDetailOpen] = useState(false);
-  const [category, setCategory] = useState("");
+  const [selectedOuter, setSelectedOuter] = useState(false);
+  const [selectedTop, setSelectedTop] = useState(false);
+  const [selectedBottom, setSelectedBottom] = useState(false);
+  const [selectedOnepiece, setSelectedOnepiece] = useState(false);
 
   const handleClickOpen = () => {
     setDetailOpen(true);
@@ -155,11 +158,18 @@ function SearchPage2(props) {
               </span>
             </ButtonBase>
           ))}
-          <ChooseDetail
-            {...props}
-            detailOpen={detailOpen}
-            setDetailOpen={setDetailOpen}
-          />
+          {(props.detail === "OUTER" && selectedOuter) ||
+          (props.detail === "TOP" && selectedTop) ||
+          (props.detail === "BOTTOM" && selectedBottom) ||
+          (props.detail === "ONE PIECE" && selectedOnepiece) ? (
+            alert("이선카")
+          ) : (
+            <ChooseDetail
+              {...props}
+              detailOpen={detailOpen}
+              setDetailOpen={setDetailOpen}
+            />
+          )}
         </div>
       </div>
       <PageButton {...props} />
