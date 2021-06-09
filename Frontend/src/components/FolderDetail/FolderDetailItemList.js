@@ -1,5 +1,5 @@
 import "./FolderDetailItemList.css";
-import { React, useState } from "react";
+import { React } from "react";
 import CodyModal from "../common/Cody/CodyModal";
 import { FaCheckCircle } from "react-icons/fa";
 
@@ -58,11 +58,7 @@ function FolderDetailItemList({
             onChangeSelectedItem(index);
           }}
         >
-          <img
-            className="folder-detail-image"
-            src={imageUrl}
-            alt="folder-detail-image"
-          />
+          <img className="folder-detail" src={imageUrl} alt="folder-detail" />
           {checkButton}
         </div>
       );
@@ -70,9 +66,9 @@ function FolderDetailItemList({
       innerItem = (
         <div key={index} className="folder-detail-item">
           <img
-            className="folder-detail-image"
+            className="folder-detail"
             src={imageUrl}
-            alt="folder-detail-image"
+            alt="folder-detail"
             onClick={() => {
               openModal(index);
             }}

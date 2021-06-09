@@ -11,10 +11,10 @@ import {
   Snackbar
 } from "@material-ui/core";
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { Alert, AlertTitle } from "@material-ui/lab";
+import CloseIcon from "@material-ui/icons/Close";
+import IconButton from "@material-ui/core/IconButton";
 
-const url = "http://ec2-13-125-251-225.ap-northeast-2.compute.amazonaws.com/";
 const categoryOuter = ["cardigan", "coat", "jacket", "vest"];
 const categoryTop = [
   "sleeveless",
@@ -25,7 +25,6 @@ const categoryTop = [
   "shirts"
 ];
 const categoryBottom = ["jeans", "leggings", "slacks", "skirts", "training"];
-const categoryOnepiece = ["one-piece"];
 
 function ChooseDetail({
   detail,
@@ -40,7 +39,6 @@ function ChooseDetail({
   changeDetail,
   detailOpen
 }) {
-  const history = useHistory();
   const [categoryWarning, setCategoryWarning] = useState(false);
 
   const handleClose = () => {
@@ -58,7 +56,6 @@ function ChooseDetail({
   function handleChange(e, name) {
     const { value } = e.target;
     setSelectedOption({ ...selectedOption, [name]: value });
-    console.log(selectedOption);
   }
 
   function buttonClick(e) {
@@ -68,7 +65,6 @@ function ChooseDetail({
     } else {
       setApparels([...apparels, selectedOption]);
       setSelectedCategory({ ...selectedCategory, [detail]: true });
-      console.log(apparels);
       handleClose();
     }
   }
@@ -86,7 +82,22 @@ function ChooseDetail({
             horizontal: "center"
           }}
         >
-          <Alert severity="warning">
+          <Alert
+            severity="warning"
+            style={{ alignItems: "flex-start" }}
+            action={
+              <React.Fragment>
+                <IconButton
+                  size="small"
+                  aria-label="close"
+                  color="warning"
+                  onClick={warningClose}
+                >
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              </React.Fragment>
+            }
+          >
             <AlertTitle>Warning</AlertTitle>
             카테고리를 선택해주세요🧐
           </Alert>
@@ -128,7 +139,7 @@ function ChooseDetail({
                   );
                 })}
               {detail === "ONE PIECE" && (
-                <MenuItem name="category" value="one_piece">
+                <MenuItem name="category" value="one-piece">
                   One piece
                 </MenuItem>
               )}
