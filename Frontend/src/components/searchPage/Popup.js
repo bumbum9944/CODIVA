@@ -42,7 +42,6 @@ function Popup({ apparels, setApparels, setSelectedCategory, gender }) {
         .post(url + "codi/search", { gender: gender, apparels: apparels })
         .then(response => {
           handleClose();
-          setApparels([]);
           setSelectedCategory({
             OUTER: false,
             TOP: false,

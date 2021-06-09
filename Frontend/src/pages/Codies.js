@@ -4,8 +4,26 @@ import CodyList from "../components/Codies/CodyList";
 import CodyHeader from "../components/Codies/CodyHeader";
 import FolderAdd from "../components/common/Folder/FolderAdd";
 import FolderListSlide from "../components/common/Folder/FolderListSlide";
+import Chip from "@material-ui/core/Chip";
+import Paper from "@material-ui/core/Paper";
+import { makeStyles } from "@material-ui/core/styles";
 
-function Codies({ gender, selectedOption, folderList, addFolder }) {
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: "flex",
+    justifyContent: "left",
+    overflow: "auto",
+    listStyle: "none",
+    padding: theme.spacing(0.5),
+    margin: 0
+  },
+  chip: {
+    margin: theme.spacing(0.5)
+  }
+}));
+
+function Codies({ gender, selectedOption, folderList, addFolder, apparels }) {
+  const classes = useStyles();
   const [selectedItem, setSelectedItem] = useState("");
   const [codies, setCodies] = useState([
     {
@@ -160,7 +178,20 @@ function Codies({ gender, selectedOption, folderList, addFolder }) {
   return (
     <div>
       <Header headerText="CODIES" />
-      <CodyHeader gender={gender} selectedOption={selectedOption} />
+      {/* <CodyHeader gender={gender} selectedOption={selectedOption} /> */}
+      <Paper component="ul" className={classes.root}>
+        <Chip className={classes.chip} label={gender} />
+        {apparels.map((data, index) => {
+          return (
+            <li key={index}>
+              <Chip
+                label={data.category + ", " + data.color}
+                className={classes.chip}
+              />
+            </li>
+          );
+        })}
+      </Paper>
       <CodyList
         codies={codies}
         onChangeSelectedItem={onChangeSelectedItem}
