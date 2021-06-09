@@ -38,7 +38,7 @@ function ChooseDetail({
   detailOpen
 }) {
   const history = useHistory();
-  const [categoryWarnig, setCategoryWarning] = useState(false);
+  const [categoryWarning, setCategoryWarning] = useState(false);
 
   const handleClose = () => {
     setDetailOpen(false);
@@ -47,7 +47,6 @@ function ChooseDetail({
       color: "all"
     });
     setCategoryWarning(false);
-    console.log(setSelectedOption);
   };
 
   function handleChange(e, name) {
@@ -64,7 +63,6 @@ function ChooseDetail({
     if (selectedOption.category.length === 0) {
       setCategoryWarning(true);
     } else {
-      console.log(apparels);
       setApparels([...apparels, selectedOption]);
       console.log(apparels);
       handleClose();
@@ -162,7 +160,7 @@ function ChooseDetail({
         >
           선택완료
         </Button>
-        {categoryWarnig && (
+        {categoryWarning && (
           <Alert severity="warning">
             <AlertTitle>Warning</AlertTitle>
             카테고리를 선택해주세요🧐

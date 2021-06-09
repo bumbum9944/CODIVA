@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function OptionTag({ gender }) {
+function OptionTag({ apparels, setApparels, gender }) {
   const classes = useStyles();
   const [chipData, setChipData] = React.useState([
     { key: 0, label: "Angular" },
@@ -28,22 +28,28 @@ function OptionTag({ gender }) {
   ]);
 
   const handleDelete = chipToDelete => () => {
-    setChipData(chips => chips.filter(chip => chip.key !== chipToDelete.key));
+    setApparels(chips =>
+      chips.filter(chip => chip.category !== chipToDelete.category)
+    );
   };
 
   return (
     <>
       <Paper component="ul" className={classes.root}>
         <Chip className={classes.chip} label={gender} />
-        {chipData.map(data => {
+        {apparels.map((data, index) => {
           return (
-            <li key={data.key}>
-              <Chip
-                label={data.label}
-                onDelete={handleDelete(data)}
-                className={classes.chip}
-              />
-            </li>
+            console.log(data),
+            console.log(index),
+            (
+              <li key={index}>
+                <Chip
+                  label={data.category + ", " + data.color}
+                  onDelete={handleDelete(data)}
+                  className={classes.chip}
+                />
+              </li>
+            )
           );
         })}
       </Paper>
