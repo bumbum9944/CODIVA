@@ -118,8 +118,8 @@ function SearchPage2(props) {
   const [detailOpen, setDetailOpen] = useState(false);
   const [detailWarning, setDetailWarning] = useState(false);
 
-  const handleClickOpen = () => {
-    if (props.selectedCategory[props.detail]) {
+  const handleClickOpen = d => {
+    if (props.selectedCategory[d]) {
       setDetailWarning(true);
     } else {
       setDetailOpen(true);
@@ -143,8 +143,8 @@ function SearchPage2(props) {
               className={classes.image}
               focusVisibleClassName={classes.focusVisible}
               onClick={() => {
-                props.changeDetail(image.title);
-                handleClickOpen();
+                props.setDetail(image.title);
+                handleClickOpen(image.title);
               }}
             >
               <span
@@ -167,44 +167,42 @@ function SearchPage2(props) {
               </span>
             </ButtonBase>
           ))}
-          {props.selectedCategory[props.detail] ? (
-            <Snackbar
-              open={detailWarning}
-              style={{ height: "100%" }}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "center"
-              }}
-              autoHideDuration={1500}
-              onClose={handleClose}
+
+          <Snackbar
+            open={detailWarning}
+            style={{ height: "100%" }}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "center"
+            }}
+            autoHideDuration={1000}
+            onClose={handleClose}
+          >
+            <Alert
+              severity="error"
+              action={
+                <React.Fragment>
+                  <IconButton
+                    size="small"
+                    aria-label="close"
+                    color="error"
+                    display="flex"
+                    onClick={handleClose}
+                  >
+                    <CloseIcon fontSize="small" />
+                  </IconButton>
+                </React.Fragment>
+              }
             >
-              <Alert
-                severity="warning"
-                action={
-                  <React.Fragment>
-                    <IconButton
-                      size="small"
-                      aria-label="close"
-                      color="error"
-                      display="flex"
-                      onClick={handleClose}
-                    >
-                      <CloseIcon fontSize="small" />
-                    </IconButton>
-                  </React.Fragment>
-                }
-              >
-                <AlertTitle>Warning</AlertTitle>
-                이미 선택하신 카테고리 입니다👕
-              </Alert>
-            </Snackbar>
-          ) : (
-            <ChooseDetail
-              {...props}
-              detailOpen={detailOpen}
-              setDetailOpen={setDetailOpen}
-            />
-          )}
+              이미 선택하신 카테고리 입니다👕
+            </Alert>
+          </Snackbar>
+
+          <ChooseDetail
+            {...props}
+            detailOpen={detailOpen}
+            setDetailOpen={setDetailOpen}
+          />
         </div>
       </div>
       <PageButton {...props} />

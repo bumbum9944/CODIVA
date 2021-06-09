@@ -120,13 +120,6 @@ function App() {
                 setSelectedOption={setSelectedOption}
                 selectedCategory={selectedCategory}
                 setSelectedCategory={setSelectedCategory}
-                changeGender={newGender => {
-                  setGender(newGender);
-                }}
-                changeDetail={newDetail => {
-                  console.log(newDetail);
-                  setDetail(newDetail);
-                }}
               />
             )}
           />
