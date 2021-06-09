@@ -8,36 +8,6 @@ codi = Blueprint("codi", __name__, url_prefix="/codi")
 path = os.path.join(os.getcwd(), "app/docs/codi")
 
 
-def make_match(key, value):
-    return {"match": {key: value}}
-
-
-labels = json.dumps(
-    {
-        "nested": {
-            "path": "apparels",
-            "query": {"bool": {"filter": []}},
-        }
-    }
-)
-
-query = json.dumps(
-    {
-        "size": 20,
-        "query": {
-            "function_score": {
-                "query": {"bool": {"must": []}},
-                "script_score": {
-                    "script": {
-                        "source": "doc['like_cnt'].value + (doc['hits'].value*2)"
-                    }
-                },
-            },
-        },
-    }
-)
-
-
 @codi.route("/", methods=["GET"])
 @swag_from(os.path.join(path, "get_codies.yml"))
 def get_codies():
@@ -83,34 +53,88 @@ def hit(codi_id):
     return jsonify(hits=res["hits"] + 1)
 
 
+def make_match(key: str, value: str) -> dict:
+    """
+    [ make `match element` ]
+    The return value is element of array named `matches` params
+    in make_query function or make_nested_label function.
+    """
+    return {"match": {key: value}}
+
+
+def make_nested_label(
+    path: str, matches: list[dict], query_type: str = "filter"
+) -> dict:
+    """
+    [ make `nested type label` ]
+    The return value is element of array named `matches` params in make_query function.
+    """
+    return {
+        "nested": {
+            "path": f"{path}",
+            "query": {"bool": {f"{query_type}": matches}},
+        }
+    }
+
+
+def make_query(
+    query_type: str, matches: list[dict], start_num: int = 0, size: int = 20
+) -> dict:
+    """
+    [ make elastic search query ]
+    The return value is a query of type dict
+    for sending raw JSON queries to 'elasticsearch'.
+    """
+    return {
+        "from": start_num,
+        "size": size,
+        "query": {
+            "script_score": {
+                "query": {"bool": {f"{query_type}": matches}},
+                "script": {"source": "doc['like_cnt'].value + (doc['hits'].value*2)"},
+            },
+        },
+    }
+
+
 @codi.route("/search", methods=["POST"])
 def search():
     query_param = request.args.to_dict()
     req = request.get_json(force=True)
 
-    q = json.loads(query)
-    q["from"] = query_param["from"] if "from" in query_param else 0
-    q["query"]["function_score"]["query"]["bool"]["must"].append(
-        make_match("gender", req["gender"])
-    )
+    if (
+        not "gender" in req
+        or req["gender"] == ""
+        or not "apparels" in req
+        or type(req["apparels"]) != list
+    ):
+        abort(
+            Response(
+                status=400,
+                response=json.dumps(
+                    {"message": f"Invalid field value (gender, apparels)."}, indent=4
+                ),
+                mimetype="application/json",
+            )
+        )
+
+    labels = []
+    if req["gender"].lower() != "all":
+        labels.append(make_match("gender", req["gender"][0].lower()))
 
     for apparel in req["apparels"]:
-        label = json.loads(labels)
-        label["nested"]["query"]["bool"]["filter"].append(
-            make_match("apparels.category", apparel["category"])
-        )
-        if apparel["color"] != "all":
-            label["nested"]["query"]["bool"]["filter"].append(
-                make_match("apparels.color", apparel["color"])
-            )
-        q["query"]["function_score"]["query"]["bool"]["must"].append(label)
+        matches = []
+        matches.append(make_match("apparels.category", apparel["category"]))
+        if apparel["color"].lower() != "all":
+            matches.append(make_match("apparels.color", apparel["color"]))
+        labels.append(make_nested_label("apparels", matches))
+
+    query = make_query(
+        "must", labels, query_param["from"] if "from" in query_param else 0
+    )
+
     with connect_es() as es:
-        result = es.search(q)
-        result = list(
-            map(
-                lambda x: dict(x["_source"], **{"id": int(x["_id"])}),
-                result["hits"]["hits"],
-            )
-        )
+        result = es.search(query)
+        codies = [{**x["_source"], "id": x["_id"]} for x in result["hits"]["hits"]]
         es.close()
-    return jsonify(data=result)
+    return jsonify(data=codies)

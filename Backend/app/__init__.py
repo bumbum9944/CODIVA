@@ -32,7 +32,7 @@ def create_app():
     jwt.init_app(app)
     swagger.init_app(app)
     api.init_app(app)
-    CORS(app, supports_credentials=True)
+    CORS(app, supports_credentials=True, resources={r"/*": {"origins": "*"}})
 
     @app.route("/")
     def index():
