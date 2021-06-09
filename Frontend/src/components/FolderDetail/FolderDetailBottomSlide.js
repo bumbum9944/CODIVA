@@ -1,7 +1,6 @@
 import { React } from "react";
 import "./FolderDetailBottomSlide.css";
 import { FaExchangeAlt, FaTrash } from "react-icons/fa";
-import { colors } from "@material-ui/core";
 
 function FolderDetailBottomSlide({ selectedItem }) {
   function openFolderListSlide() {

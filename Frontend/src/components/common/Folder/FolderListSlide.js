@@ -1,8 +1,7 @@
-import { React, useState } from "react";
+import { React } from "react";
 import { useLocation } from "react-router-dom";
 import "./FolderListSlide.css";
 import CloseIcon from "@material-ui/icons/Close";
-import Button from "@material-ui/core/Button";
 import { BsPlus } from "react-icons/bs";
 import { BsBookmarkFill } from "react-icons/bs";
 
@@ -85,7 +84,13 @@ function FolderListSlide({
         </div>
       );
     } else {
-      innerIamge = <img className="folder-list-slide-image" src={imageUrl} />;
+      innerIamge = (
+        <img
+          className="folder-list-slide-image"
+          src={imageUrl}
+          alt="folder-list-slide"
+        />
+      );
     }
 
     return (
