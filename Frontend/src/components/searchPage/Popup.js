@@ -22,7 +22,6 @@ function Popup({ apparels, setApparels, gender }) {
 
   const handleClose = () => {
     setOpen(false);
-    setApparels([]);
   };
 
   async function buttonClick(e) {
@@ -34,6 +33,7 @@ function Popup({ apparels, setApparels, gender }) {
         .post(url + "codi/search", { gender: gender, apparels: apparels })
         .then(response => {
           handleClose();
+          setApparels([]);
           history.push("/codies");
         });
     }

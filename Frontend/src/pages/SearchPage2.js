@@ -118,12 +118,6 @@ function SearchPage2(props) {
     setDetailOpen(true);
   };
 
-  const handleClose = () => {
-    setDetailOpen(false);
-    props.setApparels([]);
-    console.log(props.apparels);
-  };
-
   return (
     <>
       <Header headerText="SEARCH" />
@@ -163,8 +157,8 @@ function SearchPage2(props) {
           ))}
           <ChooseDetail
             {...props}
-            handleClose={handleClose}
             detailOpen={detailOpen}
+            setDetailOpen={setDetailOpen}
           />
         </div>
       </div>
