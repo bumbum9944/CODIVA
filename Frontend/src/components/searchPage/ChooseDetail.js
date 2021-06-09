@@ -13,6 +13,8 @@ import {
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Alert, AlertTitle } from "@material-ui/lab";
+import CloseIcon from "@material-ui/icons/Close";
+import IconButton from "@material-ui/core/IconButton";
 
 const url = "http://ec2-13-125-251-225.ap-northeast-2.compute.amazonaws.com/";
 const categoryOuter = ["cardigan", "coat", "jacket", "vest"];
@@ -86,7 +88,22 @@ function ChooseDetail({
             horizontal: "center"
           }}
         >
-          <Alert severity="warning">
+          <Alert
+            severity="warning"
+            style={{ alignItems: "flex-start" }}
+            action={
+              <React.Fragment>
+                <IconButton
+                  size="small"
+                  aria-label="close"
+                  color="warning"
+                  onClick={warningClose}
+                >
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              </React.Fragment>
+            }
+          >
             <AlertTitle>Warning</AlertTitle>
             카테고리를 선택해주세요🧐
           </Alert>
@@ -128,7 +145,7 @@ function ChooseDetail({
                   );
                 })}
               {detail === "ONE PIECE" && (
-                <MenuItem name="category" value="one_piece">
+                <MenuItem name="category" value="one-piece">
                   One piece
                 </MenuItem>
               )}

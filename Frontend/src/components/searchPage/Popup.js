@@ -11,6 +11,8 @@ import {
 import axios from "axios";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import Snackbar from "@material-ui/core/Snackbar";
+import CloseIcon from "@material-ui/icons/Close";
+import IconButton from "@material-ui/core/IconButton";
 
 const url = "http://ec2-13-125-251-225.ap-northeast-2.compute.amazonaws.com/";
 
@@ -69,7 +71,22 @@ function Popup({ apparels, setApparels, setSelectedCategory, gender }) {
             horizontal: "center"
           }}
         >
-          <Alert severity="warning">
+          <Alert
+            severity="warning"
+            style={{ alignItems: "flex-start" }}
+            action={
+              <React.Fragment>
+                <IconButton
+                  size="small"
+                  aria-label="close"
+                  color="inherit"
+                  onClick={warningClose}
+                >
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              </React.Fragment>
+            }
+          >
             <AlertTitle>Warning</AlertTitle>
             카테고리를 선택해주세요🧐
           </Alert>
