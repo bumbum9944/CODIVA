@@ -98,7 +98,17 @@ function App() {
         <LoginForm />
         <RegisterForm />
         <Switch>
-          <Route path="/" exact component={Home} />
+          <Route
+            path="/"
+            exact
+            render={() => (
+              <Home
+                setGender={setGender}
+                setApparels={setApparels}
+                setSelectedCategory={setSelectedCategory}
+              />
+            )}
+          />
           <Route
             path="/codies"
             render={() => (
