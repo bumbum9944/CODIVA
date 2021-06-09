@@ -7,16 +7,16 @@ import {
   MenuItem,
   InputLabel,
   Button,
-  FormControl
+  FormControl,
+  Snackbar
 } from "@material-ui/core";
-import axios from "axios";
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { Alert, AlertTitle } from "@material-ui/lab";
 
-const url =
-  "http://ec2-13-125-251-225.ap-northeast-2.compute.amazonaws.com:5000/";
-const catagoryOuter = ["cardigan", "coat", "jacket", "vest"];
-const catagoryTop = [
+const url = "http://ec2-13-125-251-225.ap-northeast-2.compute.amazonaws.com/";
+const categoryOuter = ["cardigan", "coat", "jacket", "vest"];
+const categoryTop = [
   "sleeveless",
   "tee(short)",
   "tee(long)",
@@ -24,45 +24,50 @@ const catagoryTop = [
   "hood",
   "shirts"
 ];
-const catagoryBottom = ["jeans", "leggings", "slacks", "skirts", "training"];
-const catagoryOnepiece = ["one-piece"];
+const categoryBottom = ["jeans", "leggings", "slacks", "skirts", "training"];
+const categoryOnepiece = ["one-piece"];
 
-function ChooseDetail({ detailOpen, handleClose }) {
-  const [catagory, setCatagory] = useState("");
-  const [color, setColor] = useState("all");
+function ChooseDetail({
+  detail,
+  setDetail,
+  setDetailOpen,
+  selectedOption,
+  setSelectedOption,
+  selectedCategory,
+  setSelectedCategory,
+  apparels,
+  setApparels,
+  changeDetail,
+  detailOpen
+}) {
   const history = useHistory();
+  const [categoryWarning, setCategoryWarning] = useState(false);
 
-  const handleChange = (e, type) => {
-    e.preventDefault();
-    console.log(e.target.value);
-    const value = e.target.value;
-    type === "catagory" ? setCatagory(value) : setColor(value);
+  const handleClose = () => {
+    setDetailOpen(false);
+    setSelectedOption({
+      category: "",
+      color: "all"
+    });
   };
 
-  // const buttonClick = useCallback(() => {
-  //   console.log(detail);
-  // }, [catagory, color]);
+  const warningClose = () => {
+    setCategoryWarning(false);
+  };
 
-  /*{  // async function buttonClick(e) {
-  //   e.preventDefault();
-  //   useCallback(() => {
-  //     const detail = `${catagory}, ${color}`;
-  //     console.log(detail);
-  //   }, [catagory, color]);
-  //   if (catagory === "") {alert("카테고리를 선택해주세요!");} else {
-  //     await axios
-  //       .post(url + "codi/search", apparels)
-  //       .then(response => handleClose());
-  //   }
-  // }
-}*/
+  function handleChange(e, name) {
+    const { value } = e.target;
+    setSelectedOption({ ...selectedOption, [name]: value });
+    console.log(selectedOption);
+  }
 
   function buttonClick(e) {
     e.preventDefault();
-    if (catagory === "") {
-      alert("카테고리를 선택해주세요");
+    if (selectedOption.category.length === 0) {
+      setCategoryWarning(true);
     } else {
-      const apparels = `${catagory}, ${color}`;
+      setApparels([...apparels, selectedOption]);
+      setSelectedCategory({ ...selectedCategory, [detail]: true });
       console.log(apparels);
       handleClose();
     }
@@ -71,34 +76,62 @@ function ChooseDetail({ detailOpen, handleClose }) {
   return (
     <>
       <Dialog onClose={handleClose} open={detailOpen}>
+        <Snackbar
+          open={categoryWarning}
+          autoHideDuration={1500}
+          onClose={warningClose}
+          style={{ height: "50%" }}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "center"
+          }}
+        >
+          <Alert severity="warning">
+            <AlertTitle>Warning</AlertTitle>
+            카테고리를 선택해주세요🧐
+          </Alert>
+        </Snackbar>
+
         <DialogTitle onClose={handleClose}>Detail</DialogTitle>
         <DialogContent>
           <Typography>추가 옵션을 선택해주세요🙂 </Typography>
         </DialogContent>
         <center>
           <FormControl style={{ marginBottom: "20px" }}>
-            <InputLabel>👕 catagory</InputLabel>
+            <InputLabel>👕 category</InputLabel>
             <Select
               style={{ width: "50vw" }}
-              onChange={e => handleChange(e, "catagory")}
+              onChange={e => handleChange(e, "category")}
             >
-              {/* {
-                catagory{option}.map((catagory, idx) => {
-                  return <MenuItem key={idx} name={catagory}>{catagory}</MenuItem>
-                })
-              } */}
-              <MenuItem name="catagory" value="cardigan">
-                cardigan
-              </MenuItem>
-              <MenuItem name="catagory" value="coat">
-                coat
-              </MenuItem>
-              <MenuItem name="catagory" value="vest">
-                vest
-              </MenuItem>
-              <MenuItem name="catagory" value="jacket">
-                jacket
-              </MenuItem>
+              {detail === "OUTER" &&
+                categoryOuter.map((category, idx) => {
+                  return (
+                    <MenuItem key={idx} name={category} value={category}>
+                      {category}
+                    </MenuItem>
+                  );
+                })}
+              {detail === "TOP" &&
+                categoryTop.map((category, idx) => {
+                  return (
+                    <MenuItem key={idx} name={category} value={category}>
+                      {category}
+                    </MenuItem>
+                  );
+                })}
+              {detail === "BOTTOM" &&
+                categoryBottom.map((category, idx) => {
+                  return (
+                    <MenuItem key={idx} name={category} value={category}>
+                      {category}
+                    </MenuItem>
+                  );
+                })}
+              {detail === "ONE PIECE" && (
+                <MenuItem name="category" value="one_piece">
+                  One piece
+                </MenuItem>
+              )}
             </Select>
           </FormControl>
           <FormControl>

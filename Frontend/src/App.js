@@ -40,17 +40,17 @@ function App() {
     }
   ]);
   const [gender, setGender] = useState("");
+  const [detail, setDetail] = useState("");
   const [selectedOption, setSelectedOption] = useState({
-    top: {
-      detail: "반팔티",
-      color: "#FFFFFF",
-      selected: false
-    },
-    bottom: {
-      detail: "청바지",
-      color: "#0000FF",
-      selected: false
-    }
+    category: "",
+    color: "all"
+  });
+  const [apparels, setApparels] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState({
+    OUTER: false,
+    TOP: false,
+    BOTTOM: false,
+    "ONE PIECE": false
   });
 
   function addFolder(newFolderName) {
@@ -128,9 +128,14 @@ function App() {
             render={() => (
               <SearchPage2
                 gender={gender}
-                changeGender={newGender => {
-                  setGender(newGender);
-                }}
+                detail={detail}
+                setDetail={setDetail}
+                apparels={apparels}
+                setApparels={setApparels}
+                selectedOption={selectedOption}
+                setSelectedOption={setSelectedOption}
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
               />
             )}
           />

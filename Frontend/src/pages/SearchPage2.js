@@ -1,35 +1,16 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { Alert, AlertTitle } from "@material-ui/lab";
 import ButtonBase from "@material-ui/core/ButtonBase";
+import CloseIcon from "@material-ui/icons/Close";
+import IconButton from "@material-ui/core/IconButton";
+import Snackbar from "@material-ui/core/Snackbar";
 import Typography from "@material-ui/core/Typography";
 
 import Header from "../components/common/Header/Header";
 import PageButton from "../components/common/PageButton";
 import OptionTag from "../components/searchPage/OptionTag";
 import ChooseDetail from "../components/searchPage/ChooseDetail";
-
-const images = [
-  {
-    url: "/images/woman_outer.jpg",
-    title: "OUTER",
-    width: "100%"
-  },
-  {
-    url: "/images/woman_top.jpg",
-    title: "TOP",
-    width: "100%"
-  },
-  {
-    url: "/images/woman_bottom.jpg",
-    title: "BOTTOM",
-    width: "100%"
-  },
-  {
-    url: "/images/woman_one_piece.jpg",
-    title: "ONE PIECE",
-    width: "100%"
-  }
-];
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -110,21 +91,49 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function SearchPage2(props) {
+  const images = [
+    {
+      url: `/images/${props.gender}_outer.jpg`,
+      title: "OUTER",
+      width: "100%"
+    },
+    {
+      url: `/images/${props.gender}_top.jpg`,
+      title: "TOP",
+      width: "100%"
+    },
+    {
+      url: `/images/${props.gender}_bottom.jpg`,
+      title: "BOTTOM",
+      width: "100%"
+    },
+    {
+      url: `/images/${props.gender}_one_piece.jpg`,
+      title: "ONE PIECE",
+      width: "100%"
+    }
+  ];
+
   const classes = useStyles();
   const [detailOpen, setDetailOpen] = useState(false);
+  const [detailWarning, setDetailWarning] = useState(false);
 
-  const handleClickOpen = () => {
-    setDetailOpen(true);
+  const handleClickOpen = d => {
+    if (props.selectedCategory[d]) {
+      setDetailWarning(true);
+    } else {
+      setDetailOpen(true);
+    }
   };
 
   const handleClose = () => {
-    setDetailOpen(false);
+    setDetailWarning(false);
   };
 
   return (
     <>
       <Header headerText="SEARCH" />
-      <OptionTag />
+      <OptionTag {...props} />
       <div>
         <div className={classes.root}>
           {images.map(image => (
@@ -133,7 +142,10 @@ function SearchPage2(props) {
               key={image.title}
               className={classes.image}
               focusVisibleClassName={classes.focusVisible}
-              onClick={handleClickOpen}
+              onClick={() => {
+                props.setDetail(image.title);
+                handleClickOpen(image.title);
+              }}
             >
               <span
                 className={classes.imageSrc}
@@ -155,10 +167,45 @@ function SearchPage2(props) {
               </span>
             </ButtonBase>
           ))}
-          <ChooseDetail handleClose={handleClose} detailOpen={detailOpen} />
+
+          <Snackbar
+            open={detailWarning}
+            style={{ height: "100%" }}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "center"
+            }}
+            autoHideDuration={1500}
+            onClose={handleClose}
+          >
+            <Alert
+              severity="warning"
+              action={
+                <React.Fragment>
+                  <IconButton
+                    size="small"
+                    aria-label="close"
+                    color="warning"
+                    onClick={handleClose}
+                  >
+                    <CloseIcon fontSize="small" />
+                  </IconButton>
+                </React.Fragment>
+              }
+            >
+              <AlertTitle>Warning</AlertTitle>
+              이미 선택하신 카테고리 입니다👕
+            </Alert>
+          </Snackbar>
+
+          <ChooseDetail
+            {...props}
+            detailOpen={detailOpen}
+            setDetailOpen={setDetailOpen}
+          />
         </div>
       </div>
-      <PageButton />
+      <PageButton {...props} />
     </>
   );
 }
