@@ -1,22 +1,5 @@
 import { React, useState, useContext, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-<<<<<<< HEAD
-import "./App.css";
-import Menu from "./components/common/Menu/Menu";
-import SlideMenu from "./components/common/Menu/SlideMenu";
-import Home from "./pages/Home";
-import Codies from "./pages/Codies";
-import SearchPage1 from "./pages/SearchPage1";
-import SearchPage2 from "./pages/SearchPage2";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import TopCodies from "./pages/TopCodies";
-import MyPicks from "./pages/MyPicks";
-import FolderDetail from "./pages/FolderDetail";
-import SaveToastMsg from "./components/common/Folder/SaveToastMsg";
-import DeleteToastMsg from "./components/common/Folder/DeleteToastMsg";
-import ChangeToastMsg from "./components/common/Folder/ChangeToastMsg";
-=======
 import "App.css";
 import Menu from "components/common/Menu/Menu";
 import SlideMenu from "components/common/Menu/SlideMenu";
@@ -30,7 +13,9 @@ import FolderDetail from "pages/FolderDetail";
 import UserContext from "contexts/user";
 import LoginForm from "components/Auth/LoginForm";
 import RegisterForm from "components/Auth/RegisterForm";
->>>>>>> f004631da15c1aba0eba490cdfaa934c2f75c11f
+import SaveToastMsg from "./components/common/Folder/SaveToastMsg";
+import DeleteToastMsg from "./components/common/Folder/DeleteToastMsg";
+import ChangeToastMsg from "./components/common/Folder/ChangeToastMsg";
 
 function App() {
   const [selectedFolder, setSelectedFolder] = useState("");
@@ -78,7 +63,6 @@ function App() {
     });
     setFolderList(copiedFolderList);
   }
-<<<<<<< HEAD
 
   function deleteFolder(targetIndex) {
     const copiedFolderList = JSON.parse(JSON.stringify(folderList));
@@ -91,7 +75,6 @@ function App() {
     copiedFolderList[targetIndex].folderName = newFolderName;
     setFolderList(copiedFolderList);
   }
-=======
   const { state, actions } = useContext(UserContext);
   const { user } = state;
   const { setUser, setToken } = actions;
@@ -106,7 +89,6 @@ function App() {
   useEffect(() => {
     loadUser();
   }, [user]);
->>>>>>> f004631da15c1aba0eba490cdfaa934c2f75c11f
 
   return (
     <BrowserRouter>
