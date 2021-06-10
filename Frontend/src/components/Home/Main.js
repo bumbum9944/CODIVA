@@ -27,7 +27,7 @@ function Main() {
           CODIBA
         </div>
         <img
-          src="/images/codibalogo.jpg"
+          src="/images/codibalogo.png"
           style={{
             width: "30vw",
             height: "10vh",

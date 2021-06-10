@@ -26,7 +26,7 @@ function HomeSearchButton({ setGender, setApparels, setSelectedCategory }) {
           history.push("/search/1");
         }}
       >
-        CODY MATCH
+        CODI MATCH
       </Button>
     </div>
   );
