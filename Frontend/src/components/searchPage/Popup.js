@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import {
   Button,
@@ -11,6 +11,8 @@ import {
 import axios from "axios";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import Snackbar from "@material-ui/core/Snackbar";
+import UserContext from "contexts/user";
+import { requestWithJWT } from "lib/client";
 
 const url = "http://ec2-13-125-251-225.ap-northeast-2.compute.amazonaws.com/";
 
@@ -18,6 +20,8 @@ function Popup({ apparels, setApparels, setSelectedCategory, gender }) {
   const [open, setOpen] = useState(false);
   const [detailWarning, setDetailWarning] = useState(false);
   const history = useHistory();
+  const { state } = useContext(UserContext);
+  const { user } = state;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -36,19 +40,52 @@ function Popup({ apparels, setApparels, setSelectedCategory, gender }) {
     if (apparels.length === 0) {
       setDetailWarning(true);
     } else {
+      let liked;
+      let saved;
+      if (user) {
+        liked = new Set(
+          await requestWithJWT("get", `/like/${user}`).then(
+            response => response.data.user_like_codies
+          )
+        );
+        saved = new Set(
+          await requestWithJWT("get", `/saved/${user}`).then(
+            response => response.data.data
+          )
+        );
+      }
+      console.log(liked, saved);
       await axios
         .post(url + "codi/search", { gender: gender, apparels: apparels })
         .then(response => {
-          console.log(response);
-          handleClose();
-          setApparels([]);
-          setSelectedCategory({
-            OUTER: false,
-            TOP: false,
-            BOTTOM: false,
-            "ONE PIECE": false
+          const codies = response.data.data.map(item => {
+            const itemId = parseInt(item.id);
+            return {
+              id: itemId,
+              imageUrl: item.url,
+              likeCnt: item.like_cnt,
+              viewCnt: item.hits,
+              isLiked: !user ? false : liked.has(itemId) ? true : false,
+              isSaved: !user ? false : saved.has(itemId) ? true : false
+            };
           });
-          history.push("/codies");
+          console.log(codies);
+          handleClose();
+          // setApparels([]);
+          // setSelectedCategory({
+          //   OUTER: false,
+          //   TOP: false,
+          //   BOTTOM: false,
+          //   "ONE PIECE": false
+          // });
+          // history.push("/codies");
+          // console.log(codies)
+          history.push({
+            pathname: "/codies",
+            state: {
+              codies: codies
+            }
+          });
         });
     }
   }

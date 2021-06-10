@@ -1,5 +1,7 @@
-import { React, useState } from "react";
+import { React, useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
+import { requestWithJWT } from "lib/client";
+import UserContext from "contexts/user";
 import FolderDetailHeader from "../components/FolderDetail/FolderDetailHeader";
 import FolderDetailItemList from "../components/FolderDetail/FolderDetailItemList";
 import FolderDetailBottomSlide from "../components/FolderDetail/FolderDetailBottomSlide";
@@ -16,50 +18,44 @@ function FolderDetail({
   const location = useLocation();
   const folderName = location.state.folderName;
   const folderId = location.state.folderId;
+  const { state } = useContext(UserContext);
+  const { user, header } = state;
   const [mode, setMode] = useState("");
   const [selectedItem, setSelectedItem] = useState(new Set([]));
-  const [items, setItems] = useState([
-    {
-      id: 1,
-      imageUrl: "/carouselImage/item6.jpg",
-      likeCnt: 17,
-      viewCnt: 23,
-      isLiked: false,
-      isSaved: false
-    },
-    {
-      id: 2,
-      imageUrl: "/carouselImage/item7.jpg",
-      likeCnt: 17,
-      viewCnt: 23,
-      isLiked: false,
-      isSaved: false
-    },
-    {
-      id: 3,
-      imageUrl: "/carouselImage/item8.jpg",
-      likeCnt: 25,
-      viewCnt: 23,
-      isLiked: false,
-      isSaved: true
-    },
-    {
-      id: 4,
-      imageUrl: "/carouselImage/item9.jpg",
-      likeCnt: 11,
-      viewCnt: 23,
-      isLiked: false,
-      isSaved: false
-    },
-    {
-      id: 5,
-      imageUrl: "/carouselImage/item10.jpg",
-      likeCnt: 57,
-      viewCnt: 23,
-      isLiked: false,
-      isSaved: true
+  const [items, setItems] = useState([]);
+
+  useEffect(async ()=>{
+    let liked;
+    let saved;
+    if (user) {
+      liked = new Set(
+        await requestWithJWT("get", `/like/${user}`).then(
+          response => response.data.user_like_codies
+        )
+      );
+      saved = new Set(
+        await requestWithJWT("get", `/saved/${user}`).then(
+          response => response.data.data
+        )
+      );
     }
-  ]);
+    requestWithJWT("get", `/saved/${user}/${folderName}`, header)
+    .then(response=>{
+      const res = response.data.data;
+      const itemData = res.map(item=>{
+        return({
+          id: item.id,
+          imageUrl: item.url,
+          likeCnt: item.likes_cnt,
+          viewCnt: item.hits,
+          isLiked: !user ? false : liked.has(item.id) ? true : false,
+          isSaved: !user ? false : saved.has(item.id) ? true : false
+        });
+      });
+      setItems(itemData);
+    })
+  }, [user]);
+
 
   function onChangeSelectedItem(targetIndex) {
     const copiedSelectedItem = new Set(selectedItem);

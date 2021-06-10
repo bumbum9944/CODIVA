@@ -1,16 +1,20 @@
-import React from "react";
+import { React, useContext } from "react";
 import "./CodyCard.css";
 import CodyModal from "../common/Cody/CodyModal";
 import { BsBookmarkFill, BsBookmark } from "react-icons/bs";
+import UserContext from "contexts/user";
 
 function CodyCard({
   item,
-  itemId,
+  targetIndex,
   toggleSaved,
   toggleLiked,
   viewCntIncrease,
-  onChangeSelectedItem
+  setSelectedItem
 }) {
+  const { state } = useContext(UserContext);
+  const { user } = state;
+
   function openDeleteToast() {
     document.querySelector("#delete").classList.add("reveal");
     setTimeout(() => {
@@ -20,10 +24,10 @@ function CodyCard({
 
   function openFolderListSlide(item, index) {
     if (item.isSaved) {
-      toggleSaved(index);
+      toggleSaved({ index: index, id: item.id });
       openDeleteToast();
     } else {
-      onChangeSelectedItem(index);
+      setSelectedItem({ index: index, id: item.id });
       document.querySelector("body").classList.add("no-scroll2");
       document
         .querySelector(".folder-list-slide-container")
@@ -56,7 +60,7 @@ function CodyCard({
       <BsBookmark
         style={{
           fontSize: "4vh",
-          color: "#FFFFFF"
+          color: "black"
         }}
       />
     );
@@ -64,7 +68,7 @@ function CodyCard({
 
   function openModal() {
     document.querySelector("body").classList.add("no-scroll");
-    document.querySelector(`#modal-${itemId}`).classList.remove("hidden");
+    document.querySelector(`#modal-${targetIndex}`).classList.remove("hidden");
   }
 
   return (
@@ -73,7 +77,7 @@ function CodyCard({
         className="cody-card-image"
         src={item.imageUrl}
         onClick={() => {
-          viewCntIncrease(itemId);
+          viewCntIncrease({ index: targetIndex, id: item.id });
           openModal();
         }}
         alt="cody-image"
@@ -86,12 +90,21 @@ function CodyCard({
           top: "0"
         }}
         onClick={() => {
-          openFolderListSlide(item, itemId);
+          if (!user) {
+            // modal창
+            document.querySelector("#login-modal").click();
+          } else {
+            openFolderListSlide(item, targetIndex);
+          }
         }}
       >
         {saveButton}
       </div>
-      <CodyModal itemId={itemId} item={item} toggleLiked={toggleLiked} />
+      <CodyModal
+        targetIndex={targetIndex}
+        item={item}
+        toggleLiked={toggleLiked}
+      />
     </div>
   );
 }

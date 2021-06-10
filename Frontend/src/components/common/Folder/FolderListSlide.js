@@ -8,7 +8,7 @@ import { BsBookmarkFill } from "react-icons/bs";
 
 function FolderListSlide({
   selectedItem,
-  onChangeSelectedItem,
+  setSelectedItem,
   folderList,
   toggleSaved,
   changeFolder,
@@ -56,10 +56,10 @@ function FolderListSlide({
       });
   }
 
-  function saveItem() {
+  function saveItem(folderName) {
     if (selectedItem.size === undefined) {
-      toggleSaved(selectedItem);
-      onChangeSelectedItem("");
+      toggleSaved(selectedItem, folderName);
+      setSelectedItem({});
     } else {
       changeFolder();
     }
@@ -93,14 +93,16 @@ function FolderListSlide({
         key={index}
         className="folder-list-slide-item slide-inner"
         onClick={() => {
-          saveItem();
+          saveItem(folderName);
           closeSlideMenu();
           openToast();
         }}
       >
-        {innerIamge}
+        <div className="folder-list-slide-image basic">
+          <BsBookmarkFill />
+        </div>
         <div>{folderName}</div>
-        <div>({itemCnt})</div>
+        {/* <div>({itemCnt})</div> */}
       </div>
     );
   });

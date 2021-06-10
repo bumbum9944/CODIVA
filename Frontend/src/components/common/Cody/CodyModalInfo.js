@@ -1,26 +1,20 @@
-import { React } from "react";
+import { React, useContext } from "react";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
+import UserContext from "contexts/user";
 
-function CodyModalInfo({ item, itemId, toggleLiked }) {
+function CodyModalInfo({ item, targetIndex, toggleLiked }) {
+  const { state } = useContext(UserContext);
+  const { user } = state;
+
   function handleToggleliked() {
-    toggleLiked(itemId);
+    toggleLiked(item.id, targetIndex);
   }
 
   let likeButton;
   if (item.isLiked === true) {
-    likeButton = (
-      <BsHeartFill
-        onClick={handleToggleliked}
-        style={{ fontSize: "4vh", color: "#FF0000" }}
-      />
-    );
+    likeButton = <BsHeartFill style={{ fontSize: "4vh", color: "#FF0000" }} />;
   } else {
-    likeButton = (
-      <BsHeart
-        onClick={handleToggleliked}
-        style={{ fontSize: "4vh", color: "#FFFFFF" }}
-      />
-    );
+    likeButton = <BsHeart style={{ fontSize: "4vh", color: "#FFFFFF" }} />;
   }
 
   return (
@@ -37,7 +31,18 @@ function CodyModalInfo({ item, itemId, toggleLiked }) {
           alignItems: "center"
         }}
       >
-        {likeButton}
+        <div
+          onClick={() => {
+            if (!user) {
+              // modal창
+              document.querySelector("#login-modal").click();
+            } else {
+              handleToggleliked();
+            }
+          }}
+        >
+          {likeButton}
+        </div>
         <p style={{ color: "white", marginLeft: "2vw" }}>{item.likeCnt}</p>
       </div>
       <p style={{ color: "white" }}>조회수 : {item.viewCnt}</p>

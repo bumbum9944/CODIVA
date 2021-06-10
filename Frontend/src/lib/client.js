@@ -5,7 +5,7 @@ dotenv.config();
 const client = axios.create();
 client.defaults.baseURL = process.env.REACT_APP_HOST;
 
-export const request = (method, url, data = null) =>
+export const request = (method, url, data = undefined) =>
   client({
     method,
     url,
@@ -15,7 +15,7 @@ export const request = (method, url, data = null) =>
     }
   });
 
-export const requestWithJWT = (method, url, data = null) =>
+export const requestWithJWT = (method, url, data = undefined) =>
   client({
     method,
     url,

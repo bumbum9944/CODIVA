@@ -20,8 +20,8 @@ function FolderList({
     });
   }
 
-  function onClickSelect(targetIndex) {
-    setSelectedFolder(targetIndex);
+  function onClickSelect(targetIndex, folderName) {
+    setSelectedFolder({ targetIndex: targetIndex, folderName: folderName });
     document.querySelector(`#dropbox-inner-${targetIndex}`).classList.add("on");
     document.querySelector("body").classList.add("no-scroll");
     document.querySelector(`#layer-${targetIndex}`).classList.add("on");
@@ -87,7 +87,7 @@ function FolderList({
         <div
           className="folder-dropbox"
           onClick={() => {
-            onClickSelect(index);
+            onClickSelect(index, folderName);
           }}
         >
           <BsThreeDotsVertical
@@ -136,7 +136,7 @@ function FolderList({
             className="folder-layer"
             id={`layer-${index}`}
             onClick={() => {
-              setSelectedFolder("");
+              setSelectedFolder({});
               document
                 .querySelector(`#dropbox-inner-${index}`)
                 .classList.remove("on");

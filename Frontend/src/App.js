@@ -1,6 +1,7 @@
 import { React, useState, useContext, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "App.css";
+import { request, requestWithJWT } from "lib/client";
 import Menu from "components/common/Menu/Menu";
 import SlideMenu from "components/common/Menu/SlideMenu";
 import Home from "pages/Home";
@@ -18,27 +19,8 @@ import DeleteToastMsg from "./components/common/Folder/DeleteToastMsg";
 import ChangeToastMsg from "./components/common/Folder/ChangeToastMsg";
 
 function App() {
-  const [selectedFolder, setSelectedFolder] = useState("");
-  const [folderList, setFolderList] = useState([
-    {
-      id: 1,
-      folderName: "기본 폴더",
-      itemCnt: 4,
-      imageUrl: "/carouselImage/item11.jpg"
-    },
-    {
-      id: 2,
-      folderName: "청바지",
-      itemCnt: 1,
-      imageUrl: "/carouselImage/item4.jpg"
-    },
-    {
-      id: 1,
-      folderName: "가디건",
-      itemCnt: 6,
-      imageUrl: "/carouselImage/item7.jpg"
-    }
-  ]);
+  const [selectedFolder, setSelectedFolder] = useState({});
+  const [folderList, setFolderList] = useState([]);
   const [gender, setGender] = useState("");
   const [detail, setDetail] = useState("");
   const [selectedOption, setSelectedOption] = useState({
@@ -52,8 +34,18 @@ function App() {
     BOTTOM: false,
     "ONE PIECE": false
   });
+  const { state, actions } = useContext(UserContext);
+  const { user, token, header } = state;
+  const { setUser, setToken, setHeader } = actions;
+
 
   function addFolder(newFolderName) {
+    requestWithJWT(
+      "post",
+      `/directory/${user}`,
+      { name: newFolderName },
+      header
+    ).then(response => response.data);
     const copiedFolderList = JSON.parse(JSON.stringify(folderList));
     copiedFolderList.push({
       id: copiedFolderList.length,
@@ -64,30 +56,65 @@ function App() {
     setFolderList(copiedFolderList);
   }
 
-  function deleteFolder(targetIndex) {
+  function deleteFolder(targetItem) {
+    const { targetIndex, folderName } = { ...targetItem };
+    requestWithJWT(
+      "delete",
+      `/directory/${user}`,
+      { name: folderName },
+      header
+    ).then(response => response.data);
     const copiedFolderList = JSON.parse(JSON.stringify(folderList));
     copiedFolderList.splice(targetIndex, 1);
     setFolderList(copiedFolderList);
   }
 
-  function changeFolderName(targetIndex, newFolderName) {
+  function changeFolderName(targetItem, newFolderName) {
+    const targetIndex = targetItem.targetIndex;
+    const oldName = targetItem.folderName;
+    requestWithJWT(
+      "put",
+      `/directory/${user}`,
+      { name: oldName, new_name: newFolderName },
+      header
+    ).then(response => response.data);
     const copiedFolderList = JSON.parse(JSON.stringify(folderList));
     copiedFolderList[targetIndex].folderName = newFolderName;
     setFolderList(copiedFolderList);
   }
-  const { state, actions } = useContext(UserContext);
-  const { user } = state;
-  const { setUser, setToken } = actions;
 
   const loadUser = () => {
     setUser(localStorage.getItem("user_id"));
     setToken(localStorage.getItem("token"));
+    setHeader({
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    });
     if (!user) return;
     // 검증 작업 필요
   };
 
   useEffect(() => {
     loadUser();
+  }, [user]);
+
+  useEffect(() => {
+    if (user) {
+      requestWithJWT("get", `/directory/${user}`, header).then(response => {
+        const res = response.data.data;
+        const folderData = res.map((item, index) => {
+          return {
+            id: index,
+            folderName: item.name === "default" ? "기본 폴더" : item.name,
+            itemCnt: item.cnt,
+            imageUrl: item.url
+          };
+        });
+        setFolderList(folderData);
+      });
+    }
   }, [user]);
 
   return (
@@ -104,6 +131,7 @@ function App() {
             render={() => (
               <Codies
                 gender={gender}
+                apparels={apparels}
                 selectedOption={selectedOption}
                 addFolder={addFolder}
                 folderList={folderList}
