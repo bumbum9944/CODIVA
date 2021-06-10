@@ -57,7 +57,11 @@ function FolderDetailItemList({
             onChangeSelectedItem(index);
           }}
         >
-          <img className="folder-detail-image" src={imageUrl} alt="folder-detail" />
+          <img
+            className="folder-detail-image"
+            src={imageUrl}
+            alt="folder-detail"
+          />
           {checkButton}
         </div>
       );
@@ -72,7 +76,11 @@ function FolderDetailItemList({
               openModal(index);
             }}
           />
-          <CodyModal item={element} targetIndex={index} toggleLiked={toggleLiked} />
+          <CodyModal
+            item={element}
+            targetIndex={index}
+            toggleLiked={toggleLiked}
+          />
         </div>
       );
     }

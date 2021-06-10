@@ -21,7 +21,11 @@ function FolderList({
   }
 
   function onClickSelect(targetIndex, folderId, folderName) {
-    setSelectedFolder({ targetIndex: targetIndex, folderId: folderId, folderName: folderName });
+    setSelectedFolder({
+      targetIndex: targetIndex,
+      folderId: folderId,
+      folderName: folderName
+    });
     document.querySelector(`#dropbox-inner-${targetIndex}`).classList.add("on");
     document.querySelector("body").classList.add("no-scroll");
     document.querySelector(`#layer-${targetIndex}`).classList.add("on");
@@ -119,7 +123,11 @@ function FolderList({
         <div
           className="folder-image-container"
           onClick={() => {
-            setSelectedFolder({ targetIndex: index, folderId: element.id, folderName: folderName });
+            setSelectedFolder({
+              targetIndex: index,
+              folderId: element.id,
+              folderName: folderName
+            });
             pushToFolderDetail(folderName, element.id);
           }}
         >
@@ -128,8 +136,11 @@ function FolderList({
         <div className="folder-menu">
           <div className="folder-info">
             <p className="folder-text">{folderName}</p>
-            <div className="folder-text" style={{ display:"flex", fontSize: "3.5vw", color: "#808080"}} >
-              <p style={{marginRight: "1vw"}}>{itemCnt}</p>
+            <div
+              className="folder-text"
+              style={{ display: "flex", fontSize: "3.5vw", color: "#808080" }}
+            >
+              <p style={{ marginRight: "1vw" }}>{itemCnt}</p>
               <p>items</p>
             </div>
           </div>

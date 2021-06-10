@@ -35,22 +35,20 @@ function FolderDetail({
         response => response.data.data
       )
     );
-    requestWithJWT("get", `/saved/${user}/${thisFolderId}`).then(
-      response => {
-        const res = response.data.data;
-        const itemData = res.map(item => {
-          return {
-            id: item.id,
-            imageUrl: item.url,
-            likeCnt: item.likes_cnt,
-            viewCnt: item.hits,
-            isLiked: !user ? false : liked.has(item.id) ? true : false,
-            isSaved: !user ? false : saved.has(item.id) ? true : false
-          };
-        });
-        setItems(itemData);
-      }
-    );
+    requestWithJWT("get", `/saved/${user}/${thisFolderId}`).then(response => {
+      const res = response.data.data;
+      const itemData = res.map(item => {
+        return {
+          id: item.id,
+          imageUrl: item.url,
+          likeCnt: item.likes_cnt,
+          viewCnt: item.hits,
+          isLiked: !user ? false : liked.has(item.id) ? true : false,
+          isSaved: !user ? false : saved.has(item.id) ? true : false
+        };
+      });
+      setItems(itemData);
+    });
   }, [user]);
 
   function onChangeSelectedItem(targetIndex) {
@@ -64,7 +62,8 @@ function FolderDetail({
   }
 
   function changeFolder(targetFolderName) {
-    const newFolderName = (targetFolderName === "기본 폴더") ? "default" : targetFolderName;
+    const newFolderName =
+      targetFolderName === "기본 폴더" ? "default" : targetFolderName;
     const nowFolderId = selectedFolder.folderId;
     document
       .querySelector(".folder-detail-bottom-slide-container")
@@ -78,10 +77,14 @@ function FolderDetail({
         remain.push(items[i]);
       }
     }
-    requestWithJWT("put", `/saved/${user}/${nowFolderId}`,{targets: selectedItemArray, new_dir_name: newFolderName})
-    .then(response => {
-      console.log(response.data);
-    }).catch(err=>console.log(err.message));
+    requestWithJWT("put", `/saved/${user}/${nowFolderId}`, {
+      targets: selectedItemArray,
+      new_dir_name: newFolderName
+    })
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(err => console.log(err.message));
     setMode("");
     setItems(remain);
     setSelectedItem(new Set([]));
@@ -98,10 +101,13 @@ function FolderDetail({
         remain.push(items[i]);
       }
     }
-    requestWithJWT("delete", `/saved/${user}/${nowFolderId}`, {targets: selectedItemArray})
-    .then(response => {
-      console.log(response.data);
-    }).catch(err=>console.log(err.message));
+    requestWithJWT("delete", `/saved/${user}/${nowFolderId}`, {
+      targets: selectedItemArray
+    })
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(err => console.log(err.message));
     setMode("");
     setItems(remain);
     setSelectedItem(new Set([]));
@@ -115,11 +121,9 @@ function FolderDetail({
       });
       copiedItems[targetIndex].likeCnt = copiedItems[targetIndex].likeCnt - 1;
     } else {
-      requestWithJWT("post", `/like/${user}/${codyId}`).then(
-        response => {
-          console.log(response.data);
-        }
-      );
+      requestWithJWT("post", `/like/${user}/${codyId}`).then(response => {
+        console.log(response.data);
+      });
       copiedItems[targetIndex].likeCnt = copiedItems[targetIndex].likeCnt + 1;
     }
     copiedItems[targetIndex].isLiked = !copiedItems[targetIndex].isLiked;

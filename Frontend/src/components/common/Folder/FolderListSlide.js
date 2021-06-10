@@ -128,7 +128,9 @@ function FolderListSlide({
             }}
           />
         </div>
-        <div className="folder-add-text" style={{fontSize: "5vw"}}>새 폴더 만들기</div>
+        <div className="folder-add-text" style={{ fontSize: "5vw" }}>
+          새 폴더 만들기
+        </div>
       </div>
       <div className="folder-list-slide-inner">{folderListInner}</div>
     </div>

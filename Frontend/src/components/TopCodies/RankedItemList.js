@@ -108,7 +108,7 @@ function RankedItemList({
             justifyContent: "space-between"
           }}
         >
-          <div 
+          <div
             className="top-codies-like-button"
             onClick={() => {
               if (!user) {

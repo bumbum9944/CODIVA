@@ -12,7 +12,7 @@ function TopCodies({ folderList, addFolder }) {
   const { state } = useContext(UserContext);
   const { user } = state;
 
-  useEffect(async ()=>{
+  useEffect(async () => {
     let liked;
     let saved;
     if (user) {
@@ -27,22 +27,21 @@ function TopCodies({ folderList, addFolder }) {
         )
       );
     }
-    request("get", "/codi")
-    .then(response=>{
+    request("get", "/codi").then(response => {
       const res = response.data.data;
-      const codies = res.map(item=>{
-        return({
+      const codies = res.map(item => {
+        return {
           id: item.id,
           imageUrl: item.url,
           likeCnt: item.likes_cnt,
           viewCnt: item.hits,
           isLiked: !user ? false : liked.has(item.id) ? true : false,
           isSaved: !user ? false : saved.has(item.id) ? true : false
-        });
+        };
       });
       setRankedItem(codies);
     });
-  },[user]);
+  }, [user]);
 
   function toggleSaved(targetItem, targetFolderId = null) {
     const targetItemId = targetItem.id;
@@ -51,16 +50,14 @@ function TopCodies({ folderList, addFolder }) {
         .then(response => response.data)
         .catch(err => console.log(err));
     } else {
-      requestWithJWT(
-        "post",
-        `/saved/${user}/${targetFolderId}/${targetItemId}`
-      )
+      requestWithJWT("post", `/saved/${user}/${targetFolderId}/${targetItemId}`)
         .then(response => response.data)
         .catch(err => console.log(err));
     }
     const targetIndex = targetItem.index;
     const copiedTopCodies = JSON.parse(JSON.stringify(rankedItem));
-    copiedTopCodies[targetIndex].isSaved = !copiedTopCodies[targetIndex].isSaved;
+    copiedTopCodies[targetIndex].isSaved =
+      !copiedTopCodies[targetIndex].isSaved;
 
     setRankedItem(copiedTopCodies);
   }
@@ -71,16 +68,17 @@ function TopCodies({ folderList, addFolder }) {
       requestWithJWT("delete", `/like/${user}/${codyId}`).then(response => {
         console.log(response.data);
       });
-      copiedTopCodies[targetIndex].likeCnt = copiedTopCodies[targetIndex].likeCnt - 1;
+      copiedTopCodies[targetIndex].likeCnt =
+        copiedTopCodies[targetIndex].likeCnt - 1;
     } else {
-      requestWithJWT("post", `/like/${user}/${codyId}`).then(
-        response => {
-          console.log(response.data);
-        }
-      );
-      copiedTopCodies[targetIndex].likeCnt = copiedTopCodies[targetIndex].likeCnt + 1;
+      requestWithJWT("post", `/like/${user}/${codyId}`).then(response => {
+        console.log(response.data);
+      });
+      copiedTopCodies[targetIndex].likeCnt =
+        copiedTopCodies[targetIndex].likeCnt + 1;
     }
-    copiedTopCodies[targetIndex].isLiked = !copiedTopCodies[targetIndex].isLiked;
+    copiedTopCodies[targetIndex].isLiked =
+      !copiedTopCodies[targetIndex].isLiked;
     setRankedItem(copiedTopCodies);
   }
 

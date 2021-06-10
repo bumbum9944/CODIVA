@@ -29,13 +29,12 @@ function MyPicks({
       setOldName(selectedFolder.folderName);
     }
   }, [selectedFolder]);
-  
+
   useEffect(async () => {
-    if(user) {
-      await requestWithJWT("get", `/directory/${user}`)
-      .then(response => {
+    if (user) {
+      await requestWithJWT("get", `/directory/${user}`).then(response => {
         const res = response.data.data;
-        const folderData = res.map((item) => {
+        const folderData = res.map(item => {
           return {
             id: item.id,
             folderName: item.name === "default" ? "기본 폴더" : item.name,
@@ -45,7 +44,7 @@ function MyPicks({
         });
         setFolderList(folderData);
       });
-    } else if(!localStorage.getItem("user_id")) {
+    } else if (!localStorage.getItem("user_id")) {
       history.push("/");
     }
   }, [user]);

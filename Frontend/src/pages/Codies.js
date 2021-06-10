@@ -119,11 +119,9 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
       });
       copiedCodies[targetIndex].likeCnt = copiedCodies[targetIndex].likeCnt - 1;
     } else {
-      requestWithJWT("post", `/like/${user}/${codyId}`).then(
-        response => {
-          console.log(response.data);
-        }
-      );
+      requestWithJWT("post", `/like/${user}/${codyId}`).then(response => {
+        console.log(response.data);
+      });
       copiedCodies[targetIndex].likeCnt = copiedCodies[targetIndex].likeCnt + 1;
     }
     copiedCodies[targetIndex].isLiked = !copiedCodies[targetIndex].isLiked;
@@ -137,10 +135,7 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
         .then(response => response.data)
         .catch(err => console.log(err));
     } else {
-      requestWithJWT(
-        "post",
-        `/saved/${user}/${targetFolderId}/${targetItemId}`
-      )
+      requestWithJWT("post", `/saved/${user}/${targetFolderId}/${targetItemId}`)
         .then(response => response.data)
         .catch(err => console.log(err));
     }

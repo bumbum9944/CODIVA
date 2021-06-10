@@ -39,26 +39,25 @@ function App() {
   const { setUser, setToken } = actions;
 
   function addFolder(newFolderName) {
-    requestWithJWT("post", `/directory/${user}`, { name: newFolderName })
-    .then(response => {
-      const copiedFolderList = JSON.parse(JSON.stringify(folderList));
-      copiedFolderList.push({
-        id: response.data.id,
-        folderName: newFolderName,
-        itemCnt: 0,
-        imageUrl: ""
-      });
-      setFolderList(copiedFolderList);
-    }
+    requestWithJWT("post", `/directory/${user}`, { name: newFolderName }).then(
+      response => {
+        const copiedFolderList = JSON.parse(JSON.stringify(folderList));
+        copiedFolderList.push({
+          id: response.data.id,
+          folderName: newFolderName,
+          itemCnt: 0,
+          imageUrl: ""
+        });
+        setFolderList(copiedFolderList);
+      }
     );
   }
 
   function deleteFolder(targetFolder) {
     const { targetIndex, folderId } = { ...targetFolder };
-    requestWithJWT(
-      "delete",
-      `/directory/${user}/${folderId}`
-    ).then(response => response.data);
+    requestWithJWT("delete", `/directory/${user}/${folderId}`).then(
+      response => response.data
+    );
     const copiedFolderList = JSON.parse(JSON.stringify(folderList));
     copiedFolderList.splice(targetIndex, 1);
     setFolderList(copiedFolderList);
@@ -66,12 +65,9 @@ function App() {
 
   function changeFolderName(targetFolder, newFolderName) {
     const { targetIndex, folderId } = { ...targetFolder };
-    requestWithJWT(
-      "put",
-      `/directory/${user}/${folderId}`,
-      { new_name: newFolderName },
-  
-    ).then(response => response.data);
+    requestWithJWT("put", `/directory/${user}/${folderId}`, {
+      new_name: newFolderName
+    }).then(response => response.data);
     const copiedFolderList = JSON.parse(JSON.stringify(folderList));
     copiedFolderList[targetIndex].folderName = newFolderName;
     setFolderList(copiedFolderList);
@@ -92,7 +88,7 @@ function App() {
     if (user) {
       requestWithJWT("get", `/directory/${user}`).then(response => {
         const res = response.data.data;
-        const folderData = res.map((item) => {
+        const folderData = res.map(item => {
           return {
             id: item.id,
             folderName: item.name === "default" ? "기본 폴더" : item.name,

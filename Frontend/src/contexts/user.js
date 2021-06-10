@@ -4,7 +4,7 @@ const UserContext = createContext({
   state: { user: null, token: null },
   actions: {
     setUser: () => {},
-    setToken: () => {},
+    setToken: () => {}
   }
 });
 
