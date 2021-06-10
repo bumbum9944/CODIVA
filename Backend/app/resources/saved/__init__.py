@@ -196,18 +196,20 @@ class SavedApi(Resource):
             )
         with connect_db() as connection:
             with connection.cursor() as cursor:
-                sql = "select name from directory where id=%s"
-                cursor.execute(sql, (dir_id,))
-                dir_name = cursor.fetchone()
-                if not dir_name:
-                    abort(
-                        Response(
-                            status=400,
-                            response=json.dumps({"message": "Invalid directory id."}),
-                            mimetype="application/json",
-                        )
-                    )
                 if dir_id:
+                    sql = "select name from directory where id=%s"
+                    cursor.execute(sql, (dir_id,))
+                    dir_name = cursor.fetchone()
+                    if not dir_name:
+                        abort(
+                            Response(
+                                status=400,
+                                response=json.dumps(
+                                    {"message": "Invalid directory id."}
+                                ),
+                                mimetype="application/json",
+                            )
+                        )
                     sql = "delete from saved where directory_user_id=%s and directory_name=%s and codi_id in %s"
                     cursor.execute(
                         sql, (user_id, dir_name["name"], tuple(req["targets"]))
