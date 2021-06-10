@@ -66,8 +66,11 @@ on d.user_id=sv.directory_user_id and d.name=sv.directory_name where d.user_id=%
                     )
                 sql = "INSERT INTO `directory`(user_id, name) VALUES(%s, %s)"
                 cursor.execute(sql, (user_id, req["name"]))
+                sql = "SELECT * FROM `directory` WHERE user_id=%s and name=%s"
+                cursor.execute(sql, (user_id, req["name"]))
+                res = cursor.fetchone()
             connection.commit()
-        return jsonify(message=f"successfully created: {req['name']}")
+        return jsonify(message=f"successfully created: {req['name']}", id=res["id"])
 
     @jwt_required()
     def put(self, user_id, dir_id):
