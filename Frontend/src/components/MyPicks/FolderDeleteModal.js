@@ -33,6 +33,10 @@ function FolderDeleteModal({
           <Button
             variant="contained"
             className="delete-button"
+            style={{
+              marginRight: "7vw",
+              fontSize: "4vw"
+            }}
             onClick={() => {
               deleteFolder(selectedFolder);
               closeModal();
@@ -43,6 +47,9 @@ function FolderDeleteModal({
           <Button
             variant="contained"
             className="delete-button"
+            style={{
+              fontSize: "4vw"
+            }}
             onClick={closeModal}
           >
             CANCEL

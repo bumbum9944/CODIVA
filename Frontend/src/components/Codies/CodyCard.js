@@ -50,7 +50,7 @@ function CodyCard({
     saveButton = (
       <BsBookmarkFill
         style={{
-          fontSize: "4vh",
+          fontSize: "9vw",
           color: "#FFD400"
         }}
       />
@@ -59,7 +59,7 @@ function CodyCard({
     saveButton = (
       <BsBookmark
         style={{
-          fontSize: "4vh",
+          fontSize: "9vw",
           color: "black"
         }}
       />
@@ -74,7 +74,7 @@ function CodyCard({
   return (
     <div className="cody-card-container">
       <img
-        className="cody-card"
+        className="cody-card-image"
         src={item.imageUrl}
         onClick={() => {
           viewCntIncrease({ index: targetIndex, id: item.id });

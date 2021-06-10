@@ -32,10 +32,9 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
   const [selectedItem, setSelectedItem] = useState({});
   // const [codies, setCodies] = useState(codyData);
   const [codies, setCodies] = useState([]);
-  const [isChecked, setIsChecked] = useState({});
   const [currentPage, setCurrentPage] = useState(0);
   const { state } = useContext(UserContext);
-  const { user, token, header } = state;
+  const { user } = state;
 
   // useEffect(()=>{
   //   window.addEventListener("scroll", infiniteScroll, true);
@@ -55,10 +54,6 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
           response => response.data.data
         )
       );
-      setIsChecked({
-        liked: liked,
-        saved: saved
-      });
     }
     request("post", "/codi/search", {
       gender: gender,
@@ -96,30 +91,28 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
     setSelectedItem(itemId);
   }
 
-  function getCodies() {
-    request("post", `codi/search?from=${currentPage + 20}`, {
-      gender: gender,
-      apparels: apparels
-    })
-      .then(response => {
-        const res = response.data.data;
-        const liked = isChecked.liked;
-        const saved = isChecked.saved;
-        const newCodies = res.map(item => {
-          return {
-            id: item.id,
-            imageUrl: item.url,
-            likeCnt: item.like_cnt,
-            viewCnt: item.hits,
-            isLiked: !user ? false : liked.includes(item.id) ? true : false,
-            isSaved: !user ? false : saved.includes(item.id) ? true : false
-          };
-        });
-        const copiedCodies = JSON.parse(JSON.stringify(codies));
-        setCodies(copiedCodies.concat(newCodies));
-      })
-      .catch(err => console.log(err.message));
-  }
+  // function getCodies() {
+  //   request("post", `codi/search?from=${currentPage + 20}`, {
+  //     gender: gender,
+  //     apparels: apparels
+  //   })
+  //     .then(response => {
+  //       const res = response.data.data;
+  //       const newCodies = res.map(item => {
+  //         return {
+  //           id: item.id,
+  //           imageUrl: item.url,
+  //           likeCnt: item.like_cnt,
+  //           viewCnt: item.hits,
+  //           isLiked: !user ? false : liked.includes(item.id) ? true : false,
+  //           isSaved: !user ? false : saved.includes(item.id) ? true : false
+  //         };
+  //       });
+  //       const copiedCodies = JSON.parse(JSON.stringify(codies));
+  //       setCodies(copiedCodies.concat(newCodies));
+  //     })
+  //     .catch(err => console.log(err.message));
+  // }
 
   // function infiniteScroll() {
   //   let scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
@@ -137,40 +130,28 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
   function toggleLiked(codyId, targetIndex) {
     const copiedCodies = JSON.parse(JSON.stringify(codies));
     if (copiedCodies[targetIndex].isLiked) {
-      requestWithJWT("delete", `/like/${user}/${codyId}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        }
-      }).then(response => {
+      requestWithJWT("delete", `/like/${user}/${codyId}`).then(response => {
         console.log(response.data);
       });
       copiedCodies[targetIndex].likeCnt = copiedCodies[targetIndex].likeCnt - 1;
     } else {
-      requestWithJWT("post", `/like/${user}/${codyId}`, header).then(
-        response => {
-          console.log(response.data);
-        }
-      );
+      requestWithJWT("post", `/like/${user}/${codyId}`).then(response => {
+        console.log(response.data);
+      });
       copiedCodies[targetIndex].likeCnt = copiedCodies[targetIndex].likeCnt + 1;
     }
     copiedCodies[targetIndex].isLiked = !copiedCodies[targetIndex].isLiked;
     setCodies(copiedCodies);
   }
 
-  function toggleSaved(targetItem, folderName = null) {
-    const targetId = targetItem.id;
-    if (folderName) {
-      const targetFolder = folderName === "기본 폴더" ? "default" : folderName;
-      requestWithJWT(
-        "post",
-        `/saved/${user}/${targetFolder}/${targetId}`,
-        header
-      )
+  function toggleSaved(targetItem, targetFolderId = null) {
+    const targetItemId = targetItem.id;
+    if (targetFolderId === null) {
+      requestWithJWT("delete", `/saved/${user}`, { id: targetItemId })
         .then(response => response.data)
         .catch(err => console.log(err));
     } else {
-      requestWithJWT("delete", `/saved/${user}`, { id: targetId }, header)
+      requestWithJWT("post", `/saved/${user}/${targetFolderId}/${targetItemId}`)
         .then(response => response.data)
         .catch(err => console.log(err));
     }
@@ -185,7 +166,6 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
     const targetId = targetItem.id;
     request("put", `codi/${targetId}`)
       .then(response => response.data)
-      // .then(response=>response.data)
       .catch(err => console.log(err));
     const targetIndex = targetItem.index;
     const copiedCodies = JSON.parse(JSON.stringify(codies));

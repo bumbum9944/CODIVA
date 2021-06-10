@@ -32,7 +32,7 @@ function Login() {
   const [error, setError] = useState(null);
   const { email, password } = account;
   const { actions } = useContext(UserContext);
-  const { setUser, setToken, setHeader } = actions;
+  const { setUser, setToken } = actions;
 
   const handleOpen = () => {
     setAccount(initialState);
@@ -64,12 +64,6 @@ function Login() {
         localStorage.setItem("user_id", user.user_id);
         setUser(user.user_id);
         setToken(access_token);
-        setHeader({
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${access_token}`
-          }
-        });
         handleClose();
         setError(null);
       })
