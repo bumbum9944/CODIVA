@@ -5,6 +5,7 @@ import { request, requestWithJWT } from "lib/client";
 import Menu from "components/common/Menu/Menu";
 import SlideMenu from "components/common/Menu/SlideMenu";
 import Home from "pages/Home";
+import CodibaInfo from "pages/CodibaInfo";
 import Codies from "pages/Codies";
 import SearchPage1 from "pages/SearchPage1";
 import SearchPage2 from "pages/SearchPage2";
@@ -135,6 +136,7 @@ function App() {
               />
             )}
           />
+          <Route path="/codibaInfo" render={() => <CodibaInfo />} />
           <Route
             path="/codies"
             render={() => (
