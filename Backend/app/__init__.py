@@ -24,8 +24,8 @@ def create_app():
     api.add_resource(
         saved.SavedApi,
         "/saved/<user_id>",
-        "/saved/<user_id>/<dir_name>",
-        "/saved/<user_id>/<dir_name>/<codi_id>",
+        "/saved/<user_id>/<dir_id>",
+        "/saved/<user_id>/<dir_id>/<codi_id>",
     )
 
     # extention
