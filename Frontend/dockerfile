@@ -1,8 +1,8 @@
 FROM nginx
 
-RUN mkdir /usr/bin/codiba/Frontend
+RUN mkdir /codiba/Frontend
 
-WORKDIR /usr/bin/codiba/Frontend
+WORKDIR /codiba/Frontend
 
 RUN mkdir ./build
 
