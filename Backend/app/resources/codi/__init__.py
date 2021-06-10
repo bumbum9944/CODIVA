@@ -99,6 +99,24 @@ def make_query(
 
 @codi.route("/search", methods=["POST"])
 def search():
+    keywords = {
+        "cardigan": "cardigan",
+        "coat": "coat",
+        "jacket": "jacket",
+        "vest": "vest",
+        "tee(short)": "short_sleeved_tee",
+        "tee(long)": "long_sleeved_tee",
+        "sleeveless": "sleeveless",
+        "mtm": "mtm",
+        "hood": "hood",
+        "shirts": "shirts",
+        "jeans": "jeans",
+        "leggings": "leggings",
+        "slacks": "slacks",
+        "skirts": "skirts",
+        "training": "training",
+        "one-piece": "onepiece",
+    }
     query_param = request.args.to_dict()
     req = request.get_json(force=True)
 
@@ -124,7 +142,7 @@ def search():
 
     for apparel in req["apparels"]:
         matches = []
-        matches.append(make_match("apparels.category", apparel["category"]))
+        matches.append(make_match("apparels.category", keywords[apparel["category"]]))
         if apparel["color"].lower() != "all":
             matches.append(make_match("apparels.color", apparel["color"]))
         labels.append(make_nested_label("apparels", matches))
