@@ -1,11 +1,13 @@
-FROM node:12
+FROM nginx
+
+RUN mkdir /usr/bin/codiba/Frontend
 
 WORKDIR /usr/bin/codiba/Frontend
 
-COPY package.json ./
+RUN mkdir ./build
 
-RUN npm install
+COPY /home/azure/project-team5/Frontend/build ./build
 
-COPY ./ /usr/bin/codiba/Frontend
+EXPOSE 80
 
-CMD ["npm", "start"]
+CMD ["nginx", "-g", "daemon off;"]
