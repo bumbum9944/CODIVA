@@ -1,13 +1,13 @@
 .searchButton-container {
   position: absolute;
   z-index: 10;
-  bottom: 30vh;
-  left: 50vw;
+  bottom: 10%;
+  left: 50%;
   transform: translateX(-50%);
   text-decoration: none !important;
 }
 
 .searchButton {
   width: 55vw;
-  height: 8vh;
+  height: 15vw;
 }
