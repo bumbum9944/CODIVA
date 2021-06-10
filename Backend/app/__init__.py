@@ -20,12 +20,14 @@ def create_app():
     app.register_blueprint(codi.codi)
 
     api.add_resource(like.LikeApi, "/like/<user_id>", "/like/<user_id>/<codi_id>")
-    api.add_resource(directory.DirectoryApi, "/directory/<user_id>")
+    api.add_resource(
+        directory.DirectoryApi, "/directory/<user_id>", "/directory/<user_id>/<dir_id>"
+    )
     api.add_resource(
         saved.SavedApi,
         "/saved/<user_id>",
-        "/saved/<user_id>/<dir_name>",
-        "/saved/<user_id>/<dir_name>/<codi_id>",
+        "/saved/<user_id>/<dir_id>",
+        "/saved/<user_id>/<dir_id>/<codi_id>",
     )
 
     # extention

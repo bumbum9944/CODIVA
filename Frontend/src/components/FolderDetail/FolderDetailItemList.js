@@ -5,7 +5,6 @@ import { FaCheckCircle } from "react-icons/fa";
 
 function FolderDetailItemList({
   items,
-  folderId,
   toggleLiked,
   mode,
   selectedItem,
@@ -40,7 +39,7 @@ function FolderDetailItemList({
               position: "absolute",
               top: "1vw",
               right: "1vw",
-              color: "white",
+              color: "#808080",
               fontSize: "6vw"
             }}
           />
@@ -58,7 +57,11 @@ function FolderDetailItemList({
             onChangeSelectedItem(index);
           }}
         >
-          <img className="folder-detail" src={imageUrl} alt="folder-detail" />
+          <img
+            className="folder-detail-image"
+            src={imageUrl}
+            alt="folder-detail"
+          />
           {checkButton}
         </div>
       );
@@ -66,14 +69,18 @@ function FolderDetailItemList({
       innerItem = (
         <div key={index} className="folder-detail-item">
           <img
-            className="folder-detail"
+            className="folder-detail-image"
             src={imageUrl}
             alt="folder-detail"
             onClick={() => {
               openModal(index);
             }}
           />
-          <CodyModal item={element} itemId={index} toggleLiked={toggleLiked} />
+          <CodyModal
+            item={element}
+            targetIndex={index}
+            toggleLiked={toggleLiked}
+          />
         </div>
       );
     }

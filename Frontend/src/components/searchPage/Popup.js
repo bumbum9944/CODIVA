@@ -8,11 +8,9 @@ import {
   DialogContent,
   Typography
 } from "@material-ui/core";
-import axios from "axios";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import Snackbar from "@material-ui/core/Snackbar";
 import UserContext from "contexts/user";
-import { requestWithJWT } from "lib/client";
 import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 
@@ -42,53 +40,8 @@ function Popup({ apparels, setApparels, setSelectedCategory, gender }) {
     if (apparels.length === 0) {
       setDetailWarning(true);
     } else {
-      let liked;
-      let saved;
-      if (user) {
-        liked = new Set(
-          await requestWithJWT("get", `/like/${user}`).then(
-            response => response.data.user_like_codies
-          )
-        );
-        saved = new Set(
-          await requestWithJWT("get", `/saved/${user}`).then(
-            response => response.data.data
-          )
-        );
-      }
-      console.log(liked, saved);
-      await axios
-        .post(url + "codi/search", { gender: gender, apparels: apparels })
-        .then(response => {
-          const codies = response.data.data.map(item => {
-            const itemId = parseInt(item.id);
-            return {
-              id: itemId,
-              imageUrl: item.url,
-              likeCnt: item.like_cnt,
-              viewCnt: item.hits,
-              isLiked: !user ? false : liked.has(itemId) ? true : false,
-              isSaved: !user ? false : saved.has(itemId) ? true : false
-            };
-          });
-          console.log(codies);
-          handleClose();
-          // setApparels([]);
-          // setSelectedCategory({
-          //   OUTER: false,
-          //   TOP: false,
-          //   BOTTOM: false,
-          //   "ONE PIECE": false
-          // });
-          // history.push("/codies");
-          // console.log(codies)
-          history.push({
-            pathname: "/codies",
-            state: {
-              codies: codies
-            }
-          });
-        });
+      handleClose();
+      history.push("/codies");
     }
   }
 
@@ -125,7 +78,7 @@ function Popup({ apparels, setApparels, setSelectedCategory, gender }) {
             }
           >
             <AlertTitle>Warning</AlertTitle>
-            카테고리를 선택해주세요🧐
+            검색하실 옷을 선택해주세요🧐
           </Alert>
         </Snackbar>
 

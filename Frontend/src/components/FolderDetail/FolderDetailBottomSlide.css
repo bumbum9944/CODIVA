@@ -3,6 +3,7 @@
   bottom: -15vh;
   z-index: 400;
   transition: bottom 0.1s ease-in-out;
+  font-size: 5vw;
 }
 
 .folder-detail-bottom-slide-container.on {

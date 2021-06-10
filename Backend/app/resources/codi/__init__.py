@@ -15,7 +15,7 @@ def get_codies():
     count = query["count"] if "count" in query else 20
     with connect_db() as connection:
         with connection.cursor() as cursor:
-            sql = f"SELECT c.id, c.url, c.apparels, c.hits, l.cnt from `codies` as c LEFT JOIN (SELECT codi_id as id, count(*) as cnt FROM likes GROUP BY codi_id) as l ON c.id = l.id ORDER BY cnt DESC LIMIT {count}"
+            sql = f"SELECT id, url, apparels, hits, likes_cnt from `codies` ORDER BY likes_cnt DESC LIMIT {count}"
             cursor.execute(sql)
             res = cursor.fetchall()
             for r in res:
@@ -99,6 +99,24 @@ def make_query(
 
 @codi.route("/search", methods=["POST"])
 def search():
+    keywords = {
+        "cardigan": "cardigan",
+        "coat": "coat",
+        "jacket": "jacket",
+        "vest": "vest",
+        "tee(short)": "short_sleeved_tee",
+        "tee(long)": "long_sleeved_tee",
+        "sleeveless": "sleeveless",
+        "mtm": "mtm",
+        "hood": "hood",
+        "shirts": "shirts",
+        "jeans": "jeans",
+        "leggings": "leggings",
+        "slacks": "slacks",
+        "skirts": "skirts",
+        "training": "training",
+        "one-piece": "onepiece",
+    }
     query_param = request.args.to_dict()
     req = request.get_json(force=True)
 
@@ -124,7 +142,7 @@ def search():
 
     for apparel in req["apparels"]:
         matches = []
-        matches.append(make_match("apparels.category", apparel["category"]))
+        matches.append(make_match("apparels.category", keywords[apparel["category"]]))
         if apparel["color"].lower() != "all":
             matches.append(make_match("apparels.color", apparel["color"]))
         labels.append(make_nested_label("apparels", matches))
@@ -135,6 +153,6 @@ def search():
 
     with connect_es() as es:
         result = es.search(query)
-        codies = [{**x["_source"], "id": x["_id"]} for x in result["hits"]["hits"]]
+        codies = [{**x["_source"], "id": int(x["_id"])} for x in result["hits"]["hits"]]
         es.close()
     return jsonify(data=codies)

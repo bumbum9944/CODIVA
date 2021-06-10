@@ -57,7 +57,7 @@ function FolderDetailHeader({
           className="folder-detail-back-button"
           onClick={() => {
             history.push("/my-picks");
-            setSelectedFolder("");
+            setSelectedFolder({});
           }}
         />
         <p className="folder-detail-name">{folderName}</p>

@@ -1,17 +1,32 @@
-import { Button } from "@material-ui/core";
 import React from "react";
 import Header from "../components/common/Header/Header";
 import GenderSelect from "../components/searchPage/GenderSelect";
+import { Paper } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import Chip from "@material-ui/core/Chip";
 
 function SearchPage1(props) {
+  const useStyles = makeStyles(theme => ({
+    root: {
+      display: "flex",
+      justifyContent: "left",
+      overflow: "auto",
+      listStyle: "none",
+      padding: theme.spacing(0.5),
+      margin: 0
+    },
+    chip: {
+      margin: theme.spacing(0.5)
+    }
+  }));
+  const classes = useStyles();
+
   return (
     <>
       <Header headerText="SEARCH" />
-      <center>
-        <Button variant="contained" style={{ marginBottom: 10 }}>
-          찾아볼 옷을 골라주세요.
-        </Button>
-      </center>
+      <Paper className={classes.root}>
+        <Chip className={classes.chip} label="선택하신 옵션이 표시됩니다😉" />
+      </Paper>
       <div
         style={{
           display: "flex",
