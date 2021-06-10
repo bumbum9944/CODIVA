@@ -15,7 +15,7 @@
 }
 
 .slide-menu-title {
-  font-size: 10vw;
+  font-size: 12vw;
   margin-top: 10vh;
   margin-left: 5%;
   margin-right: 5%;
@@ -30,7 +30,7 @@
 
 .slide-menu-list {
   padding: 0;
-  list-style:none;
+  list-style: none;
   margin-top: 5%;
 }
 

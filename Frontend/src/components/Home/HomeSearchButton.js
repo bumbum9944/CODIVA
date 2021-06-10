@@ -3,7 +3,7 @@ import "./HomeSearchButton.css";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
 
-function HomeSearchButton() {
+function HomeSearchButton({ setGender, setApparels, setSelectedCategory }) {
   const history = useHistory();
   return (
     <div className="searchButton-container" to="/search/1">
@@ -15,10 +15,18 @@ function HomeSearchButton() {
           borderRadius: "3vh"
         }}
         onClick={() => {
+          setGender("");
+          setApparels([]);
+          setSelectedCategory({
+            OUTER: false,
+            TOP: false,
+            BOTTOM: false,
+            "ONE PIECE": false
+          });
           history.push("/search/1");
         }}
       >
-        CODY MATCH
+        CODI MATCH
       </Button>
     </div>
   );
