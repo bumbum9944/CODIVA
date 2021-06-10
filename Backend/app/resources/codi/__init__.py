@@ -15,7 +15,7 @@ def get_codies():
     count = query["count"] if "count" in query else 20
     with connect_db() as connection:
         with connection.cursor() as cursor:
-            sql = f"SELECT c.id, c.url, c.apparels, c.hits, l.cnt from `codies` as c LEFT JOIN (SELECT codi_id as id, count(*) as cnt FROM likes GROUP BY codi_id) as l ON c.id = l.id ORDER BY cnt DESC LIMIT {count}"
+            sql = f"SELECT id, url, apparels, hits, likes_cnt from `codies` ORDER BY likes_cnt DESC LIMIT {count}"
             cursor.execute(sql)
             res = cursor.fetchall()
             for r in res:
