@@ -1,6 +1,7 @@
 import react from "react";
 import HomeSearchButton from "./HomeSearchButton";
 import { useHistory } from "react-router-dom";
+import { Translate } from "@material-ui/icons";
 
 function Main({ setGender, setApparels, setSelectedCategory }) {
   const history = useHistory();
@@ -21,7 +22,9 @@ function Main({ setGender, setApparels, setSelectedCategory }) {
             fontSize: "22vw",
             color: "white",
             top: "15%",
-            left: "23%",
+            textAlign: "center",
+            left: "50%",
+            transform: "translate(-50%)",
             position: "absolute",
             textShadow: "revert"
           }}
