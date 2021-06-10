@@ -14,12 +14,11 @@ function MyPicks({
   setSelectedFolder
 }) {
   const [oldName, setOldName] = useState("");
-
   useEffect(() => {
-    if (selectedFolder !== "") {
-      setOldName(folderList[selectedFolder].folderName);
-    } else {
+    if (!selectedFolder.folderName) {
       setOldName("");
+    } else {
+      setOldName(selectedFolder.folderName);
     }
   }, [selectedFolder]);
 
