@@ -1,9 +1,9 @@
 .folder-add-container {
   position: fixed;
-  bottom: -65vh;
+  bottom: -70vh;
   z-index: 500;
-  width: 89%;
-  height: 60vh;
+  width: 89vw;
+  height: 65vh;
   transition: bottom 0.1s ease-in-out;
   background-color: white;
   color: black;
@@ -12,16 +12,16 @@
 }
 
 .folder-add-container.on {
-  bottom: 0;
+  bottom: 0vh;
 }
 
 .folder-add-title {
-  margin: 20% 0 0 0;
+  margin: 10vh 0 0 0;
   font-size: 7vw;
 }
 
 .folder-add-input {
-  margin: 15% 0 0 0;
+  margin: 10vh 0 0 0;
   width: 94%;
   font-size: 5vw;
   padding: 3%;
@@ -37,6 +37,6 @@
 .folder-add-text-length {
   text-align: end;
   font-size: 5vw;
-  margin-top: 5%;
+  margin-top: 2vh;
 }
 

@@ -1,131 +1,102 @@
-import { React, useState } from "react";
+import { React, useEffect, useState, useContext } from "react";
 import Header from "../components/common/Header/Header";
 import RankedItemList from "../components/TopCodies/RankedItemList";
 import FolderAdd from "../components/common/Folder/FolderAdd";
 import FolderListSlide from "../components/common/Folder/FolderListSlide";
+import UserContext from "contexts/user";
+import { request, requestWithJWT } from "lib/client";
 
 function TopCodies({ folderList, addFolder }) {
-  const [selectedItem, setSelectedItem] = useState("");
-  const [rankedItem, setRankedItem] = useState([
-    {
-      id: 1,
-      imageUrl: "/carouselImage/item6.jpg",
-      likeCnt: 1732,
-      viewCnt: 23211,
-      isLiked: false,
-      isSaved: false
-    },
-    {
-      id: 2,
-      imageUrl: "/carouselImage/item1.jpg",
-      likeCnt: 1211,
-      viewCnt: 20112,
-      isLiked: false,
-      isSaved: false
-    },
-    {
-      id: 3,
-      imageUrl: "/carouselImage/item7.jpg",
-      likeCnt: 1105,
-      viewCnt: 19725,
-      isLiked: false,
-      isSaved: false
-    },
-    {
-      id: 4,
-      imageUrl: "/carouselImage/item2.jpg",
-      likeCnt: 997,
-      viewCnt: 20012,
-      isLiked: false,
-      isSaved: false
-    },
-    {
-      id: 5,
-      imageUrl: "/carouselImage/item4.jpg",
-      likeCnt: 860,
-      viewCnt: 15002,
-      isLiked: false,
-      isSaved: false
-    },
-    {
-      id: 6,
-      imageUrl: "/carouselImage/item8.jpg",
-      likeCnt: 821,
-      viewCnt: 15620,
-      isLiked: false,
-      isSaved: false
-    },
-    {
-      id: 7,
-      imageUrl: "/carouselImage/item3.jpg",
-      likeCnt: 758,
-      viewCnt: 16230,
-      isLiked: false,
-      isSaved: false
-    },
-    {
-      id: 8,
-      imageUrl: "/carouselImage/item9.jpg",
-      likeCnt: 739,
-      viewCnt: 12330,
-      isLiked: false,
-      isSaved: false
-    },
-    {
-      id: 9,
-      imageUrl: "/carouselImage/item10.jpg",
-      likeCnt: 632,
-      viewCnt: 13992,
-      isLiked: false,
-      isSaved: false
-    },
-    {
-      id: 10,
-      imageUrl: "/carouselImage/item5.jpg",
-      likeCnt: 573,
-      viewCnt: 13229,
-      isLiked: false,
-      isSaved: false
-    }
-  ]);
+  const [selectedItem, setSelectedItem] = useState({});
+  const [rankedItem, setRankedItem] = useState([]);
+  const { state } = useContext(UserContext);
+  const { user } = state;
 
-  function toggleSaved(targetIndex) {
+  useEffect(async ()=>{
+    let liked;
+    let saved;
+    if (user) {
+      liked = new Set(
+        await requestWithJWT("get", `/like/${user}`).then(
+          response => response.data.user_like_codies
+        )
+      );
+      saved = new Set(
+        await requestWithJWT("get", `/saved/${user}`).then(
+          response => response.data.data
+        )
+      );
+    }
+    request("get", "/codi")
+    .then(response=>{
+      const res = response.data.data;
+      const codies = res.map(item=>{
+        return({
+          id: item.id,
+          imageUrl: item.url,
+          likeCnt: item.likes_cnt,
+          viewCnt: item.hits,
+          isLiked: !user ? false : liked.has(item.id) ? true : false,
+          isSaved: !user ? false : saved.has(item.id) ? true : false
+        });
+      });
+      setRankedItem(codies);
+    });
+  },[user]);
+
+  function toggleSaved(targetItem, targetFolderId = null) {
+    const targetItemId = targetItem.id;
+    if (targetFolderId === null) {
+      requestWithJWT("delete", `/saved/${user}`, { id: targetItemId })
+        .then(response => response.data)
+        .catch(err => console.log(err));
+    } else {
+      requestWithJWT(
+        "post",
+        `/saved/${user}/${targetFolderId}/${targetItemId}`
+      )
+        .then(response => response.data)
+        .catch(err => console.log(err));
+    }
+    const targetIndex = targetItem.index;
     const copiedTopCodies = JSON.parse(JSON.stringify(rankedItem));
-    copiedTopCodies[targetIndex].isSaved =
-      !copiedTopCodies[targetIndex].isSaved;
+    copiedTopCodies[targetIndex].isSaved = !copiedTopCodies[targetIndex].isSaved;
 
     setRankedItem(copiedTopCodies);
   }
 
-  function onChangeSelectedItem(itemId) {
-    setSelectedItem(itemId);
+  function toggleLiked(codyId, targetIndex) {
+    const copiedTopCodies = JSON.parse(JSON.stringify(rankedItem));
+    if (copiedTopCodies[targetIndex].isLiked) {
+      requestWithJWT("delete", `/like/${user}/${codyId}`).then(response => {
+        console.log(response.data);
+      });
+      copiedTopCodies[targetIndex].likeCnt = copiedTopCodies[targetIndex].likeCnt - 1;
+    } else {
+      requestWithJWT("post", `/like/${user}/${codyId}`).then(
+        response => {
+          console.log(response.data);
+        }
+      );
+      copiedTopCodies[targetIndex].likeCnt = copiedTopCodies[targetIndex].likeCnt + 1;
+    }
+    copiedTopCodies[targetIndex].isLiked = !copiedTopCodies[targetIndex].isLiked;
+    setRankedItem(copiedTopCodies);
   }
 
   return (
     <div className="topCodies">
       <Header headerText="TOP CODIES" />
       <RankedItemList
-        onChangeSelectedItem={onChangeSelectedItem}
+        setSelectedItem={setSelectedItem}
         rankedItem={rankedItem}
         toggleSaved={toggleSaved}
-        toggleLiked={targetIndex => {
-          const copiedTopCodies = JSON.parse(JSON.stringify(rankedItem));
-          if (copiedTopCodies[targetIndex].isLiked) {
-            copiedTopCodies[targetIndex].likeCnt =
-              copiedTopCodies[targetIndex].likeCnt - 1;
-          } else {
-            copiedTopCodies[targetIndex].likeCnt =
-              copiedTopCodies[targetIndex].likeCnt + 1;
-          }
-          copiedTopCodies[targetIndex].isLiked =
-            !copiedTopCodies[targetIndex].isLiked;
-          setRankedItem(copiedTopCodies);
-        }}
+        toggleLiked={toggleLiked}
       />
       <FolderAdd addFolder={addFolder} />
       <FolderListSlide
         selectedItem={selectedItem}
-        onChangeSelectedItem={onChangeSelectedItem}
+        setSelectedItem={setSelectedItem}
         folderList={folderList}
         addFolder={addFolder}
         toggleSaved={toggleSaved}

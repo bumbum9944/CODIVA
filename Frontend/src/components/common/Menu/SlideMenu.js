@@ -9,7 +9,7 @@ function SlideMenu() {
   const history = useHistory();
   const { state, actions } = useContext(UserContext);
   const { user } = state;
-  const { setUser, setToken, setHeader } = actions;
+  const { setUser, setToken } = actions;
 
   function closeSlideMenu() {
     document.querySelector("body").classList.remove("no-scroll");
@@ -79,7 +79,6 @@ function SlideMenu() {
               localStorage.clear();
               setToken(null);
               setUser(null);
-              setHeader(null);
             }
           }}
         >

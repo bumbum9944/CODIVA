@@ -55,12 +55,12 @@ function FolderListSlide({
       });
   }
 
-  function saveItem(folderName) {
+  function saveItem(targetFolderId, targetFolderName) {
     if (selectedItem.size === undefined) {
-      toggleSaved(selectedItem, folderName);
+      toggleSaved(selectedItem, targetFolderId);
       setSelectedItem({});
     } else {
-      changeFolder();
+      changeFolder(targetFolderName);
     }
   }
 
@@ -68,12 +68,7 @@ function FolderListSlide({
     const itemCnt = element.itemCnt;
     const imageUrl = element.imageUrl;
     const folderName = element.folderName;
-
-    if (
-      selectedFolder !== undefined &&
-      selectedFolder !== "" &&
-      selectedFolder === index
-    ) {
+    if (selectedFolder && selectedFolder.folderName === folderName) {
       return "";
     }
     let innerIamge;
@@ -98,7 +93,7 @@ function FolderListSlide({
         key={index}
         className="folder-list-slide-item slide-inner"
         onClick={() => {
-          saveItem(folderName);
+          saveItem(element.id, folderName);
           closeSlideMenu();
           openToast();
         }}
@@ -133,7 +128,7 @@ function FolderListSlide({
             }}
           />
         </div>
-        <div className="folder-add-text">새 폴더 만들기</div>
+        <div className="folder-add-text" style={{fontSize: "5vw"}}>새 폴더 만들기</div>
       </div>
       <div className="folder-list-slide-inner">{folderListInner}</div>
     </div>

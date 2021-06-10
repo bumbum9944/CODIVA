@@ -18,7 +18,7 @@ function CodyModal({ targetIndex, item, toggleLiked }) {
         style={{ position: "absolute", right: "5vw", top: "10vh" }}
         onClick={closeModal}
       >
-        <CloseIcon style={{ fontSize: "4vh", color: "white" }} />
+        <CloseIcon style={{ fontSize: "9vw", color: "white" }} />
       </Button>
       <div className="modal-content">
         <img

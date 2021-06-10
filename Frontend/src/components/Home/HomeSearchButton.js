@@ -11,7 +11,7 @@ function HomeSearchButton() {
         className="searchButton"
         variant="contained"
         style={{
-          fontSize: "3vh",
+          fontSize: "5.5vw",
           borderRadius: "3vh"
         }}
         onClick={() => {

@@ -16,30 +16,26 @@ function FolderDetail({
   setSelectedFolder
 }) {
   const location = useLocation();
-  const folderName = location.state.folderName;
-  const folderId = location.state.folderId;
+  const thisFolderName = location.state.folderName;
+  const thisFolderId = location.state.folderId;
   const { state } = useContext(UserContext);
-  const { user, header } = state;
+  const { user } = state;
   const [mode, setMode] = useState("");
   const [selectedItem, setSelectedItem] = useState(new Set([]));
   const [items, setItems] = useState([]);
 
   useEffect(async () => {
-    let liked;
-    let saved;
-    if (user) {
-      liked = new Set(
-        await requestWithJWT("get", `/like/${user}`).then(
-          response => response.data.user_like_codies
-        )
-      );
-      saved = new Set(
-        await requestWithJWT("get", `/saved/${user}`).then(
-          response => response.data.data
-        )
-      );
-    }
-    requestWithJWT("get", `/saved/${user}/${folderName}`, header).then(
+    const liked = new Set(
+      await requestWithJWT("get", `/like/${user}`).then(
+        response => response.data.user_like_codies
+      )
+    );
+    const saved = new Set(
+      await requestWithJWT("get", `/saved/${user}`).then(
+        response => response.data.data
+      )
+    );
+    requestWithJWT("get", `/saved/${user}/${thisFolderId}`).then(
       response => {
         const res = response.data.data;
         const itemData = res.map(item => {
@@ -67,37 +63,73 @@ function FolderDetail({
     setSelectedItem(copiedSelectedItem);
   }
 
-  function changeFolder() {
+  function changeFolder(targetFolderName) {
+    const newFolderName = (targetFolderName === "기본 폴더") ? "default" : targetFolderName;
+    const nowFolderId = selectedFolder.folderId;
     document
       .querySelector(".folder-detail-bottom-slide-container")
       .classList.remove("on");
-    const temp = [];
+    const selectedItemArray = [];
+    const remain = [];
     for (let i = 0; i < items.length; i++) {
-      if (!selectedItem.has(i)) {
-        temp.push(items[i]);
+      if (selectedItem.has(i)) {
+        selectedItemArray.push(items[i].id);
+      } else {
+        remain.push(items[i]);
       }
     }
+    requestWithJWT("put", `/saved/${user}/${nowFolderId}`,{targets: selectedItemArray, new_dir_name: newFolderName})
+    .then(response => {
+      console.log(response.data);
+    }).catch(err=>console.log(err.message));
     setMode("");
-    setItems(temp);
+    setItems(remain);
     setSelectedItem(new Set([]));
   }
 
   function deleteItems() {
-    const temp = [];
+    const nowFolderId = selectedFolder.folderId;
+    const selectedItemArray = [];
+    const remain = [];
     for (let i = 0; i < items.length; i++) {
-      if (!selectedItem.has(i)) {
-        temp.push(items[i]);
+      if (selectedItem.has(i)) {
+        selectedItemArray.push(items[i].id);
+      } else {
+        remain.push(items[i]);
       }
     }
+    requestWithJWT("delete", `/saved/${user}/${nowFolderId}`, {targets: selectedItemArray})
+    .then(response => {
+      console.log(response.data);
+    }).catch(err=>console.log(err.message));
     setMode("");
-    setItems(temp);
+    setItems(remain);
     setSelectedItem(new Set([]));
+  }
+
+  function toggleLiked(codyId, targetIndex) {
+    const copiedItems = JSON.parse(JSON.stringify(items));
+    if (copiedItems[targetIndex].isLiked) {
+      requestWithJWT("delete", `/like/${user}/${codyId}`).then(response => {
+        console.log(response.data);
+      });
+      copiedItems[targetIndex].likeCnt = copiedItems[targetIndex].likeCnt - 1;
+    } else {
+      requestWithJWT("post", `/like/${user}/${codyId}`).then(
+        response => {
+          console.log(response.data);
+        }
+      );
+      copiedItems[targetIndex].likeCnt = copiedItems[targetIndex].likeCnt + 1;
+    }
+    copiedItems[targetIndex].isLiked = !copiedItems[targetIndex].isLiked;
+    setItems(copiedItems);
   }
 
   return (
     <div className="folder-detail-container">
       <FolderDetailHeader
-        folderName={folderName}
+        folderName={thisFolderName}
         mode={mode}
         resetSelectedItem={() => {
           setSelectedItem(new Set([]));
@@ -111,18 +143,8 @@ function FolderDetail({
         selectedItem={selectedItem}
         mode={mode}
         items={items}
-        folderId={folderId}
         onChangeSelectedItem={onChangeSelectedItem}
-        toggleLiked={targetId => {
-          const copiedItems = JSON.parse(JSON.stringify(items));
-          if (copiedItems[targetId].isLiked) {
-            copiedItems[targetId].likeCnt -= 1;
-          } else {
-            copiedItems[targetId].likeCnt += 1;
-          }
-          copiedItems[targetId].isLiked = !copiedItems[targetId].isLiked;
-          setItems(copiedItems);
-        }}
+        toggleLiked={toggleLiked}
       />
       <FolderDetailBottomSlide selectedItem={selectedItem} />
       <FolderAdd addFolder={addFolder} />

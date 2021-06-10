@@ -1,19 +1,27 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import FolderList from "../components/MyPicks/FolderList";
 import Header from "../components/common/Header/Header";
 import { FiFolderPlus } from "react-icons/fi";
 import FolderAdd from "../components/common/Folder/FolderAdd";
 import FolderDeleteModal from "../components/MyPicks/FolderDeleteModal";
+import UserContext from "contexts/user";
+import { requestWithJWT } from "lib/client";
 
 function MyPicks({
   folderList,
+  setFolderList,
   addFolder,
   deleteFolder,
   changeFolderName,
   selectedFolder,
   setSelectedFolder
 }) {
+  const history = useHistory();
   const [oldName, setOldName] = useState("");
+  const { state } = useContext(UserContext);
+  const { user } = state;
+
   useEffect(() => {
     if (!selectedFolder.folderName) {
       setOldName("");
@@ -21,6 +29,26 @@ function MyPicks({
       setOldName(selectedFolder.folderName);
     }
   }, [selectedFolder]);
+  
+  useEffect(async () => {
+    if(user) {
+      await requestWithJWT("get", `/directory/${user}`)
+      .then(response => {
+        const res = response.data.data;
+        const folderData = res.map((item) => {
+          return {
+            id: item.id,
+            folderName: item.name === "default" ? "기본 폴더" : item.name,
+            itemCnt: item.cnt,
+            imageUrl: item.url
+          };
+        });
+        setFolderList(folderData);
+      });
+    } else if(!localStorage.getItem("user_id")) {
+      history.push("/");
+    }
+  }, [user]);
 
   function openSlideMenu() {
     document.querySelector("body").classList.add("no-scroll");

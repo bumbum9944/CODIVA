@@ -43,9 +43,9 @@ function CodyModalInfo({ item, targetIndex, toggleLiked }) {
         >
           {likeButton}
         </div>
-        <p style={{ color: "white", marginLeft: "2vw" }}>{item.likeCnt}</p>
+        <p style={{ color: "white", marginLeft: "2vw", fontSize: "5vw" }}>{item.likeCnt}</p>
       </div>
-      <p style={{ color: "white" }}>조회수 : {item.viewCnt}</p>
+      <p style={{ color: "white", fontSize: "5vw" }}>조회수 : {item.viewCnt}</p>
     </div>
   );
 }
