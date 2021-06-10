@@ -73,30 +73,28 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
     setSelectedItem(itemId);
   }
 
-  function getCodies() {
-    request("post", `codi/search?from=${currentPage + 20}`, {
-      gender: gender,
-      apparels: apparels
-    })
-      .then(response => {
-        const res = response.data.data;
-        const liked = isChecked.liked;
-        const saved = isChecked.saved;
-        const newCodies = res.map(item => {
-          return {
-            id: item.id,
-            imageUrl: item.url,
-            likeCnt: item.like_cnt,
-            viewCnt: item.hits,
-            isLiked: !user ? false : liked.includes(item.id) ? true : false,
-            isSaved: !user ? false : saved.includes(item.id) ? true : false
-          };
-        });
-        const copiedCodies = JSON.parse(JSON.stringify(codies));
-        setCodies(copiedCodies.concat(newCodies));
-      })
-      .catch(err => console.log(err.message));
-  }
+  // function getCodies() {
+  //   request("post", `codi/search?from=${currentPage + 20}`, {
+  //     gender: gender,
+  //     apparels: apparels
+  //   })
+  //     .then(response => {
+  //       const res = response.data.data;
+  //       const newCodies = res.map(item => {
+  //         return {
+  //           id: item.id,
+  //           imageUrl: item.url,
+  //           likeCnt: item.like_cnt,
+  //           viewCnt: item.hits,
+  //           isLiked: !user ? false : liked.includes(item.id) ? true : false,
+  //           isSaved: !user ? false : saved.includes(item.id) ? true : false
+  //         };
+  //       });
+  //       const copiedCodies = JSON.parse(JSON.stringify(codies));
+  //       setCodies(copiedCodies.concat(newCodies));
+  //     })
+  //     .catch(err => console.log(err.message));
+  // }
 
   // function infiniteScroll() {
   //   let scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
