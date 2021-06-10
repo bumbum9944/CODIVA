@@ -131,7 +131,7 @@ function SearchPage2(props) {
   };
 
   return (
-    <>
+    <div className="search-page">
       <Header headerText="SEARCH" />
       <OptionTag {...props} />
       <div>
@@ -207,7 +207,7 @@ function SearchPage2(props) {
         </div>
       </div>
       <PageButton {...props} />
-    </>
+    </div>
   );
 }
 

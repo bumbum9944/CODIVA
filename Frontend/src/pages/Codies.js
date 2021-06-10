@@ -30,9 +30,6 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
   const [currentPage, setCurrentPage] = useState(0);
   const { state } = useContext(UserContext);
   const { user } = state;
-  // useEffect(()=>{
-  //   window.addEventListener("scroll", infiniteScroll, true);
-  // }, []);
 
   useEffect(async () => {
     let liked;
@@ -67,46 +64,6 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
       setCodies(newCodies);
     });
   }, [user]);
-
-  function onChangeSelectedItem(itemId) {
-    setSelectedItem(itemId);
-  }
-
-  // function getCodies() {
-  //   request("post", `codi/search?from=${currentPage + 20}`, {
-  //     gender: gender,
-  //     apparels: apparels
-  //   })
-  //     .then(response => {
-  //       const res = response.data.data;
-  //       const newCodies = res.map(item => {
-  //         return {
-  //           id: item.id,
-  //           imageUrl: item.url,
-  //           likeCnt: item.like_cnt,
-  //           viewCnt: item.hits,
-  //           isLiked: !user ? false : liked.includes(item.id) ? true : false,
-  //           isSaved: !user ? false : saved.includes(item.id) ? true : false
-  //         };
-  //       });
-  //       const copiedCodies = JSON.parse(JSON.stringify(codies));
-  //       setCodies(copiedCodies.concat(newCodies));
-  //     })
-  //     .catch(err => console.log(err.message));
-  // }
-
-  // function infiniteScroll() {
-  //   let scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
-  //   let scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
-  //   let clientHeight = document.documentElement.clientHeight;
-
-  //   if(scrollTop + clientHeight === scrollHeight) {
-  //     console.log("asldfkjsd");
-  //     getCodies();
-  //     setCurrentPage(currentPage + 20);
-  //   }
-
-  // }
 
   function toggleLiked(codyId, targetIndex) {
     const copiedCodies = JSON.parse(JSON.stringify(codies));
