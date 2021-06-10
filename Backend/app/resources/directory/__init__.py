@@ -19,12 +19,9 @@ class DirectoryApi(Resource):
 
         with connect_db() as connection:
             with connection.cursor() as cursor:
-                sql = """select d.user_id, d.name, IFNULL(sv.url,"") as url, IFNULL(sv.cnt, 0) as cnt, d.created_date from directory as d 
-left join (select s.directory_user_id, s.directory_name, c.url, count(*) as cnt 
-from (select * from saved where directory_user_id=%s order by created_date desc LIMIT 18446744073709551615) as s 
-left join codies as c on s.codi_id = c.id group by s.directory_name) as sv
-on d.user_id=sv.directory_user_id and d.name=sv.directory_name 
-where d.user_id=%s order by d.created_date desc"""
+                sql = """select d.id, d.name, IFNULL(sv.url,"") as url, IFNULL(sv.cnt, 0) as cnt, d.created_date from directory as d 
+left join (select s.directory_user_id, s.directory_name, c.url, count(*) as cnt from (select * from saved where directory_user_id=%s order by created_date desc LIMIT 18446744073709551615) as s left join codies as c on s.codi_id = c.id group by s.directory_name) as sv
+on d.user_id=sv.directory_user_id and d.name=sv.directory_name where d.user_id=%s"""
                 cursor.execute(sql, (user_id, user_id))
                 res = cursor.fetchall()
                 print(res)
