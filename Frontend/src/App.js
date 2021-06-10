@@ -35,48 +35,39 @@ function App() {
     "ONE PIECE": false
   });
   const { state, actions } = useContext(UserContext);
-  const { user, token, header } = state;
-  const { setUser, setToken, setHeader } = actions;
+  const { user, token } = state;
+  const { setUser, setToken } = actions;
 
   function addFolder(newFolderName) {
-    requestWithJWT(
-      "post",
-      `/directory/${user}`,
-      { name: newFolderName },
-      header
-    ).then(response => response.data);
-    const copiedFolderList = JSON.parse(JSON.stringify(folderList));
-    copiedFolderList.push({
-      id: copiedFolderList.length,
-      folderName: newFolderName,
-      itemCnt: 0,
-      imageUrl: ""
-    });
-    setFolderList(copiedFolderList);
+    requestWithJWT("post", `/directory/${user}`, { name: newFolderName }).then(
+      response => {
+        const copiedFolderList = JSON.parse(JSON.stringify(folderList));
+        copiedFolderList.push({
+          id: response.data.id,
+          folderName: newFolderName,
+          itemCnt: 0,
+          imageUrl: ""
+        });
+        setFolderList(copiedFolderList);
+      }
+    );
   }
 
-  function deleteFolder(targetItem) {
-    const { targetIndex, folderName } = { ...targetItem };
-    requestWithJWT(
-      "delete",
-      `/directory/${user}`,
-      { name: folderName },
-      header
-    ).then(response => response.data);
+  function deleteFolder(targetFolder) {
+    const { targetIndex, folderId } = { ...targetFolder };
+    requestWithJWT("delete", `/directory/${user}/${folderId}`).then(
+      response => response.data
+    );
     const copiedFolderList = JSON.parse(JSON.stringify(folderList));
     copiedFolderList.splice(targetIndex, 1);
     setFolderList(copiedFolderList);
   }
 
-  function changeFolderName(targetItem, newFolderName) {
-    const targetIndex = targetItem.targetIndex;
-    const oldName = targetItem.folderName;
-    requestWithJWT(
-      "put",
-      `/directory/${user}`,
-      { name: oldName, new_name: newFolderName },
-      header
-    ).then(response => response.data);
+  function changeFolderName(targetFolder, newFolderName) {
+    const { targetIndex, folderId } = { ...targetFolder };
+    requestWithJWT("put", `/directory/${user}/${folderId}`, {
+      new_name: newFolderName
+    }).then(response => response.data);
     const copiedFolderList = JSON.parse(JSON.stringify(folderList));
     copiedFolderList[targetIndex].folderName = newFolderName;
     setFolderList(copiedFolderList);
@@ -85,12 +76,6 @@ function App() {
   const loadUser = () => {
     setUser(localStorage.getItem("user_id"));
     setToken(localStorage.getItem("token"));
-    setHeader({
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`
-      }
-    });
     if (!user) return;
     // 검증 작업 필요
   };
@@ -101,11 +86,11 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      requestWithJWT("get", `/directory/${user}`, header).then(response => {
+      requestWithJWT("get", `/directory/${user}`).then(response => {
         const res = response.data.data;
-        const folderData = res.map((item, index) => {
+        const folderData = res.map(item => {
           return {
-            id: index,
+            id: item.id,
             folderName: item.name === "default" ? "기본 폴더" : item.name,
             itemCnt: item.cnt,
             imageUrl: item.url
@@ -177,6 +162,7 @@ function App() {
             render={() => (
               <MyPicks
                 folderList={folderList}
+                setFolderList={setFolderList}
                 addFolder={addFolder}
                 deleteFolder={deleteFolder}
                 changeFolderName={changeFolderName}

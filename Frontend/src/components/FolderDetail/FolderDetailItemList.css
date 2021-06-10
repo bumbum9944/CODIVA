@@ -10,6 +10,7 @@
 
 .folder-detail-image {
   border-radius: 3vw;
+  border: rgb(178, 178, 178) solid 0.5vw;
   width : 30vw;
   height: 45vw;
 }
