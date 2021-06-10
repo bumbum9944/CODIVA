@@ -24,7 +24,7 @@ function FolderDetail({
   const [selectedItem, setSelectedItem] = useState(new Set([]));
   const [items, setItems] = useState([]);
 
-  useEffect(async ()=>{
+  useEffect(async () => {
     let liked;
     let saved;
     if (user) {
@@ -39,23 +39,23 @@ function FolderDetail({
         )
       );
     }
-    requestWithJWT("get", `/saved/${user}/${folderName}`, header)
-    .then(response=>{
-      const res = response.data.data;
-      const itemData = res.map(item=>{
-        return({
-          id: item.id,
-          imageUrl: item.url,
-          likeCnt: item.likes_cnt,
-          viewCnt: item.hits,
-          isLiked: !user ? false : liked.has(item.id) ? true : false,
-          isSaved: !user ? false : saved.has(item.id) ? true : false
+    requestWithJWT("get", `/saved/${user}/${folderName}`, header).then(
+      response => {
+        const res = response.data.data;
+        const itemData = res.map(item => {
+          return {
+            id: item.id,
+            imageUrl: item.url,
+            likeCnt: item.likes_cnt,
+            viewCnt: item.hits,
+            isLiked: !user ? false : liked.has(item.id) ? true : false,
+            isSaved: !user ? false : saved.has(item.id) ? true : false
+          };
         });
-      });
-      setItems(itemData);
-    })
+        setItems(itemData);
+      }
+    );
   }, [user]);
-
 
   function onChangeSelectedItem(targetIndex) {
     const copiedSelectedItem = new Set(selectedItem);

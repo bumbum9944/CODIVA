@@ -38,7 +38,6 @@ function App() {
   const { user, token, header } = state;
   const { setUser, setToken, setHeader } = actions;
 
-
   function addFolder(newFolderName) {
     requestWithJWT(
       "post",

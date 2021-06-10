@@ -5,7 +5,7 @@ const UserContext = createContext({
   actions: {
     setUser: () => {},
     setToken: () => {},
-    setHeader: ()=> {}
+    setHeader: () => {}
   }
 });
 
