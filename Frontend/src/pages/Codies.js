@@ -1,8 +1,6 @@
 import { React, useState, useEffect, useContext } from "react";
-import { useLocation } from "react-router-dom";
 import Header from "../components/common/Header/Header";
 import CodyList from "../components/Codies/CodyList";
-import CodyHeader from "../components/Codies/CodyHeader";
 import FolderAdd from "../components/common/Folder/FolderAdd";
 import FolderListSlide from "../components/common/Folder/FolderListSlide";
 import Chip from "@material-ui/core/Chip";
@@ -27,15 +25,11 @@ const useStyles = makeStyles(theme => ({
 
 function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
   const classes = useStyles();
-  const location = useLocation();
-  const codyData = location.state.codies;
   const [selectedItem, setSelectedItem] = useState({});
-  // const [codies, setCodies] = useState(codyData);
   const [codies, setCodies] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const { state } = useContext(UserContext);
   const { user } = state;
-
   // useEffect(()=>{
   //   window.addEventListener("scroll", infiniteScroll, true);
   // }, []);
@@ -60,7 +54,7 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
       apparels: apparels
     }).then(response => {
       const newCodies = response.data.data.map(item => {
-        const itemId = parseInt(item.id);
+        const itemId = item.id;
         return {
           id: itemId,
           imageUrl: item.url,
@@ -72,19 +66,6 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
       });
       setCodies(newCodies);
     });
-    console.log(liked, saved);
-    // const copiedCodies = JSON.parse(JSON.stringify(codies));
-    // const newCodies = copiedCodies.map(item => {
-    //   return {
-    //     id: item.id,
-    //     imageUrl: item.imageUrl,
-    //     likeCnt: item.likeCnt,
-    //     viewCnt: item.viewCnt,
-    //     isLiked: !user ? false : liked.has(item.id) ? true : false,
-    //     isSaved: !user ? false : saved.has(item.id) ? true : false
-    //   };
-    // });
-    // setCodies(newCodies);
   }, [user]);
 
   function onChangeSelectedItem(itemId) {
@@ -147,9 +128,11 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
   function toggleSaved(targetItem, targetFolderId = null) {
     const targetItemId = targetItem.id;
     if (targetFolderId === null) {
+      console.log({ id: targetItemId });
       requestWithJWT("delete", `/saved/${user}`, { id: targetItemId })
-        .then(response => response.data)
-        .catch(err => console.log(err));
+        .then(response => console.log(response.data))
+        // .then(response => response.data)
+        .catch(err => console.log(err.message));
     } else {
       requestWithJWT("post", `/saved/${user}/${targetFolderId}/${targetItemId}`)
         .then(response => response.data)
@@ -176,7 +159,6 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
   return (
     <div>
       <Header headerText="CODIES" />
-      {/* <CodyHeader gender={gender} selectedOption={selectedOption} /> */}
       <Paper component="ul" className={classes.root}>
         <Chip className={classes.chip} label={gender} />
         {apparels.map((data, index) => {
