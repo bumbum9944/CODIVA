@@ -11,19 +11,20 @@ function FolderAdd({
   changeFolderName
 }) {
   const [folderInputValue, setFolderInputValue] = useState("");
-
   useEffect(() => {
     if (oldName !== undefined) {
       setFolderInputValue(oldName);
     }
   }, [oldName]);
   function closeSlideMenu() {
-    if (selectedFolder !== undefined && selectedFolder !== "") {
+    if (selectedFolder.targetIndex) {
       document
-        .querySelector(`#dropbox-inner-${selectedFolder}`)
+        .querySelector(`#dropbox-inner-${selectedFolder.targetIndex}`)
         .classList.remove("on");
-      document.querySelector(`#layer-${selectedFolder}`).classList.remove("on");
-      setSelectedFolder("");
+      document
+        .querySelector(`#layer-${selectedFolder.targetIndex}`)
+        .classList.remove("on");
+      setSelectedFolder({});
     }
     document.querySelector("body").classList.remove("no-scroll");
     document.querySelector("#dimmed").remove();
@@ -36,7 +37,7 @@ function FolderAdd({
     } else {
       addFolder(folderInputValue);
     }
-    setFolderInputValue("");
+    setFolderInputValue({});
     closeSlideMenu();
   }
   let addButton;

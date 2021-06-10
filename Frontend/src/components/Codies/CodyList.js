@@ -4,21 +4,23 @@ import "./CodyList.css";
 
 function CodyList({
   codies,
+  selectedItem,
   toggleSaved,
   toggleLiked,
   viewCntIncrease,
-  onChangeSelectedItem
+  setSelectedItem
 }) {
   const codyCardList = codies.map((item, index) => {
     return (
       <CodyCard
         key={index}
         item={item}
-        itemId={index}
+        targetIndex={index}
         toggleSaved={toggleSaved}
         toggleLiked={toggleLiked}
         viewCntIncrease={viewCntIncrease}
-        onChangeSelectedItem={onChangeSelectedItem}
+        setSelectedItem={setSelectedItem}
+        selectedItem={selectedItem}
       />
     );
   });

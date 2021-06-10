@@ -9,7 +9,7 @@ function SlideMenu() {
   const history = useHistory();
   const { state, actions } = useContext(UserContext);
   const { user } = state;
-  const { setUser, setToken } = actions;
+  const { setUser, setToken, setHeader } = actions;
 
   function closeSlideMenu() {
     document.querySelector("body").classList.remove("no-scroll");
@@ -79,13 +79,12 @@ function SlideMenu() {
               localStorage.clear();
               setToken(null);
               setUser(null);
+              setHeader(null);
             }
           }}
         >
           {!user ? "LOG IN" : "LOGOUT"}
         </div>
-        {/* <div className="slide-menu-home-btn">SIGN IN</div>
-        <div className="slide-menu-home-btn">SIGN UP</div> */}
       </div>
     </div>
   );
