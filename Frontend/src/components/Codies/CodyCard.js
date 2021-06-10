@@ -74,13 +74,13 @@ function CodyCard({
   return (
     <div className="cody-card-container">
       <img
-        className="cody-card-image"
+        className="cody-card"
         src={item.imageUrl}
         onClick={() => {
           viewCntIncrease({ index: targetIndex, id: item.id });
           openModal();
         }}
-        alt="cody-image"
+        alt="cody"
       />
       <div
         className="cody-save-button"

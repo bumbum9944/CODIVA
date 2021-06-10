@@ -180,12 +180,13 @@ function SearchPage2(props) {
           >
             <Alert
               severity="warning"
+              style={{ alignItems: "flex-start" }}
               action={
                 <React.Fragment>
                   <IconButton
                     size="small"
                     aria-label="close"
-                    color="warning"
+                    color="inherit"
                     onClick={handleClose}
                   >
                     <CloseIcon fontSize="small" />

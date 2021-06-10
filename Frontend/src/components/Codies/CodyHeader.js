@@ -2,7 +2,6 @@ import { React } from "react";
 import Chip from "@material-ui/core/Chip";
 import { GiTrousers } from "react-icons/gi";
 import { FaTshirt } from "react-icons/fa";
-import { fontSize } from "@material-ui/system";
 // import { color } from "@material-ui/system";
 
 function CodyHeader({ gender, selectedOption }) {

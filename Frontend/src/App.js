@@ -144,7 +144,6 @@ function App() {
                 gender={gender}
                 selectedOption={selectedOption}
                 changeGender={newGender => {
-                  console.log(newGender);
                   setGender(newGender);
                 }}
               />

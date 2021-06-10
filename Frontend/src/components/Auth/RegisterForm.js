@@ -46,7 +46,6 @@ function Register(props) {
   const dataChange = e => {
     const { name, value } = e.target;
     setAccount({ ...account, [name]: value });
-    console.log(account);
   };
 
   const buttonClick = async e => {
@@ -62,7 +61,6 @@ function Register(props) {
     await client
       .request("post", "/auth/register", { name, email, password })
       .then(res => {
-        console.log(res.data?.message);
         handleClose();
         document.querySelector("#login-modal").click();
       })

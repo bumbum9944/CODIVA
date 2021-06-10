@@ -72,11 +72,9 @@ function Login() {
         });
         handleClose();
         setError(null);
-        console.log(response.data);
       })
       .catch(error => {
         setError(error.response.data?.message);
-        console.log(error.response.data);
       });
     setAccount(initialState);
   };
