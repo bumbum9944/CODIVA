@@ -1,7 +1,7 @@
 .searchButton-container {
   position: absolute;
   z-index: 10;
-  bottom: 12vh;
+  bottom: 30vh;
   left: 50vw;
   transform: translateX(-50%);
   text-decoration: none !important;
