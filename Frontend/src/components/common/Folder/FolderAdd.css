@@ -1,0 +1,42 @@
+.folder-add-container {
+  position: fixed;
+  bottom: -65vh;
+  z-index: 500;
+  width: 89%;
+  height: 60vh;
+  transition: bottom 0.1s ease-in-out;
+  background-color: white;
+  color: black;
+  padding: 0 5% 0 5%;
+  border: solid #999999 0.5vw;
+}
+
+.folder-add-container.on {
+  bottom: 0;
+}
+
+.folder-add-title {
+  margin: 20% 0 0 0;
+  font-size: 7vw;
+}
+
+.folder-add-input {
+  margin: 15% 0 0 0;
+  width: 94%;
+  font-size: 5vw;
+  padding: 3%;
+  border: black solid 0.5vw;
+  border-radius: 2vw;
+}
+
+.folder-add-input:focus {
+  outline: none;
+  box-shadow: 0 0 0.5vw 0.5vw rgb(114, 180, 235);
+}
+
+.folder-add-text-length {
+  text-align: end;
+  font-size: 5vw;
+  margin-top: 5%;
+}
+

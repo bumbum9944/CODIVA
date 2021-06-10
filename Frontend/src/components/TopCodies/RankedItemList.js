@@ -1,9 +1,44 @@
 import { React } from "react";
 import "./RankedItemList.css";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
-import { BsBookmarkFill, BsBookmark } from "react-icons/bs";
+import { BsBookmarkFill } from "react-icons/bs";
 
-function RankedItemList({ rankedItem, toggleSaved, toggleLiked }) {
+function RankedItemList({
+  onChangeSelectedItem,
+  rankedItem,
+  toggleSaved,
+  toggleLiked
+}) {
+  function openDeleteToast() {
+    document.querySelector("#delete").classList.add("reveal");
+    setTimeout(() => {
+      document.querySelector("#delete").classList.remove("reveal");
+    }, 2000);
+  }
+
+  function openFolderListSlide(item, index) {
+    if (item.isSaved) {
+      toggleSaved(index);
+      openDeleteToast();
+    } else {
+      onChangeSelectedItem(index);
+      document.querySelector("body").classList.add("no-scroll2");
+      document
+        .querySelector(".folder-list-slide-container")
+        .classList.add("on");
+      let div = document.createElement("div");
+      div.id = "dimmed2";
+      document.querySelector(".App").append(div);
+      document
+        .querySelector("#dimmed2")
+        .addEventListener("scroll touchmove touchend mousewheel", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        });
+    }
+  }
+
   const topCodyList = rankedItem.map((element, index) => {
     let likeButton;
     if (element.isLiked === true) {
@@ -52,14 +87,14 @@ function RankedItemList({ rankedItem, toggleSaved, toggleLiked }) {
     return (
       <div key={index} className="top-codies-item">
         <img
-          className="top-codies-item-image"
+          className="top-codies-item"
           src={element.imageUrl}
-          alt="top-cody-image"
+          alt="top-cody"
         />
         <div
           className="cody-save-button"
           onClick={() => {
-            toggleSaved(index);
+            openFolderListSlide(element, index);
           }}
         >
           {saveButton}

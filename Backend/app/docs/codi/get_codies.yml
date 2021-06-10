@@ -1,0 +1,57 @@
+tags:
+  - codi
+summary: API for getting codi data in page of top codies.
+definitions:
+  User:
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    example:
+      email: harasan@elice.io
+      password: password
+  Response:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: integer
+            cnt:
+              type: integer
+            hits:
+              type: integer
+            url:
+              type: string
+            apparels:
+              type: array
+              items:
+                type: object
+                properties:
+                  category:
+                    type: string
+                  color:
+                    type: string
+    example:
+
+parameters:
+  - in: query
+    name: count
+    required: false
+    description: max size of data to request
+    schema:
+      type: integer
+      format: int32
+      example: 20
+responses:
+  "200":
+    description: successful operation
+    content:
+      application/json:
+        schema:
+          $ref: "#/definitions/Response"

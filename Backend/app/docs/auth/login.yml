@@ -1,0 +1,46 @@
+tags:
+  - auth
+summary: API for log in our service
+definitions:
+  User:
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    example:
+      email: harasan@elice.io
+      password: password
+  Response:
+    type: object
+    properties:
+      access_token:
+        type: string
+      user:
+        type: object
+        properties:
+          user_id:
+            type: string
+          user_name:
+            type: string
+    example:
+      access_token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYyMjg4MzAzNCwianRpIjoiMGNlMDk2N2YtMzE1Mi00NDZiLWI0ZTUtNjNiN2FmZGUwYmY1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImhhbnJhc2FuQGVsaWNlLmlvIiwibmJmIjoxNjIyODgzMDM0LCJleHAiOjE2MjMxNDIyMzR9.wUPyiNIyoy3X8hCPevPNuEyK5i5cIa06mf9THdiHpJ8"
+      user:
+        user_id: 1
+        user_name: "hanrasan"
+parameters:
+  - in: body
+    name: body
+    required: true
+    description: register user
+    schema:
+      $ref: "#/definitions/User"
+    default: all
+responses:
+  "200":
+    description: successful operation
+    content:
+      application/json:
+        schema:
+          $ref: "#/definitions/Response"

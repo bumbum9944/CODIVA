@@ -1,25 +1,21 @@
-import { React } from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import "./SlideMenu.css";
 import CloseIcon from "@material-ui/icons/Close";
 import { BsHeartFill, BsBookmarksFill } from "react-icons/bs";
+import UserContext from "contexts/user";
 
 function SlideMenu() {
   const history = useHistory();
+  const { state, actions } = useContext(UserContext);
+  const { user } = state;
+  const { setUser, setToken, setHeader } = actions;
 
   function closeSlideMenu() {
     document.querySelector("body").classList.remove("no-scroll");
     document.querySelector("#dimmed").remove();
     document.querySelector(".slide-menu-container").classList.remove("on");
   }
-
-  let footerButton;
-  footerButton = <div className="slide-menu-footer-btn">LOG IN</div>;
-
-  // <div className="slide-menu-footer-btn"
-  // >
-  //   LOG IN
-  // </div>;
 
   return (
     <div className="slide-menu-container">
@@ -54,16 +50,41 @@ function SlideMenu() {
           <BsHeartFill className="slide-menu-icon" />
           TOP CODIES
         </li>
-        <li className="slide-menu-item">
+        <li
+          className="slide-menu-item"
+          onClick={() => {
+            if (!user) {
+              closeSlideMenu();
+              document.querySelector("#login-modal").click();
+              return;
+            }
+            history.push("/my-picks");
+            closeSlideMenu();
+          }}
+        >
           <BsBookmarksFill className="slide-menu-icon" />
           MY PICKS
         </li>
       </ul>
       <div className="slide-menu-footer">
         <div className="slide-menu-white-line"></div>
-        {footerButton}
-        {/* <div className="slide-menu-home-btn">SIGN IN</div>
-        <div className="slide-menu-home-btn">SIGN UP</div> */}
+        <div
+          className="slide-menu-footer-btn"
+          onClick={() => {
+            closeSlideMenu();
+            if (!user) {
+              // modal창
+              document.querySelector("#login-modal").click();
+            } else {
+              localStorage.clear();
+              setToken(null);
+              setUser(null);
+              setHeader(null);
+            }
+          }}
+        >
+          {!user ? "LOG IN" : "LOGOUT"}
+        </div>
       </div>
     </div>
   );

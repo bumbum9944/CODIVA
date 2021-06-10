@@ -1,5 +1,17 @@
-.App {
+#root {
   position: relative;
   width: 100vw;
   height: 100vh;
+}
+
+* {
+  font-family: "Staatliches", "Do Hyeon", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+button.form-button {
+  margin-top: 12px;
 }

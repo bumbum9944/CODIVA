@@ -1,11 +1,50 @@
-import React from "react";
+import { React, useContext } from "react";
 import "./CodyCard.css";
-import CodyModalInfo from "./CodyModalInfo";
-import Button from "@material-ui/core/Button";
-import CloseIcon from "@material-ui/icons/Close";
+import CodyModal from "../common/Cody/CodyModal";
 import { BsBookmarkFill, BsBookmark } from "react-icons/bs";
+import UserContext from "contexts/user";
 
-function CodyCard({ item, itemId, toggleSaved, toggleLiked, viewCntIncrease }) {
+function CodyCard({
+  item,
+  targetIndex,
+  toggleSaved,
+  toggleLiked,
+  viewCntIncrease,
+  setSelectedItem
+}) {
+  const { state } = useContext(UserContext);
+  const { user } = state;
+
+  function openDeleteToast() {
+    document.querySelector("#delete").classList.add("reveal");
+    setTimeout(() => {
+      document.querySelector("#delete").classList.remove("reveal");
+    }, 2000);
+  }
+
+  function openFolderListSlide(item, index) {
+    if (item.isSaved) {
+      toggleSaved({ index: index, id: item.id });
+      openDeleteToast();
+    } else {
+      setSelectedItem({ index: index, id: item.id });
+      document.querySelector("body").classList.add("no-scroll2");
+      document
+        .querySelector(".folder-list-slide-container")
+        .classList.add("on");
+      let div = document.createElement("div");
+      div.id = "dimmed2";
+      document.querySelector(".App").append(div);
+      document
+        .querySelector("#dimmed2")
+        .addEventListener("scroll touchmove touchend mousewheel", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        });
+    }
+  }
+
   let saveButton;
   if (item.isSaved === true) {
     saveButton = (
@@ -21,36 +60,27 @@ function CodyCard({ item, itemId, toggleSaved, toggleLiked, viewCntIncrease }) {
       <BsBookmark
         style={{
           fontSize: "4vh",
-          color: "#FFFFFF"
+          color: "black"
         }}
       />
     );
   }
 
-  function handleToggleSaved() {
-    toggleSaved(itemId);
-  }
-
   function openModal() {
     document.querySelector("body").classList.add("no-scroll");
-    document.querySelector(`#modal-${itemId}`).classList.remove("hidden");
-  }
-
-  function closeModal() {
-    document.querySelector("body").classList.remove("no-scroll");
-    document.querySelector(`#modal-${itemId}`).classList.add("hidden");
+    document.querySelector(`#modal-${targetIndex}`).classList.remove("hidden");
   }
 
   return (
     <div className="cody-card-container">
       <img
-        className="cody-card-image"
+        className="cody-card"
         src={item.imageUrl}
         onClick={() => {
-          viewCntIncrease(itemId);
+          viewCntIncrease({ index: targetIndex, id: item.id });
           openModal();
         }}
-        alt="cody-image"
+        alt="cody"
       />
       <div
         className="cody-save-button"
@@ -59,32 +89,22 @@ function CodyCard({ item, itemId, toggleSaved, toggleLiked, viewCntIncrease }) {
           right: "1vw",
           top: "0"
         }}
-        onClick={handleToggleSaved}
+        onClick={() => {
+          if (!user) {
+            // modal창
+            document.querySelector("#login-modal").click();
+          } else {
+            openFolderListSlide(item, targetIndex);
+          }
+        }}
       >
         {saveButton}
       </div>
-      <div id={`modal-${itemId}`} className="modal hidden">
-        <div className="modal-overlay" onClick={closeModal}></div>
-        <Button
-          className="modal-close-button"
-          style={{ position: "absolute", right: "5vw", top: "10vh" }}
-          onClick={closeModal}
-        >
-          <CloseIcon style={{ fontSize: "4vh", color: "white" }} />
-        </Button>
-        <div className="modal-content">
-          <img
-            className="modal-card-image"
-            src={item.imageUrl}
-            alt="cody-image"
-          />
-          <CodyModalInfo
-            item={item}
-            itemId={itemId}
-            toggleLiked={toggleLiked}
-          />
-        </div>
-      </div>
+      <CodyModal
+        targetIndex={targetIndex}
+        item={item}
+        toggleLiked={toggleLiked}
+      />
     </div>
   );
 }
