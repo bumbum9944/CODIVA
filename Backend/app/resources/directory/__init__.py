@@ -70,7 +70,7 @@ on d.user_id=sv.directory_user_id and d.name=sv.directory_name where d.user_id=%
         return jsonify(message=f"successfully created: {req['name']}")
 
     @jwt_required()
-    def put(self, user_id):
+    def put(self, user_id, dir_id):
         if get_jwt_identity() != int(user_id):
             abort(
                 Response(
@@ -81,12 +81,7 @@ on d.user_id=sv.directory_user_id and d.name=sv.directory_name where d.user_id=%
             )
 
         req = request.get_json(force=True)
-        if (
-            not "name" in req
-            or req["name"] == ""
-            or not "new_name" in req
-            or req["new_name"] == ""
-        ):
+        if not "new_name" in req or req["new_name"] == "":
             abort(
                 Response(
                     status=400,
@@ -98,8 +93,8 @@ on d.user_id=sv.directory_user_id and d.name=sv.directory_name where d.user_id=%
             )
         with connect_db() as connection:
             with connection.cursor() as cursor:
-                sql = "SELECT name FROM `directory` WHERE user_id=%s and name=%s"
-                cursor.execute(sql, (user_id, req["name"]))
+                sql = "SELECT name FROM `directory` WHERE user_id=%s and id=%s"
+                cursor.execute(sql, (user_id, dir_id))
                 if not cursor.fetchone():
                     abort(
                         Response(
@@ -111,15 +106,13 @@ on d.user_id=sv.directory_user_id and d.name=sv.directory_name where d.user_id=%
                         )
                     )
 
-                sql = "UPDATE `directory` SET name=%s WHERE user_id=%s and name=%s"
-                cursor.execute(sql, (req["new_name"], user_id, req["name"]))
+                sql = "UPDATE `directory` SET name=%s WHERE user_id=%s and id=%s"
+                cursor.execute(sql, (req["new_name"], user_id, dir_id))
             connection.commit()
-        return jsonify(
-            message=f"Successfully update directory name: {req['name']} -> {req['new_name']}"
-        )
+        return jsonify(message=f"Successfully update directory name: {req['new_name']}")
 
     @jwt_required()
-    def delete(self, user_id):
+    def delete(self, user_id, dir_id):
         if get_jwt_identity() != int(user_id):
             abort(
                 Response(
@@ -129,21 +122,10 @@ on d.user_id=sv.directory_user_id and d.name=sv.directory_name where d.user_id=%
                 )
             )
 
-        req = request.get_json(force=True)
-        if not "name" in req or req["name"] == "":
-            abort(
-                Response(
-                    status=400,
-                    response=json.dumps(
-                        {"message": "Directory name can't be null or empty space."}
-                    ),
-                    mimetype="application/json",
-                )
-            )
         with connect_db() as connection:
             with connection.cursor() as cursor:
-                sql = "SELECT name FROM `directory` WHERE user_id=%s and name=%s"
-                cursor.execute(sql, (user_id, req["name"]))
+                sql = "SELECT name FROM `directory` WHERE user_id=%s and id=%s"
+                cursor.execute(sql, (user_id, dir_id))
                 if not cursor.fetchone():
                     abort(
                         Response(
@@ -155,7 +137,7 @@ on d.user_id=sv.directory_user_id and d.name=sv.directory_name where d.user_id=%
                         )
                     )
 
-                sql = "DELETE FROM `directory` WHERE user_id=%s and name=%s"
-                cursor.execute(sql, (user_id, req["name"]))
+                sql = "DELETE FROM `directory` WHERE user_id=%s and id=%s"
+                cursor.execute(sql, (user_id, dir_id))
             connection.commit()
-        return jsonify(message=f"Successfully deleted: {req['name']}")
+        return jsonify(message=f"Successfully deleted")

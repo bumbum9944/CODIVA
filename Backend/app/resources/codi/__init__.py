@@ -135,6 +135,6 @@ def search():
 
     with connect_es() as es:
         result = es.search(query)
-        codies = [{**x["_source"], "id": x["_id"]} for x in result["hits"]["hits"]]
+        codies = [{**x["_source"], "id": int(x["_id"])} for x in result["hits"]["hits"]]
         es.close()
     return jsonify(data=codies)
