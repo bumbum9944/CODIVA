@@ -125,7 +125,7 @@ function Popup({ apparels, setApparels, setSelectedCategory, gender }) {
             }
           >
             <AlertTitle>Warning</AlertTitle>
-            카테고리를 선택해주세요🧐
+            검색하실 옷을 선택해주세요🧐
           </Alert>
         </Snackbar>
 
