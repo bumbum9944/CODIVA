@@ -8,3 +8,6 @@ data/train_images/
 data/test_images/
 *.env
 *.log
+Backend/flask_app/logs/
+flask_app/logs
+logs/
