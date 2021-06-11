@@ -40,9 +40,9 @@ function ChooseDetail({
   detailOpen
 }) {
   const [categoryWarning, setCategoryWarning] = useState(false);
-  const local_apparels = JSON.parse(localStorage.getItem("apparels")) || [];
+  const local_apparels = JSON.parse(sessionStorage.getItem("apparels")) || [];
   const local_selectedCategory = JSON.parse(
-    localStorage.getItem("selectedCategory")
+    sessionStorage.getItem("selectedCategory")
   ) || {
     OUTER: false,
     TOP: false,
@@ -72,12 +72,12 @@ function ChooseDetail({
     if (selectedOption.category.length === 0) {
       setCategoryWarning(true);
     } else {
-      localStorage.setItem(
+      sessionStorage.setItem(
         "apparels",
         JSON.stringify([...local_apparels, selectedOption])
       );
       setApparels([...apparels, selectedOption]);
-      localStorage.setItem(
+      sessionStorage.setItem(
         "selectedCategory",
         JSON.stringify({ ...local_selectedCategory, [detail]: true })
       );

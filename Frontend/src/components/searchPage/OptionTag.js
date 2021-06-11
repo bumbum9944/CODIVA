@@ -46,10 +46,10 @@ function OptionTag({
 }) {
   const classes = useStyles();
 
-  const local_gender = localStorage.getItem("gender");
-  const local_apparels = JSON.parse(localStorage.getItem("apparels")) || [];
+  const local_gender = sessionStorage.getItem("gender");
+  const local_apparels = JSON.parse(sessionStorage.getItem("apparels")) || [];
   const local_selectedCategory = JSON.parse(
-    localStorage.getItem("selectedCategory")
+    sessionStorage.getItem("selectedCategory")
   ) || {
     OUTER: false,
     TOP: false,
@@ -58,7 +58,7 @@ function OptionTag({
   };
 
   const handleDelete = chipToDelete => () => {
-    localStorage.setItem(
+    sessionStorage.setItem(
       "apparels",
       JSON.stringify(
         local_apparels.filter(chip => chip.category !== chipToDelete.category)
@@ -67,7 +67,7 @@ function OptionTag({
     setApparels(chips =>
       chips.filter(chip => chip.category !== chipToDelete.category)
     );
-    localStorage.setItem(
+    sessionStorage.setItem(
       "selectedCategory",
       JSON.stringify({
         ...local_selectedCategory,
