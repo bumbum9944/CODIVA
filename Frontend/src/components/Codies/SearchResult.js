@@ -5,21 +5,17 @@ import { request, requestWithJWT } from "lib/client";
 import UserContext from "contexts/user";
 import Button from "@material-ui/core/Button";
 
-function SearchResult({
-  codies,
-  setCodies,
-  currentPage,
-  setCurrentPage,
-  gender,
-  apparels
-}) {
+function SearchResult({ codies, setCodies, currentPage, setCurrentPage }) {
   const history = useHistory();
   const [newSearchResult, setNewSearchResult] = useState(codies);
   const { state } = useContext(UserContext);
   const { user } = state;
 
+  const local_gender = sessionStorage.getItem("gender");
+  const local_apparels = JSON.parse(sessionStorage.getItem("apparels"));
+
   useEffect(() => {
-      setNewSearchResult(codies);
+    setNewSearchResult(codies);
   }, [codies]);
 
   function pushToSearch() {
@@ -42,8 +38,8 @@ function SearchResult({
       );
     }
     request("post", `/codi/search?from=${currentPage}`, {
-      gender: gender,
-      apparels: apparels
+      gender: local_gender,
+      apparels: local_apparels
     }).then(response => {
       const newCodies = response.data.data.map(item => {
         const itemId = item.id;
