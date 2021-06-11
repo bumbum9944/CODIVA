@@ -18,3 +18,27 @@ button.form-button {
 .Home {
   position: fixed;
 }
+
+#wrapper {
+  display: none;
+}
+
+@media screen and (min-width: 1025px) and (min-height: 830px) {
+  .App {
+    display: none;
+  }
+
+  #wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  #content {
+    width: 100%;
+    padding: 20px 0px;
+    text-align: center;
+    color: #000000;
+    font-size: 3.5rem;
+  }
+}
