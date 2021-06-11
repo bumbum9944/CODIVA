@@ -31,6 +31,9 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
   const { state } = useContext(UserContext);
   const { user } = state;
 
+  const local_gender = localStorage.getItem("gender");
+  const local_apparels = JSON.parse(localStorage.getItem("apparels"));
+
   useEffect(async () => {
     let liked;
     let saved;
@@ -47,8 +50,8 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
       );
     }
     request("post", "/codi/search", {
-      gender: gender,
-      apparels: apparels
+      gender: local_gender,
+      apparels: local_apparels
     }).then(response => {
       const newCodies = response.data.data.map(item => {
         const itemId = item.id;
@@ -117,8 +120,8 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
     <div>
       <Header headerText="CODIES" />
       <Paper component="ul" className={classes.root}>
-        <Chip className={classes.chip} label={gender} />
-        {apparels.map((data, index) => {
+        <Chip className={classes.chip} label={local_gender} />
+        {local_apparels.map((data, index) => {
           return (
             <li key={index}>
               <Chip
