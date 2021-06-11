@@ -15,8 +15,19 @@ function HomeSearchButton({ setGender, setApparels, setSelectedCategory }) {
           borderRadius: "3vh"
         }}
         onClick={() => {
+          sessionStorage.setItem("gender", "");
           setGender("");
+          sessionStorage.setItem("apparels", JSON.stringify([]));
           setApparels([]);
+          sessionStorage.setItem(
+            "selectedCategory",
+            JSON.stringify({
+              OUTER: false,
+              TOP: false,
+              BOTTOM: false,
+              "ONE PIECE": false
+            })
+          );
           setSelectedCategory({
             OUTER: false,
             TOP: false,

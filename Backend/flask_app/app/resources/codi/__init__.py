@@ -1,4 +1,4 @@
-import os, json
+import os, json, ndjson
 from flask import jsonify, request, Blueprint, abort, Response
 from database import connect_db
 from flasgger import swag_from
@@ -99,6 +99,24 @@ def make_query(
 
 @codi.route("/search", methods=["POST"])
 def search():
+    keywords = {
+        "cardigan": "cardigan",
+        "coat": "coat",
+        "jacket": "jacket",
+        "vest": "vest",
+        "tee(short)": "short_sleeved_tee",
+        "tee(long)": "long_sleeved_tee",
+        "sleeveless": "sleeveless",
+        "mtm": "mtm",
+        "hood": "hood",
+        "shirts": "shirts",
+        "jeans": "jeans",
+        "leggings": "leggings",
+        "slacks": "slacks",
+        "skirts": "skirts",
+        "training": "training",
+        "one-piece": "onepiece",
+    }
     query_param = request.args.to_dict()
     req = request.get_json(force=True)
 
@@ -124,7 +142,7 @@ def search():
 
     for apparel in req["apparels"]:
         matches = []
-        matches.append(make_match("apparels.category", apparel["category"]))
+        matches.append(make_match("apparels.category", keywords[apparel["category"]]))
         if apparel["color"].lower() != "all":
             matches.append(make_match("apparels.color", apparel["color"]))
         labels.append(make_nested_label("apparels", matches))
@@ -138,3 +156,58 @@ def search():
         codies = [{**x["_source"], "id": int(x["_id"])} for x in result["hits"]["hits"]]
         es.close()
     return jsonify(data=codies)
+
+
+def make_update_label(index: str, id: int) -> dict:
+    return {"update": {"_id": str(id), "_index": index}}
+
+
+def make_doc_label(doc: dict) -> dict:
+    return {"doc": doc}
+
+
+@codi.route("/synchronize", methods=["POST"])
+def synchronize_db_es():
+    """
+    [추가 보완할 사안]
+    1. 추후 리팩토링할 때, 관리자 계정 설정까지 해서,
+    관리자만 해당 작업을 요청할 수 있도록 설정할 것
+
+    2. from, size를 params로 받아서 동기화 작업을 분기로 나누어 진행하도록 할 것
+    """
+    req = request.get_json(force=True)
+    if not "index" in req:
+        abort(
+            Response(
+                status=400,
+                response=json.dumps(
+                    {"message": f"Invalid field value (index)."}, indent=4
+                ),
+                mimetype="application/json",
+            )
+        )
+
+    body = []
+    with connect_db() as db:
+        with db.cursor() as cursor:
+            bulk_query = {}
+            sql = "SELECT count(*) as total FROM `codies`"
+            cursor.execute(sql)
+            total = cursor.fetchone()["total"]
+            for i in range(1, total + 1, 10000):
+                sql = "SELECT * FROM `codies` WHERE id >= %s LIMIT 10000"
+                cursor.execute(sql, (i,))
+                result = cursor.fetchall()
+                # print(result)
+                for docs in result:
+                    doc = {key: val for key, val in docs.items() if key != "id"}
+                    doc["apparels"] = json.loads(doc["apparels"])
+                    body += [
+                        make_update_label(req["index"], docs["id"]),
+                        make_doc_label(doc),
+                    ]
+                result = ndjson.dumps(body)
+                with connect_es() as es:
+                    res = es.bulk(ndjson.dumps(body))
+        db.commit()
+    return jsonify(res=res)

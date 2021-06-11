@@ -91,24 +91,25 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function SearchPage2(props) {
+  const local_gender = sessionStorage.getItem("gender");
   const images = [
     {
-      url: `/images/${props.gender}_outer.jpg`,
+      url: `/images/${local_gender}_outer.jpg`,
       title: "OUTER",
       width: "100%"
     },
     {
-      url: `/images/${props.gender}_top.jpg`,
+      url: `/images/${local_gender}_top.jpg`,
       title: "TOP",
       width: "100%"
     },
     {
-      url: `/images/${props.gender}_bottom.jpg`,
+      url: `/images/${local_gender}_bottom.jpg`,
       title: "BOTTOM",
       width: "100%"
     },
     {
-      url: `/images/${props.gender}_one_piece.jpg`,
+      url: `/images/${local_gender}_one_piece.jpg`,
       title: "ONE PIECE",
       width: "100%"
     }
@@ -118,8 +119,17 @@ function SearchPage2(props) {
   const [detailOpen, setDetailOpen] = useState(false);
   const [detailWarning, setDetailWarning] = useState(false);
 
+  const local_selectedCategory = JSON.parse(
+    sessionStorage.getItem("selectedCategory")
+  ) || {
+    OUTER: false,
+    TOP: false,
+    BOTTOM: false,
+    "ONE PIECE": false
+  };
+
   const handleClickOpen = d => {
-    if (props.selectedCategory[d]) {
+    if (local_selectedCategory[d]) {
       setDetailWarning(true);
     } else {
       setDetailOpen(true);

@@ -32,6 +32,9 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
   const { state } = useContext(UserContext);
   const { user } = state;
 
+  const local_gender = sessionStorage.getItem("gender");
+  const local_apparels = JSON.parse(sessionStorage.getItem("apparels"));
+
   useEffect(async () => {
     let liked;
     let saved;
@@ -141,8 +144,8 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
     <div>
       <Header headerText="CODIES" />
       <Paper component="ul" className={classes.root}>
-        <Chip className={classes.chip} label={gender} />
-        {apparels.map((data, index) => {
+        <Chip className={classes.chip} label={local_gender} />
+        {local_apparels.map((data, index) => {
           return (
             <li key={index}>
               <Chip

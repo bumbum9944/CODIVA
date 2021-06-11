@@ -104,6 +104,9 @@ function App() {
 
   return (
     <BrowserRouter>
+      <div id="wrapper">
+        <h1 id="content">1024 X 830 이하의 디스플레이에서 사용해주세요 😎 </h1>
+      </div>
       <div className="App">
         <Menu />
         <SlideMenu />
