@@ -15,6 +15,9 @@
   border: rgb(178, 178, 178) solid 0.5vw;
   width : 40vw;
   height: 60vw;
+  background-position: center;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 
 .folder-basic-image {
