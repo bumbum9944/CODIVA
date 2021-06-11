@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
+function Codies({ gender, apparels, folderList, addFolder }) {
   const classes = useStyles();
   const [selectedItem, setSelectedItem] = useState({});
   const [codies, setCodies] = useState([]);
