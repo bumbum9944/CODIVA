@@ -1,8 +1,12 @@
-.search-result-message {
+.search-result-message.active {
   display: flex;
   justify-content: center;
   padding: 2vh;
   font-size: 5vw;
+}
+
+.search-result-message {
+  display: none;
 }
 
 .no-result-message {
