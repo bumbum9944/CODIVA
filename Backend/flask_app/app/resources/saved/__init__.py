@@ -7,7 +7,7 @@ from database import connect_db
 
 class SavedApi(Resource):
     @jwt_required()
-    def get(self, user_id, dir_name=None):
+    def get(self, user_id, dir_id=None):
         if get_jwt_identity() != int(user_id):
             abort(
                 Response(
@@ -16,10 +16,10 @@ class SavedApi(Resource):
                     mimetype="application/json",
                 )
             )
-        if not dir_name:
+        if not dir_id:
             with connect_db() as connection:
                 with connection.cursor() as cursor:
-                    sql = "select codi_id from saved where directory_user_id=%s group by codi_id"
+                    sql = "select codi_id from saved where directory_user_id=%s"
                     cursor.execute(sql, (user_id,))
                     res = cursor.fetchall()
                 connection.commit()
@@ -27,8 +27,21 @@ class SavedApi(Resource):
         else:
             with connect_db() as connection:
                 with connection.cursor() as cursor:
-                    sql = "select c.id, c.url, c.gender, c.apparels, c.hits, c.likes_cnt from (select * from saved where directory_name=%s and directory_user_id=%s) as s left join codies as c on s.codi_id = c.id  order by s.created_date desc"
-                    cursor.execute(sql, (dir_name, user_id))
+                    sql = "select name from directory where id=%s"
+                    cursor.execute(sql, (dir_id,))
+                    dir_name = cursor.fetchone()
+                    if not dir_name:
+                        abort(
+                            Response(
+                                status=400,
+                                response=json.dumps(
+                                    {"message": "Invalid directory id."}
+                                ),
+                                mimetype="application/json",
+                            )
+                        )
+                    sql = "select c.id, c.url, c.gender, c.apparels, c.hits, c.likes_cnt from (select * from saved where directory_name=%s and directory_user_id=%s) as s left join codies as c on s.codi_id = c.id order by s.created_date desc"
+                    cursor.execute(sql, (dir_name["name"], user_id))
                     res = cursor.fetchall()
                     for r in res:
                         r["apparels"] = json.loads(r["apparels"])
@@ -36,7 +49,7 @@ class SavedApi(Resource):
             return jsonify(data=res)
 
     @jwt_required()
-    def post(self, user_id, dir_name, codi_id):
+    def post(self, user_id, dir_id, codi_id):
         if get_jwt_identity() != int(user_id):
             abort(
                 Response(
@@ -59,14 +72,24 @@ class SavedApi(Resource):
                             mimetype="application/json",
                         )
                     )
-
+                sql = "select name from directory where id=%s"
+                cursor.execute(sql, (dir_id,))
+                dir_name = cursor.fetchone()
+                if not dir_name:
+                    abort(
+                        Response(
+                            status=400,
+                            response=json.dumps({"message": "Invalid directory id."}),
+                            mimetype="application/json",
+                        )
+                    )
                 sql = "insert into saved(codi_id, directory_user_id, directory_name) values(%s, %s, %s)"
-                cursor.execute(sql, (codi_id, user_id, dir_name))
+                cursor.execute(sql, (codi_id, user_id, dir_name["name"]))
             connection.commit()
         return jsonify(message="Successfully saved.")
 
     @jwt_required()
-    def put(self, user_id, dir_name):
+    def put(self, user_id, dir_id):
         if get_jwt_identity() != int(user_id):
             abort(
                 Response(
@@ -109,9 +132,26 @@ class SavedApi(Resource):
                             mimetype="application/json",
                         )
                     )
+                sql = "select name from directory where id=%s"
+                cursor.execute(sql, (dir_id,))
+                dir_name = cursor.fetchone()
+                if not dir_name:
+                    abort(
+                        Response(
+                            status=400,
+                            response=json.dumps({"message": "Invalid directory id."}),
+                            mimetype="application/json",
+                        )
+                    )
                 sql = "update saved set directory_name=%s where directory_user_id=%s and directory_name=%s and codi_id in %s"
                 cursor.execute(
-                    sql, (req["new_dir_name"], user_id, dir_name, tuple(req["targets"]))
+                    sql,
+                    (
+                        req["new_dir_name"],
+                        user_id,
+                        dir_name["name"],
+                        tuple(req["targets"]),
+                    ),
                 )
             connection.commit()
         return jsonify(
@@ -119,7 +159,7 @@ class SavedApi(Resource):
         )
 
     @jwt_required()
-    def delete(self, user_id, dir_name=None):
+    def delete(self, user_id, dir_id=None):
         if get_jwt_identity() != int(user_id):
             abort(
                 Response(
@@ -130,7 +170,7 @@ class SavedApi(Resource):
             )
 
         req = request.get_json(force=True)
-        if not dir_name and not "id" in req:
+        if not dir_id and not "id" in req:
             abort(
                 Response(
                     status=400,
@@ -142,7 +182,7 @@ class SavedApi(Resource):
                     mimetype="application/json",
                 )
             )
-        if dir_name and not "targets" in req:
+        if dir_id and not "targets" in req:
             abort(
                 Response(
                     status=400,
@@ -156,13 +196,28 @@ class SavedApi(Resource):
             )
         with connect_db() as connection:
             with connection.cursor() as cursor:
-                if dir_name:
+                if dir_id:
+                    sql = "select name from directory where id=%s"
+                    cursor.execute(sql, (dir_id,))
+                    dir_name = cursor.fetchone()
+                    if not dir_name:
+                        abort(
+                            Response(
+                                status=400,
+                                response=json.dumps(
+                                    {"message": "Invalid directory id."}
+                                ),
+                                mimetype="application/json",
+                            )
+                        )
                     sql = "delete from saved where directory_user_id=%s and directory_name=%s and codi_id in %s"
-                    cursor.execute(sql, (user_id, dir_name, tuple(req["targets"])))
+                    cursor.execute(
+                        sql, (user_id, dir_name["name"], tuple(req["targets"]))
+                    )
                 else:
                     sql = "delete from saved where directory_user_id=%s and codi_id=%s"
                     cursor.execute(sql, (user_id, req["id"]))
             connection.commit()
         return jsonify(
-            message=f"Successfully delete {len(req['targets']) if dir_name else 1} images."
+            message=f"Successfully delete {len(req['targets']) if dir_id else 1} images."
         )

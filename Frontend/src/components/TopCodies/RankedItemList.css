@@ -7,8 +7,12 @@
 }
 
 .top-codies-item-image {
-  width: 100vw;
-  height: 60vh;
+  width: 99vw;
+  height: 120vw;
+  border: black solid 0.5vw;
+  background-position: center;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 
 .cody-save-button {
@@ -22,6 +26,7 @@
   justify-content: center;
   margin: 1vh 3vw 0;
   padding-bottom: 5vh;
+  font-size: 5vw;
 }
 
 .top-codies-like-button {

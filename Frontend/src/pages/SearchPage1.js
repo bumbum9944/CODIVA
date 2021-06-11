@@ -22,7 +22,7 @@ function SearchPage1(props) {
   const classes = useStyles();
 
   return (
-    <>
+    <div className="search-page">
       <Header headerText="SEARCH" />
       <Paper className={classes.root}>
         <Chip className={classes.chip} label="선택하신 옵션이 표시됩니다😉" />
@@ -36,7 +36,7 @@ function SearchPage1(props) {
       >
         <GenderSelect {...props} />
       </div>
-    </>
+    </div>
   );
 }
 

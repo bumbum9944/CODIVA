@@ -1,14 +1,17 @@
-import { React } from "react";
+import { React, useContext } from "react";
+import UserContext from "contexts/user";
 import "./RankedItemList.css";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
-import { BsBookmarkFill } from "react-icons/bs";
+import { BsBookmarkFill, BsBookmark } from "react-icons/bs";
 
 function RankedItemList({
-  onChangeSelectedItem,
+  setSelectedItem,
   rankedItem,
   toggleSaved,
   toggleLiked
 }) {
+  const { state } = useContext(UserContext);
+  const { user } = state;
   function openDeleteToast() {
     document.querySelector("#delete").classList.add("reveal");
     setTimeout(() => {
@@ -18,10 +21,10 @@ function RankedItemList({
 
   function openFolderListSlide(item, index) {
     if (item.isSaved) {
-      toggleSaved(index);
+      toggleSaved({ index: index, id: item.id });
       openDeleteToast();
     } else {
-      onChangeSelectedItem(index);
+      setSelectedItem({ index: index, id: item.id });
       document.querySelector("body").classList.add("no-scroll2");
       document
         .querySelector(".folder-list-slide-container")
@@ -45,9 +48,6 @@ function RankedItemList({
       likeButton = (
         <BsHeartFill
           className="top-codies-info-text"
-          onClick={() => {
-            toggleLiked(index);
-          }}
           style={{ fontSize: "6vw", color: "#FF0000" }}
         />
       );
@@ -55,9 +55,6 @@ function RankedItemList({
       likeButton = (
         <BsHeart
           className="top-codies-info-text"
-          onClick={() => {
-            toggleLiked(index);
-          }}
           style={{ fontSize: "6vw", color: "black" }}
         />
       );
@@ -75,10 +72,10 @@ function RankedItemList({
       );
     } else {
       saveButton = (
-        <BsBookmarkFill
+        <BsBookmark
           style={{
             fontSize: "11vw",
-            color: "#53565A"
+            color: "black"
           }}
         />
       );
@@ -87,14 +84,19 @@ function RankedItemList({
     return (
       <div key={index} className="top-codies-item">
         <img
-          className="top-codies-item"
+          className="top-codies-item-image"
           src={element.imageUrl}
           alt="top-cody"
         />
         <div
           className="cody-save-button"
           onClick={() => {
-            openFolderListSlide(element, index);
+            if (!user) {
+              // modal창
+              document.querySelector("#login-modal").click();
+            } else {
+              openFolderListSlide(element, index);
+            }
           }}
         >
           {saveButton}
@@ -106,7 +108,17 @@ function RankedItemList({
             justifyContent: "space-between"
           }}
         >
-          <div className="top-codies-like-button">
+          <div
+            className="top-codies-like-button"
+            onClick={() => {
+              if (!user) {
+                // modal창
+                document.querySelector("#login-modal").click();
+              } else {
+                toggleLiked(element.id, index);
+              }
+            }}
+          >
             {likeButton}
             <p
               className="top-codies-info-text"

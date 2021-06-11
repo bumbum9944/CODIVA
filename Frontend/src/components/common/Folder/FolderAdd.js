@@ -17,7 +17,7 @@ function FolderAdd({
     }
   }, [oldName]);
   function closeSlideMenu() {
-    if (selectedFolder.targetIndex) {
+    if (selectedFolder && selectedFolder.targetIndex) {
       document
         .querySelector(`#dropbox-inner-${selectedFolder.targetIndex}`)
         .classList.remove("on");
@@ -37,7 +37,7 @@ function FolderAdd({
     } else {
       addFolder(folderInputValue);
     }
-    setFolderInputValue({});
+    setFolderInputValue("");
     closeSlideMenu();
   }
   let addButton;
@@ -64,7 +64,7 @@ function FolderAdd({
         disabled
         style={{
           width: "100%",
-          marginTop: "15%",
+          marginTop: "15vh",
           fontSize: "5vw"
         }}
       >

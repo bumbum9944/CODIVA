@@ -5,6 +5,7 @@ import { request, requestWithJWT } from "lib/client";
 import Menu from "components/common/Menu/Menu";
 import SlideMenu from "components/common/Menu/SlideMenu";
 import Home from "pages/Home";
+import CodibaInfo from "pages/CodibaInfo";
 import Codies from "pages/Codies";
 import SearchPage1 from "pages/SearchPage1";
 import SearchPage2 from "pages/SearchPage2";
@@ -35,48 +36,39 @@ function App() {
     "ONE PIECE": false
   });
   const { state, actions } = useContext(UserContext);
-  const { user, token, header } = state;
-  const { setUser, setToken, setHeader } = actions;
+  const { user, token } = state;
+  const { setUser, setToken } = actions;
 
   function addFolder(newFolderName) {
-    requestWithJWT(
-      "post",
-      `/directory/${user}`,
-      { name: newFolderName },
-      header
-    ).then(response => response.data);
-    const copiedFolderList = JSON.parse(JSON.stringify(folderList));
-    copiedFolderList.push({
-      id: copiedFolderList.length,
-      folderName: newFolderName,
-      itemCnt: 0,
-      imageUrl: ""
-    });
-    setFolderList(copiedFolderList);
+    requestWithJWT("post", `/directory/${user}`, { name: newFolderName }).then(
+      response => {
+        const copiedFolderList = JSON.parse(JSON.stringify(folderList));
+        copiedFolderList.push({
+          id: response.data.id,
+          folderName: newFolderName,
+          itemCnt: 0,
+          imageUrl: ""
+        });
+        setFolderList(copiedFolderList);
+      }
+    );
   }
 
-  function deleteFolder(targetItem) {
-    const { targetIndex, folderName } = { ...targetItem };
-    requestWithJWT(
-      "delete",
-      `/directory/${user}`,
-      { name: folderName },
-      header
-    ).then(response => response.data);
+  function deleteFolder(targetFolder) {
+    const { targetIndex, folderId } = { ...targetFolder };
+    requestWithJWT("delete", `/directory/${user}/${folderId}`).then(
+      response => response.data
+    );
     const copiedFolderList = JSON.parse(JSON.stringify(folderList));
     copiedFolderList.splice(targetIndex, 1);
     setFolderList(copiedFolderList);
   }
 
-  function changeFolderName(targetItem, newFolderName) {
-    const targetIndex = targetItem.targetIndex;
-    const oldName = targetItem.folderName;
-    requestWithJWT(
-      "put",
-      `/directory/${user}`,
-      { name: oldName, new_name: newFolderName },
-      header
-    ).then(response => response.data);
+  function changeFolderName(targetFolder, newFolderName) {
+    const { targetIndex, folderId } = { ...targetFolder };
+    requestWithJWT("put", `/directory/${user}/${folderId}`, {
+      new_name: newFolderName
+    }).then(response => response.data);
     const copiedFolderList = JSON.parse(JSON.stringify(folderList));
     copiedFolderList[targetIndex].folderName = newFolderName;
     setFolderList(copiedFolderList);
@@ -85,12 +77,6 @@ function App() {
   const loadUser = () => {
     setUser(localStorage.getItem("user_id"));
     setToken(localStorage.getItem("token"));
-    setHeader({
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`
-      }
-    });
     if (!user) return;
     // 검증 작업 필요
   };
@@ -101,11 +87,11 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      requestWithJWT("get", `/directory/${user}`, header).then(response => {
+      requestWithJWT("get", `/directory/${user}`).then(response => {
         const res = response.data.data;
-        const folderData = res.map((item, index) => {
+        const folderData = res.map(item => {
           return {
-            id: index,
+            id: item.id,
             folderName: item.name === "default" ? "기본 폴더" : item.name,
             itemCnt: item.cnt,
             imageUrl: item.url
@@ -118,6 +104,9 @@ function App() {
 
   return (
     <BrowserRouter>
+      <div id="wrapper">
+        <h1 id="content">1024 X 830 이하의 디스플레이에서 사용해주세요 😎 </h1>
+      </div>
       <div className="App">
         <Menu />
         <SlideMenu />
@@ -135,6 +124,7 @@ function App() {
               />
             )}
           />
+          <Route path="/codibaInfo" render={() => <CodibaInfo />} />
           <Route
             path="/codies"
             render={() => (
@@ -187,6 +177,7 @@ function App() {
             render={() => (
               <MyPicks
                 folderList={folderList}
+                setFolderList={setFolderList}
                 addFolder={addFolder}
                 deleteFolder={deleteFolder}
                 changeFolderName={changeFolderName}

@@ -112,6 +112,7 @@ function GenderSelect({ gender, selectedOption, changeGender }) {
           focusVisibleClassName={classes.focusVisible}
           onClick={() => {
             changeGender(image.title);
+            sessionStorage.setItem("gender", image.title);
             history.push("/search/2");
           }}
           style={{

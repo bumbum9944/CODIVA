@@ -1,5 +1,4 @@
 #root {
-  position: relative;
   width: 100vw;
   height: 100vh;
 }
@@ -14,4 +13,52 @@ a {
 
 button.form-button {
   margin-top: 12px;
+}
+
+.Home {
+  position: fixed;
+}
+
+#wrapper {
+  display: none;
+}
+
+@media screen and (min-width: 1025px) {
+  .App {
+    display: none;
+  }
+
+  #wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  #content {
+    width: 100%;
+    padding: 20px 0px;
+    text-align: center;
+    color: #000000;
+    font-size: 3.5rem;
+  }
+}
+
+@media screen and (max-height: 800px) {
+  .App {
+    display: none;
+  }
+
+  #wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  #content {
+    width: 100%;
+    padding: 20px 0px;
+    text-align: center;
+    color: #000000;
+    font-size: 3.5rem;
+  }
 }

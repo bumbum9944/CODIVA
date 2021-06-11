@@ -1,7 +1,9 @@
 import react from "react";
+import HomeSearchButton from "./HomeSearchButton";
 import { useHistory } from "react-router-dom";
+import { Translate } from "@material-ui/icons";
 
-function Main() {
+function Main({ setGender, setApparels, setSelectedCategory }) {
   const history = useHistory();
 
   return (
@@ -9,6 +11,7 @@ function Main() {
       <div
         style={{
           height: "100vh",
+          width: "100vw",
           background: "#2B496F",
           position: "relative",
           zIndex: 1
@@ -18,8 +21,10 @@ function Main() {
           style={{
             fontSize: "22vw",
             color: "white",
-            top: "15vh",
-            left: "23vw",
+            top: "15%",
+            textAlign: "center",
+            left: "50%",
+            transform: "translate(-50%)",
             position: "absolute",
             textShadow: "revert"
           }}
@@ -27,12 +32,12 @@ function Main() {
           CODIBA
         </div>
         <img
-          src="/images/codibalogo.jpg"
+          src="/images/codibalogo.png"
           style={{
             width: "30vw",
             height: "10vh",
-            right: "-1vh",
-            top: "1vh",
+            right: "-2%",
+            top: "1%",
             position: "absolute"
           }}
           onClick={() => {
@@ -42,10 +47,10 @@ function Main() {
         <img
           src="/images/homeimage2.jpg"
           style={{
-            position: "relative",
+            position: "absolute",
             width: "100vw",
             height: "30vh",
-            top: "67.5vh"
+            bottom: "3%"
           }}
         />
         <div
@@ -53,11 +58,11 @@ function Main() {
             backgroundColor: "white",
             color: "#2B496F",
             fontSize: "6vw",
-            position: "relative",
+            position: "absolute",
             width: "85vw",
-            height: "35vh",
-            marginLeft: "7.5%",
-            top: "7%",
+            height: "75vw",
+            left: "7.5%",
+            top: "35%",
             textAlign: "center"
           }}
         >
@@ -72,6 +77,11 @@ function Main() {
           <br />
           코디바가 찾아드립니다!🧐
           <br />
+          <HomeSearchButton
+            setGender={setGender}
+            setApparels={setApparels}
+            setSelectedCategory={setSelectedCategory}
+          />
         </div>
       </div>
     </>

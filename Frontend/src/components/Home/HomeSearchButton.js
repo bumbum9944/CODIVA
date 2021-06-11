@@ -11,12 +11,23 @@ function HomeSearchButton({ setGender, setApparels, setSelectedCategory }) {
         className="searchButton"
         variant="contained"
         style={{
-          fontSize: "3vh",
+          fontSize: "5.5vw",
           borderRadius: "3vh"
         }}
         onClick={() => {
+          sessionStorage.setItem("gender", "");
           setGender("");
+          sessionStorage.setItem("apparels", JSON.stringify([]));
           setApparels([]);
+          sessionStorage.setItem(
+            "selectedCategory",
+            JSON.stringify({
+              OUTER: false,
+              TOP: false,
+              BOTTOM: false,
+              "ONE PIECE": false
+            })
+          );
           setSelectedCategory({
             OUTER: false,
             TOP: false,
@@ -26,7 +37,7 @@ function HomeSearchButton({ setGender, setApparels, setSelectedCategory }) {
           history.push("/search/1");
         }}
       >
-        CODY MATCH
+        CODI MATCH
       </Button>
     </div>
   );
