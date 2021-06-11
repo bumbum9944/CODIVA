@@ -1,4 +1,4 @@
-import os
+import os, logging
 from flask import Flask, request
 from flask_cors import CORS
 from flask_restful import Api
@@ -35,6 +35,7 @@ def create_app():
     swagger.init_app(app)
     api.init_app(app)
     CORS(app, supports_credentials=True, resources={r"/*": {"origins": "*"}})
+    logging.basicConfig(filename="logs/project.log", level=logging.DEBUG)
 
     @app.route("/")
     def index():

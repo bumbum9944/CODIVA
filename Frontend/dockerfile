@@ -1,13 +1,17 @@
 FROM nginx
 
-RUN mkdir /codiba/Frontend
+RUN mkdir /app
 
-WORKDIR /codiba/Frontend
+WORKDIR /app
 
 RUN mkdir ./build
 
-COPY /home/azure/project-team5/Frontend/build ./build
+ADD ./build ./build
 
-EXPOSE 80
+RUN rm /etc/nginx/conf.d/default.conf
+
+COPY ./nginx.conf /etc/nginx/conf.d
+
+EXPOSE 3000
 
 CMD ["nginx", "-g", "daemon off;"]

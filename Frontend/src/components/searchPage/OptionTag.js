@@ -46,9 +46,33 @@ function OptionTag({
 }) {
   const classes = useStyles();
 
+  const local_gender = sessionStorage.getItem("gender");
+  const local_apparels = JSON.parse(sessionStorage.getItem("apparels")) || [];
+  const local_selectedCategory = JSON.parse(
+    sessionStorage.getItem("selectedCategory")
+  ) || {
+    OUTER: false,
+    TOP: false,
+    BOTTOM: false,
+    "ONE PIECE": false
+  };
+
   const handleDelete = chipToDelete => () => {
+    sessionStorage.setItem(
+      "apparels",
+      JSON.stringify(
+        local_apparels.filter(chip => chip.category !== chipToDelete.category)
+      )
+    );
     setApparels(chips =>
       chips.filter(chip => chip.category !== chipToDelete.category)
+    );
+    sessionStorage.setItem(
+      "selectedCategory",
+      JSON.stringify({
+        ...local_selectedCategory,
+        [categoryDetail[chipToDelete.category]]: false
+      })
     );
     setSelectedCategory({
       ...selectedCategory,
@@ -59,8 +83,8 @@ function OptionTag({
   return (
     <>
       <Paper component="ul" className={classes.root}>
-        <Chip className={classes.chip} label={gender} />
-        {apparels.map((data, index) => {
+        <Chip className={classes.chip} label={local_gender} />
+        {local_apparels.map((data, index) => {
           return (
             <li key={index}>
               <Chip

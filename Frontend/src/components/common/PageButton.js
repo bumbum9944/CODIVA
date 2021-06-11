@@ -13,7 +13,17 @@ function PageButton(props) {
         <Button
           variant="contained"
           onClick={() => {
+            sessionStorage.setItem("apparels", JSON.stringify([]));
             props.setApparels([]);
+            sessionStorage.setItem(
+              "selectedCategory",
+              JSON.stringify({
+                OUTER: false,
+                TOP: false,
+                BOTTOM: false,
+                "ONE PIECE": false
+              })
+            );
             props.setSelectedCategory({
               OUTER: false,
               TOP: false,
