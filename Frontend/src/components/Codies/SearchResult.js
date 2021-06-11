@@ -3,21 +3,33 @@ import "./SearchResult.css";
 import { useHistory } from "react-router-dom";
 import { request, requestWithJWT } from "lib/client";
 import UserContext from "contexts/user";
-import Button from '@material-ui/core/Button';
+import Button from "@material-ui/core/Button";
 
-
-function SearchResult({codies, setCodies, currentPage, setCurrentPage, gender, apparels}) {
+function SearchResult({
+  codies,
+  setCodies,
+  currentPage,
+  setCurrentPage,
+  gender,
+  apparels
+}) {
   const history = useHistory();
   const [newSearchResult, setNewSearchResult] = useState(codies);
   const { state } = useContext(UserContext);
   const { user } = state;
-  
-  useEffect(()=>{{
-    setNewSearchResult(codies);
-  }}, [codies]);
+
+  useEffect(() => {
+    {
+      if (codies.length < 20) {
+        setNewSearchResult([]);
+      } else {
+        setNewSearchResult(codies);
+      }
+    }
+  }, [codies]);
 
   function pushToSearch() {
-    history.push("/search/2")
+    history.push("/search/2");
   }
 
   const loadMoreData = async () => {
@@ -50,26 +62,27 @@ function SearchResult({codies, setCodies, currentPage, setCurrentPage, gender, a
           isSaved: !user ? false : saved.has(itemId) ? true : false
         };
       });
-      if (newCodies.length) {
+      if (newCodies.length > 0) {
         const copiedCodies = JSON.parse(JSON.stringify(codies));
         const updatedCodies = copiedCodies.concat(newCodies);
         setCodies(updatedCodies);
         setCurrentPage(currentPage + 20);
       }
-      setNewSearchResult(newCodies);
+      if (newCodies.length < 20) {
+        setNewSearchResult([]);
+      } else {
+        setNewSearchResult(newCodies);
+      }
     });
-  }
+  };
 
   let searchResultMessage;
   if (newSearchResult.length > 0) {
     searchResultMessage = (
-      <div 
-        className="load-more-data message-inner"
-        onClick={loadMoreData}
-      >
-        <Button 
+      <div className="load-more-data message-inner" onClick={loadMoreData}>
+        <Button
           variant="contained"
-          className="message-inner" 
+          className="message-inner"
           style={{
             color: "white",
             backgroundColor: "black",
@@ -77,16 +90,16 @@ function SearchResult({codies, setCodies, currentPage, setCurrentPage, gender, a
           }}
         >
           더 불러오기
-        </Button>  
+        </Button>
       </div>
     );
   } else {
     searchResultMessage = (
       <div className="no-result-message">
         <div className="message-inner">검색 결과가 없습니다.</div>
-        <Button 
+        <Button
           variant="contained"
-          className="message-inner" 
+          className="message-inner"
           onClick={pushToSearch}
           style={{
             color: "white",
@@ -101,12 +114,7 @@ function SearchResult({codies, setCodies, currentPage, setCurrentPage, gender, a
     );
   }
 
-      
-  return (
-    <div className="search-result-message">
-      {searchResultMessage}
-    </div>
-  );
+  return <div className="search-result-message">{searchResultMessage}</div>;
 }
 
 export default SearchResult;

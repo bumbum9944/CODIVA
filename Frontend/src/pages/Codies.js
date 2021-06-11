@@ -53,20 +53,26 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
     await request("post", "/codi/search", {
       gender: gender,
       apparels: apparels
-    }).then(response => {
-      const newCodies = response.data.data.map(item => {
-        const itemId = item.id;
-        return {
-          id: itemId,
-          imageUrl: item.url,
-          likeCnt: item.like_cnt,
-          viewCnt: item.hits,
-          isLiked: !user ? false : liked.has(itemId) ? true : false,
-          isSaved: !user ? false : saved.has(itemId) ? true : false
-        };
+    })
+      .then(response => {
+        const newCodies = response.data.data.map(item => {
+          const itemId = item.id;
+          return {
+            id: itemId,
+            imageUrl: item.url,
+            likeCnt: item.like_cnt,
+            viewCnt: item.hits,
+            isLiked: !user ? false : liked.has(itemId) ? true : false,
+            isSaved: !user ? false : saved.has(itemId) ? true : false
+          };
+        });
+        setCodies(newCodies);
+      })
+      .then(() => {
+        document
+          .querySelector(".search-result-message")
+          .classList.add("active");
       });
-      setCodies(newCodies);
-    });
   }, []);
 
   useEffect(async () => {
@@ -85,9 +91,9 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
       );
     }
     const copiedCodies = JSON.parse(JSON.stringify(codies));
-    for(let cody of copiedCodies) {
-      cody.isLiked =  !user ? false : liked.has(cody.id) ? true : false;
-      cody.isSaved =  !user ? false : saved.has(cody.id) ? true : false;
+    for (let cody of copiedCodies) {
+      cody.isLiked = !user ? false : liked.has(cody.id) ? true : false;
+      cody.isSaved = !user ? false : saved.has(cody.id) ? true : false;
     }
     setCodies(copiedCodies);
   }, [user]);
@@ -115,7 +121,6 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
       console.log({ id: targetItemId });
       requestWithJWT("delete", `/saved/${user}`, { id: targetItemId })
         .then(response => console.log(response.data))
-        // .then(response => response.data)
         .catch(err => console.log(err.message));
     } else {
       requestWithJWT("post", `/saved/${user}/${targetFolderId}/${targetItemId}`)
@@ -172,7 +177,14 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
         addFolder={addFolder}
         toggleSaved={toggleSaved}
       />
-      <SearchResult codies={codies} setCodies={setCodies} currentPage={currentPage} setCurrentPage={setCurrentPage} gender={gender} apparels={apparels} />
+      <SearchResult
+        codies={codies}
+        setCodies={setCodies}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        gender={gender}
+        apparels={apparels}
+      />
     </div>
   );
 }
