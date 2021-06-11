@@ -19,9 +19,7 @@ function SearchResult({
   const { user } = state;
 
   useEffect(() => {
-    {
       setNewSearchResult(codies);
-    }
   }, [codies]);
 
   function pushToSearch() {
