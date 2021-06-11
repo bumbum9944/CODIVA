@@ -67,7 +67,7 @@ function SearchResult({
         const updatedCodies = copiedCodies.concat(newCodies);
         setCodies(updatedCodies);
         setCurrentPage(currentPage + 20);
-      } 
+      }
       if (newCodies.length < 20) {
         setNewSearchResult([]);
       } else {
