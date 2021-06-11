@@ -1,0 +1,3346 @@
+[
+    {
+        "id": 860,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w411.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "beige"
+            },
+            {
+                "category": "skirts",
+                "color": "brown"
+            }
+        ]
+    },
+    {
+        "id": 861,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w412.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "green"
+            },
+            {
+                "category": "onepiece",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 862,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w413.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "purple"
+            },
+            {
+                "category": "skirts",
+                "color": "gray"
+            }
+        ]
+    },
+    {
+        "id": 863,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w414.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "gray"
+            },
+            {
+                "category": "jeans",
+                "color": "navy"
+            },
+            {
+                "category": "sleeveless",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 864,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w415.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "red"
+            },
+            {
+                "category": "skirts",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 865,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w416.jpg",
+        "apparels": [
+            {
+                "category": "onepiece",
+                "color": "pink"
+            }
+        ]
+    },
+    {
+        "id": 866,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w417.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 867,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w418.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 868,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w419.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "training",
+                "color": "gray"
+            }
+        ]
+    },
+    {
+        "id": 869,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w420.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "black"
+            },
+            {
+                "category": "onepiece",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 870,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w421.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "black"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            },
+            {
+                "category": "jacket",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 871,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w422.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "black"
+            },
+            {
+                "category": "slacks",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 872,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w423.jpg",
+        "apparels": [
+            {
+                "category": "jacket",
+                "color": "white"
+            },
+            {
+                "category": "slacks",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 873,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w424.jpg",
+        "apparels": [
+            {
+                "category": "onepiece",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 874,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w425.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "black"
+            },
+            {
+                "category": "slacks",
+                "color": "white"
+            },
+            {
+                "category": "sleeveless",
+                "color": "yellow"
+            }
+        ]
+    },
+    {
+        "id": 875,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w426.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "vest",
+                "color": "gray"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 876,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w427.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "green"
+            },
+            {
+                "category": "skirts",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 877,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w428.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "gray"
+            },
+            {
+                "category": "slacks",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 878,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w429.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "gray"
+            },
+            {
+                "category": "jacket",
+                "color": "black"
+            },
+            {
+                "category": "slacks",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 879,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w430.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "jeans",
+                "color": "gray"
+            }
+        ]
+    },
+    {
+        "id": 880,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w431.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "beige"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 881,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w432.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "green"
+            },
+            {
+                "category": "training",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 882,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w433.jpg",
+        "apparels": [
+            {
+                "category": "sleeveless",
+                "color": "black"
+            },
+            {
+                "category": "cardigan",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 883,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w434.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "beige"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 884,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w435.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "white"
+            },
+            {
+                "category": "skirts",
+                "color": "gray"
+            }
+        ]
+    },
+    {
+        "id": 885,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w436.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 886,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w437.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "blue"
+            },
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "skirts",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 887,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w439.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "blue"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 888,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w440.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "gray"
+            },
+            {
+                "category": "training",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 889,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w441.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "purple"
+            },
+            {
+                "category": "training",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 890,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w442.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "beige"
+            },
+            {
+                "category": "slacks",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 891,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w443.jpg",
+        "apparels": [
+            {
+                "category": "vest",
+                "color": "gray"
+            },
+            {
+                "category": "skirts",
+                "color": "gray"
+            },
+            {
+                "category": "shirts",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 892,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w444.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "gray"
+            },
+            {
+                "category": "training",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 893,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w445.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "white"
+            },
+            {
+                "category": "skirts",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 894,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w446.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "gray"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 895,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w447.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 896,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w448.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "black"
+            },
+            {
+                "category": "skirts",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 897,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w449.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "gray"
+            },
+            {
+                "category": "jeans",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 898,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w450.jpg",
+        "apparels": [
+            {
+                "category": "vest",
+                "color": "green"
+            },
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 899,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w451.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "green"
+            },
+            {
+                "category": "skirts",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 900,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w462.jpg",
+        "apparels": [
+            {
+                "category": "jacket",
+                "color": "black"
+            },
+            {
+                "category": "slacks",
+                "color": "gray"
+            },
+            {
+                "category": "sleeveless",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 901,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w463.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "green"
+            },
+            {
+                "category": "slacks",
+                "color": "brown"
+            }
+        ]
+    },
+    {
+        "id": 902,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w464.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "onepiece",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 903,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w465.jpg",
+        "apparels": [
+            {
+                "category": "vest",
+                "color": "gray"
+            },
+            {
+                "category": "training",
+                "color": "gray"
+            },
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 904,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w466.jpg",
+        "apparels": [
+            {
+                "category": "vest",
+                "color": "blue"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            },
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 905,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w467.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "beige"
+            },
+            {
+                "category": "skirts",
+                "color": "gray"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 906,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w468.jpg",
+        "apparels": [
+            {
+                "category": "onepiece",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 907,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w469.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "vest",
+                "color": "green"
+            },
+            {
+                "category": "slacks",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 908,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w470.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "blue"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 909,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w471.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "black"
+            },
+            {
+                "category": "jeans",
+                "color": "gray"
+            }
+        ]
+    },
+    {
+        "id": 910,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w472.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "jeans",
+                "color": "navy"
+            }
+        ]
+    },
+    {
+        "id": 911,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w473.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "black"
+            },
+            {
+                "category": "skirts",
+                "color": "brown"
+            }
+        ]
+    },
+    {
+        "id": 912,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w474.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "purple"
+            },
+            {
+                "category": "jeans",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 913,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w475.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "onepiece",
+                "color": "navy"
+            }
+        ]
+    },
+    {
+        "id": 914,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w476.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "gray"
+            },
+            {
+                "category": "jeans",
+                "color": "navy"
+            }
+        ]
+    },
+    {
+        "id": 915,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w477.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "green"
+            },
+            {
+                "category": "onepiece",
+                "color": "white"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 916,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w478.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "beige"
+            },
+            {
+                "category": "jeans",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 917,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w479.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "skirts",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 918,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w480.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "beige"
+            },
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "skirts",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 919,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w481.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "orange"
+            },
+            {
+                "category": "skirts",
+                "color": "gary"
+            }
+        ]
+    },
+    {
+        "id": 920,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w482.jpg",
+        "apparels": [
+            {
+                "category": "jacket",
+                "color": "gray"
+            },
+            {
+                "category": "jeans",
+                "color": "gray"
+            },
+            {
+                "category": "sleeveless",
+                "color": "green"
+            }
+        ]
+    },
+    {
+        "id": 921,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w483.jpg",
+        "apparels": [
+            {
+                "category": "onepiece",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 922,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w484.jpg",
+        "apparels": [
+            {
+                "category": "jacket",
+                "color": "beige"
+            },
+            {
+                "category": "skirts",
+                "color": "green"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 923,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w485.jpg",
+        "apparels": [
+            {
+                "category": "onepiece",
+                "color": "black"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 924,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w486.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "gray"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 925,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w487.jpg",
+        "apparels": [
+            {
+                "category": "jacket",
+                "color": "black"
+            },
+            {
+                "category": "skirts",
+                "color": "black"
+            },
+            {
+                "category": "sleeveless",
+                "color": "black"
+            },
+            {
+                "category": "long_sleeved_tee",
+                "color": "gray"
+            }
+        ]
+    },
+    {
+        "id": 926,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w488.jpg",
+        "apparels": [
+            {
+                "category": "onepiece",
+                "color": "gray"
+            },
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 927,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w489.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "beige"
+            },
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "skirts",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 928,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w490.jpg",
+        "apparels": [
+            {
+                "category": "onepiece",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 929,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w491.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "pink"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 930,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w492.jpg",
+        "apparels": [
+            {
+                "category": "jacket",
+                "color": "gray"
+            },
+            {
+                "category": "slacks",
+                "color": "black"
+            },
+            {
+                "category": "sleeveless",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 931,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w493.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "black"
+            },
+            {
+                "category": "skirts",
+                "color": "gray"
+            }
+        ]
+    },
+    {
+        "id": 932,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w494.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "blue"
+            },
+            {
+                "category": "slacks",
+                "color": "black"
+            },
+            {
+                "category": "sleeveless",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 933,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w495.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "yellow"
+            },
+            {
+                "category": "skirts",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 934,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w496.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "black"
+            },
+            {
+                "category": "skirts",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 936,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w497.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "beige"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 937,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w498.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "white"
+            },
+            {
+                "category": "skirts",
+                "color": "green"
+            }
+        ]
+    },
+    {
+        "id": 938,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w499.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "slacks",
+                "color": "gray"
+            }
+        ]
+    },
+    {
+        "id": 939,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w500.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "gray"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            },
+            {
+                "category": "sleeveless",
+                "color": "gray"
+            }
+        ]
+    },
+    {
+        "id": 940,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w501.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "skirts",
+                "color": "gray"
+            }
+        ]
+    },
+    {
+        "id": 941,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w502.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "beige"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 942,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w503.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "blue"
+            },
+            {
+                "category": "jeans",
+                "color": "gray"
+            },
+            {
+                "category": "sleeveless",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 943,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w504.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "green"
+            },
+            {
+                "category": "jeans",
+                "color": "gray"
+            }
+        ]
+    },
+    {
+        "id": 944,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w505.jpg",
+        "apparels": [
+            {
+                "category": "jeans",
+                "color": "blue"
+            },
+            {
+                "category": "long_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 945,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w506.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "blue"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 946,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w507.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "yellow"
+            },
+            {
+                "category": "skirts",
+                "color": "yellow"
+            }
+        ]
+    },
+    {
+        "id": 947,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w508.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "black"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 948,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w509.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "brown"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 949,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w510.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "white"
+            },
+            {
+                "category": "vest",
+                "color": "beige"
+            },
+            {
+                "category": "slacks",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 950,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w511.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "blue"
+            },
+            {
+                "category": "onepiece",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 951,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w512.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "beige"
+            },
+            {
+                "category": "slacks",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 952,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w513.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "yellow"
+            },
+            {
+                "category": "jeans",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 953,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w514.jpg",
+        "apparels": [
+            {
+                "category": "jacket",
+                "color": "blue"
+            },
+            {
+                "category": "jeans",
+                "color": "white"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 954,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w515.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "purple"
+            },
+            {
+                "category": "onepiece",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 955,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w516.jpg",
+        "apparels": [
+            {
+                "category": "jacket",
+                "color": "black"
+            },
+            {
+                "category": "slacks",
+                "color": "white"
+            },
+            {
+                "category": "sleeveless",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 956,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w517.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "beige"
+            },
+            {
+                "category": "shirts",
+                "color": "gray"
+            },
+            {
+                "category": "skirts",
+                "color": "beige"
+            },
+            {
+                "category": "jeans",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 957,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w518.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 958,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w519.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "white"
+            },
+            {
+                "category": "slacks",
+                "color": "black"
+            },
+            {
+                "category": "sleeveless",
+                "color": "pink"
+            }
+        ]
+    },
+    {
+        "id": 959,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w520.jpg",
+        "apparels": [
+            {
+                "category": "jacket",
+                "color": "blue"
+            },
+            {
+                "category": "hood",
+                "color": "gray"
+            },
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "training",
+                "color": "gray"
+            }
+        ]
+    },
+    {
+        "id": 960,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w521.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "white"
+            },
+            {
+                "category": "skirts",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 961,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w522.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "slacks",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 962,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w523.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "white"
+            },
+            {
+                "category": "slacks",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 963,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w524.jpg",
+        "apparels": [
+            {
+                "category": "onepiece",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 964,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w525.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "training",
+                "color": "pink"
+            }
+        ]
+    },
+    {
+        "id": 965,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w526.jpg",
+        "apparels": [
+            {
+                "category": "vest",
+                "color": "pink"
+            },
+            {
+                "category": "skirts",
+                "color": "black"
+            },
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 966,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w527.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "black"
+            },
+            {
+                "category": "skirts",
+                "color": "beige"
+            },
+            {
+                "category": "cardigan",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 967,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w528.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "green"
+            },
+            {
+                "category": "skirts",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 968,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w529.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "skirts",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 969,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w530.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "white"
+            },
+            {
+                "category": "skirts",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 970,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w531.jpg",
+        "apparels": [
+            {
+                "category": "onepiece",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 971,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w532.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "skirts",
+                "color": "green"
+            }
+        ]
+    },
+    {
+        "id": 972,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w533.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "yellow"
+            },
+            {
+                "category": "slacks",
+                "color": "black"
+            },
+            {
+                "category": "sleeveless",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 973,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w534.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "purple"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            },
+            {
+                "category": "sleeveless",
+                "color": "purple"
+            }
+        ]
+    },
+    {
+        "id": 974,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w535.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "white"
+            },
+            {
+                "category": "onepiece",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 975,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w536.jpg",
+        "apparels": [
+            {
+                "category": "jacket",
+                "color": "brown"
+            },
+            {
+                "category": "jeans",
+                "color": "white"
+            },
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 976,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w537.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "black"
+            },
+            {
+                "category": "skirts",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 977,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w538.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 978,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w539.jpg",
+        "apparels": [
+            {
+                "category": "jacket",
+                "color": "white"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 979,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w540.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 980,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w541.jpg",
+        "apparels": [
+            {
+                "category": "jacket",
+                "color": "beige"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 981,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w542.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "green"
+            },
+            {
+                "category": "slacks",
+                "color": "white"
+            },
+            {
+                "category": "long_sleeved_tee",
+                "color": "green"
+            }
+        ]
+    },
+    {
+        "id": 982,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w543.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 983,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w544.jpg",
+        "apparels": [
+            {
+                "category": "jacket",
+                "color": "beige"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 984,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w545.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "slacks",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 985,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w546.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "blue"
+            },
+            {
+                "category": "skirts",
+                "color": "white"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 986,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w547.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 987,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w548.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "black"
+            },
+            {
+                "category": "slacks",
+                "color": "white"
+            },
+            {
+                "category": "sleeveless",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 988,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w549.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "blue"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 989,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w550.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "vest",
+                "color": "purple"
+            },
+            {
+                "category": "jeans",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 990,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w551.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "brown"
+            },
+            {
+                "category": "jeans",
+                "color": "navy"
+            }
+        ]
+    },
+    {
+        "id": 991,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w552.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "white"
+            },
+            {
+                "category": "skirts",
+                "color": "orange"
+            },
+            {
+                "category": "jacket",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 992,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w553.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "vest",
+                "color": "orange"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 993,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w554.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "sleeveless",
+                "color": "beige"
+            },
+            {
+                "category": "slacks",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 994,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w555.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "gray"
+            },
+            {
+                "category": "skirts",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 995,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w556.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "black"
+            },
+            {
+                "category": "slacks",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 996,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w557.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "skirts",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 997,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w558.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "skirts",
+                "color": "gray"
+            },
+            {
+                "category": "cardigan",
+                "color": "purple"
+            }
+        ]
+    },
+    {
+        "id": 998,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w559.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "navy"
+            },
+            {
+                "category": "slacks",
+                "color": "green"
+            },
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 999,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w560.jpg",
+        "apparels": [
+            {
+                "category": "vest",
+                "color": "pink"
+            },
+            {
+                "category": "skirts",
+                "color": "black"
+            },
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 1000,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w561.jpg",
+        "apparels": [
+            {
+                "category": "jacket",
+                "color": "blue"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            },
+            {
+                "category": "slacks",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 1001,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w562.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "beige"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 1002,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w563.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "black"
+            },
+            {
+                "category": "skirts",
+                "color": "gray"
+            }
+        ]
+    },
+    {
+        "id": 1003,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w564.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "blue"
+            },
+            {
+                "category": "skirts",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 1004,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w565.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "pink"
+            },
+            {
+                "category": "training",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 1005,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w566.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "yellow"
+            },
+            {
+                "category": "jeans",
+                "color": "navy"
+            }
+        ]
+    },
+    {
+        "id": 1006,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w567.jpg",
+        "apparels": [
+            {
+                "category": "vest",
+                "color": "black"
+            },
+            {
+                "category": "skirts",
+                "color": "black"
+            },
+            {
+                "category": "shirts",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 1007,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w568.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "beige"
+            },
+            {
+                "category": "jeans",
+                "color": "navy"
+            }
+        ]
+    },
+    {
+        "id": 1008,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w569.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "white"
+            },
+            {
+                "category": "skirts",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 1009,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w570.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "beige"
+            },
+            {
+                "category": "skirts",
+                "color": "gray"
+            }
+        ]
+    },
+    {
+        "id": 1010,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w571.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "blue"
+            },
+            {
+                "category": "skirts",
+                "color": "blue"
+            },
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 1011,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w572.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "gray"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            },
+            {
+                "category": "sleeveless",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 1012,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w573.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "white"
+            },
+            {
+                "category": "jacket",
+                "color": "blue"
+            },
+            {
+                "category": "slacks",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 1013,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w574.jpg",
+        "apparels": [
+            {
+                "category": "sleeveless",
+                "color": "navy"
+            },
+            {
+                "category": "jeans",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 1014,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w575.jpg",
+        "apparels": [
+            {
+                "category": "onepiece",
+                "color": "beige"
+            },
+            {
+                "category": "jacket",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 1015,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w576.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "yellow"
+            },
+            {
+                "category": "skirts",
+                "color": "beige"
+            },
+            {
+                "category": "sleeveless",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 1016,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w577.jpg",
+        "apparels": [
+            {
+                "category": "jacket",
+                "color": "purple"
+            },
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "onepiece",
+                "color": "purple"
+            }
+        ]
+    },
+    {
+        "id": 1017,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w578.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "beige"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 1018,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w579.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "green"
+            },
+            {
+                "category": "jeans",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 1019,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w580.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "onepiece",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 1020,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w581.jpg",
+        "apparels": [
+            {
+                "category": "onepiece",
+                "color": "green"
+            }
+        ]
+    },
+    {
+        "id": 1021,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w582.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "purple"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 1022,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w583.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "green"
+            },
+            {
+                "category": "slacks",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 1023,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w584.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "brown"
+            },
+            {
+                "category": "jeans",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 1024,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w585.jpg",
+        "apparels": [
+            {
+                "category": "onepiece",
+                "color": "green"
+            }
+        ]
+    },
+    {
+        "id": 1025,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w586.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "gray"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 1026,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w587.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "slacks",
+                "color": "black"
+            },
+            {
+                "category": "jacket",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 1027,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w588.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "beige"
+            },
+            {
+                "category": "slacks",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 1028,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w589.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "blue"
+            },
+            {
+                "category": "skirts",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 1029,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w590.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "blue"
+            },
+            {
+                "category": "jeans",
+                "color": "white"
+            },
+            {
+                "category": "vest",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 1030,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w591.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "blue"
+            },
+            {
+                "category": "slacks",
+                "color": "white"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 1031,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w592.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "white"
+            },
+            {
+                "category": "skirts",
+                "color": "blue"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 1032,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w593.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "blue"
+            },
+            {
+                "category": "training",
+                "color": "grren"
+            }
+        ]
+    },
+    {
+        "id": 1033,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w594.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "slacks",
+                "color": "black"
+            },
+            {
+                "category": "vest",
+                "color": "purple"
+            }
+        ]
+    },
+    {
+        "id": 1034,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w595.jpg",
+        "apparels": [
+            {
+                "category": "onepiece",
+                "color": "green"
+            },
+            {
+                "category": "slacks",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 1035,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w596.jpg",
+        "apparels": [
+            {
+                "category": "onepiece",
+                "color": "beige"
+            },
+            {
+                "category": "short_sleeved_tee",
+                "color": "gray"
+            }
+        ]
+    },
+    {
+        "id": 1036,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w597.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "black"
+            },
+            {
+                "category": "skirts",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 1037,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w598.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "gray"
+            },
+            {
+                "category": "onepiece",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 1038,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w599.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "white"
+            },
+            {
+                "category": "skirts",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 1039,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w600.jpg",
+        "apparels": [
+            {
+                "category": "jacket",
+                "color": "blue"
+            },
+            {
+                "category": "sleeveless",
+                "color": "black"
+            },
+            {
+                "category": "skirts",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 1040,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w601.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "beige"
+            },
+            {
+                "category": "vest",
+                "color": "green"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 1041,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w602.jpg",
+        "apparels": [
+            {
+                "category": "sleeveless",
+                "color": "black"
+            },
+            {
+                "category": "skirts",
+                "color": "pink"
+            }
+        ]
+    },
+    {
+        "id": 1042,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w603.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "black"
+            },
+            {
+                "category": "jeans",
+                "color": "navy"
+            }
+        ]
+    },
+    {
+        "id": 1043,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w604.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "hood",
+                "color": "gray"
+            },
+            {
+                "category": "training",
+                "color": "gray"
+            }
+        ]
+    },
+    {
+        "id": 1044,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w605.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "beige"
+            },
+            {
+                "category": "jeans",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 1045,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w606.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "purple"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            },
+            {
+                "category": "training",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 1046,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w607.jpg",
+        "apparels": [
+            {
+                "category": "jacket",
+                "color": "beige"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 1047,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w608.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "black"
+            },
+            {
+                "category": "training",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 1048,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w609.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "brown"
+            },
+            {
+                "category": "jeans",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 1049,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w610.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "gray"
+            },
+            {
+                "category": "jeans",
+                "color": "gray"
+            }
+        ]
+    },
+    {
+        "id": 1050,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w611.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "slacks",
+                "color": "white"
+            },
+            {
+                "category": "sleeveless",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 1051,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w613.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "orange"
+            },
+            {
+                "category": "skirts",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 1052,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w614.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "blue"
+            },
+            {
+                "category": "jeans",
+                "color": "white"
+            },
+            {
+                "category": "sleeveless",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 1053,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w615.jpg",
+        "apparels": [
+            {
+                "category": "onepiece",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 1054,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w616.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 1055,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w617.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "beige"
+            },
+            {
+                "category": "onepiece",
+                "color": "green"
+            }
+        ]
+    },
+    {
+        "id": 1056,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w618.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "black"
+            },
+            {
+                "category": "slacks",
+                "color": "gray"
+            }
+        ]
+    },
+    {
+        "id": 1057,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w619.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "beige"
+            },
+            {
+                "category": "jeans",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 1058,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w620.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "black"
+            },
+            {
+                "category": "slacks",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 1059,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w621.jpg",
+        "apparels": [
+            {
+                "category": "jacket",
+                "color": "gray"
+            },
+            {
+                "category": "slacks",
+                "color": "black"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 1060,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w622.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "blue"
+            },
+            {
+                "category": "jeans",
+                "color": "beige"
+            },
+            {
+                "category": "vest",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 1061,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w623.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "blue"
+            },
+            {
+                "category": "onepiece",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 1062,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w624.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "yellow"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            },
+            {
+                "category": "sleeveless",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 1063,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w625.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "gray"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 1064,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w626.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "blue"
+            },
+            {
+                "category": "jeans",
+                "color": "white"
+            },
+            {
+                "category": "sleeveless",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 1065,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w627.jpg",
+        "apparels": [
+            {
+                "category": "vest",
+                "color": "purple"
+            },
+            {
+                "category": "skirts",
+                "color": "navy"
+            },
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            }            
+        ]
+    },
+    {
+        "id": 1066,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w628.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "yellow"
+            },
+            {
+                "category": "skirts",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 1067,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w629.jpg",
+        "apparels": [
+            {
+                "category": "jacket",
+                "color": "white"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            },
+            {
+                "category": "jeans",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 1068,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w630.jpg",
+        "apparels": [
+            {
+                "category": "vest",
+                "color": "blue"
+            },
+            {
+                "category": "onepiece",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 1069,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w452.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "green"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    },
+    {
+        "id": 1070,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w453.jpg",
+        "apparels": [
+            {
+                "category": "hood",
+                "color": "gray"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 1071,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w454.jpg",
+        "apparels": [
+            {
+                "category": "cardigan",
+                "color": "white"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            },
+            {
+                "category": "sleeveless",
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "id": 1072,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w455.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "beige"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            },
+            {
+                "category": "sleeveless",
+                "color": "beige"
+            }
+        ]
+    },
+    {
+        "id": 1073,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w456.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "navy"
+            },
+            {
+                "category": "slacks",
+                "color": "gray"
+            }
+        ]
+    },
+    {
+        "id": 1074,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w457.jpg",
+        "apparels": [
+            {
+                "category": "shirts",
+                "color": "green"
+            },
+            {
+                "category": "jeans",
+                "color": "gray"
+            },
+            {
+                "category": "sleeveless",
+                "color": "white"
+            }
+        ]
+    },
+    {
+        "id": 1075,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w458.jpg",
+        "apparels": [
+            {
+                "category": "jeans",
+                "color": "blue"
+            },
+            {
+                "category": "sleeveless",
+                "color": "yellow"
+            }
+        ]
+    },
+    {
+        "id": 1076,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w459.jpg",
+        "apparels": [
+            {
+                "category": "long_sleeved_tee",
+                "color": "pink"
+            },
+            {
+                "category": "skirts",
+                "color": "pink"
+            }
+        ]
+    },
+    {
+        "id": 1077,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w460.jpg",
+        "apparels": [
+            {
+                "category": "jacket",
+                "color": "black"
+            },
+            {
+                "category": "slacks",
+                "color": "beige"
+            },
+            {
+                "category": "sleeveless",
+                "color": "brown"
+            }
+        ]
+    },
+    {
+        "id": 1078,
+        "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w461.jpg",
+        "apparels": [
+            {
+                "category": "short_sleeved_tee",
+                "color": "white"
+            },
+            {
+                "category": "jeans",
+                "color": "blue"
+            }
+        ]
+    }
+]

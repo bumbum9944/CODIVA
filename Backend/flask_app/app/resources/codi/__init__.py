@@ -158,8 +158,8 @@ def search():
     return jsonify(data=codies)
 
 
-def make_update_label(index: str, id: int) -> dict:
-    return {"update": {"_id": str(id), "_index": index}}
+def make_update_label(index: str, id: int, qtype: str) -> dict:
+    return {qtype: {"_id": str(id), "_index": index}}
 
 
 def make_doc_label(doc: dict) -> dict:
@@ -194,7 +194,7 @@ def synchronize_db_es():
             sql = "SELECT count(*) as total FROM `codies`"
             cursor.execute(sql)
             total = cursor.fetchone()["total"]
-            for i in range(1, total + 1, 10000):
+            for i in range(req["from"] if "from" in req else 1, total + 1, 10000):
                 sql = "SELECT * FROM `codies` WHERE id >= %s LIMIT 10000"
                 cursor.execute(sql, (i,))
                 result = cursor.fetchall()
@@ -203,7 +203,11 @@ def synchronize_db_es():
                     doc = {key: val for key, val in docs.items() if key != "id"}
                     doc["apparels"] = json.loads(doc["apparels"])
                     body += [
-                        make_update_label(req["index"], docs["id"]),
+                        make_update_label(
+                            req["index"],
+                            docs["id"],
+                            req["qtype"] if "qtype" in req else "update",
+                        ),
                         make_doc_label(doc),
                     ]
                 result = ndjson.dumps(body)
