@@ -58,7 +58,7 @@ function SearchResult({
           isSaved: !user ? false : saved.has(itemId) ? true : false
         };
       });
-      if (newCodies.length) {
+      if (newCodies.length > 0) {
         const copiedCodies = JSON.parse(JSON.stringify(codies));
         const updatedCodies = copiedCodies.concat(newCodies);
         setCodies(updatedCodies);
