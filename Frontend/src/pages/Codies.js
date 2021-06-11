@@ -51,8 +51,8 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
       );
     }
     await request("post", "/codi/search", {
-      gender: gender,
-      apparels: apparels
+      gender: local_gender,
+      apparels: local_apparels
     })
       .then(response => {
         const newCodies = response.data.data.map(item => {

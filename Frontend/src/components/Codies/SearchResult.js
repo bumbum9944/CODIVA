@@ -19,17 +19,7 @@ function SearchResult({
   const { user } = state;
 
   useEffect(() => {
-    {
-<<<<<<< Frontend/src/components/Codies/SearchResult.js
       setNewSearchResult(codies);
-=======
-      if (codies.length < 20) {
-        setNewSearchResult([]);
-      } else {
-        setNewSearchResult(codies);
-      }
->>>>>>> Frontend/src/components/Codies/SearchResult.js
-    }
   }, [codies]);
 
   function pushToSearch() {
