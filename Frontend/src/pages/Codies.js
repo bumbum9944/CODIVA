@@ -51,8 +51,8 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
       );
     }
     await request("post", "/codi/search", {
-      gender: gender,
-      apparels: apparels
+      gender: local_gender,
+      apparels: local_apparels
     }).then(response => {
       const newCodies = response.data.data.map(item => {
         const itemId = item.id;
@@ -85,9 +85,9 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
       );
     }
     const copiedCodies = JSON.parse(JSON.stringify(codies));
-    for(let cody of copiedCodies) {
-      cody.isLiked =  !user ? false : liked.has(cody.id) ? true : false;
-      cody.isSaved =  !user ? false : saved.has(cody.id) ? true : false;
+    for (let cody of copiedCodies) {
+      cody.isLiked = !user ? false : liked.has(cody.id) ? true : false;
+      cody.isSaved = !user ? false : saved.has(cody.id) ? true : false;
     }
     setCodies(copiedCodies);
   }, [user]);
@@ -172,7 +172,14 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
         addFolder={addFolder}
         toggleSaved={toggleSaved}
       />
-      <SearchResult codies={codies} setCodies={setCodies} currentPage={currentPage} setCurrentPage={setCurrentPage} gender={gender} apparels={apparels} />
+      <SearchResult
+        codies={codies}
+        setCodies={setCodies}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        gender={gender}
+        apparels={apparels}
+      />
     </div>
   );
 }
