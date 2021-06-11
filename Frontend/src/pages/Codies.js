@@ -8,6 +8,7 @@ import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import { request, requestWithJWT } from "lib/client";
 import UserContext from "contexts/user";
+import SearchResult from "components/Codies/SearchResult";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,7 +28,7 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
   const classes = useStyles();
   const [selectedItem, setSelectedItem] = useState({});
   const [codies, setCodies] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(20);
   const { state } = useContext(UserContext);
   const { user } = state;
 
@@ -46,7 +47,7 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
         )
       );
     }
-    request("post", "/codi/search", {
+    await request("post", "/codi/search", {
       gender: gender,
       apparels: apparels
     }).then(response => {
@@ -63,6 +64,29 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
       });
       setCodies(newCodies);
     });
+  }, []);
+
+  useEffect(async () => {
+    let liked;
+    let saved;
+    if (user) {
+      liked = new Set(
+        await requestWithJWT("get", `/like/${user}`).then(
+          response => response.data.user_like_codies
+        )
+      );
+      saved = new Set(
+        await requestWithJWT("get", `/saved/${user}`).then(
+          response => response.data.data
+        )
+      );
+    }
+    const copiedCodies = JSON.parse(JSON.stringify(codies));
+    for(let cody of copiedCodies) {
+      cody.isLiked =  !user ? false : liked.has(cody.id) ? true : false;
+      cody.isSaved =  !user ? false : saved.has(cody.id) ? true : false;
+    }
+    setCodies(copiedCodies);
   }, [user]);
 
   function toggleLiked(codyId, targetIndex) {
@@ -145,6 +169,7 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
         addFolder={addFolder}
         toggleSaved={toggleSaved}
       />
+      <SearchResult codies={codies} setCodies={setCodies} currentPage={currentPage} setCurrentPage={setCurrentPage} gender={gender} apparels={apparels} />
     </div>
   );
 }

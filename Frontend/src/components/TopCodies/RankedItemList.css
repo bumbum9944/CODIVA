@@ -10,6 +10,9 @@
   width: 99vw;
   height: 120vw;
   border: black solid 0.5vw;
+  background-position: center;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 
 .cody-save-button {
