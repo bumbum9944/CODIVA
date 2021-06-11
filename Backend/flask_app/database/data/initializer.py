@@ -1,12 +1,12 @@
 import os, json, sys
-from database import connect_db
-from database.elasticsearch import connect_es
 
 sys.path.append(
     os.path.dirname(
         os.path.abspath(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
     )
 )
+
+from database import connect_db
 
 """
 Insert Doc in Index used bulk command
@@ -70,5 +70,5 @@ def update_db(fname: str):
 
 
 if __name__ == "__main__":
-    make_bulk_data()
-    update_db()
+    # make_bulk_data()
+    update_db("codies2.json")
