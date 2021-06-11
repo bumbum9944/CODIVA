@@ -43,7 +43,6 @@ function Popup({ apparels, setApparels, setSelectedCategory, gender }) {
       setDetailWarning(true);
     } else {
       handleClose();
-      sessionStorage.removeItem("selectedCategory");
       history.push("/codies");
     }
   }
