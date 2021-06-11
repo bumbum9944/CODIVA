@@ -31,8 +31,8 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
   const { state } = useContext(UserContext);
   const { user } = state;
 
-  const local_gender = localStorage.getItem("gender");
-  const local_apparels = JSON.parse(localStorage.getItem("apparels"));
+  const local_gender = sessionStorage.getItem("gender");
+  const local_apparels = JSON.parse(sessionStorage.getItem("apparels"));
 
   useEffect(async () => {
     let liked;

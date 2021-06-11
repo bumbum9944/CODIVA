@@ -15,11 +15,11 @@ function HomeSearchButton({ setGender, setApparels, setSelectedCategory }) {
           borderRadius: "3vh"
         }}
         onClick={() => {
-          localStorage.setItem("gender", "");
+          sessionStorage.setItem("gender", "");
           setGender("");
-          localStorage.setItem("apparels", JSON.stringify([]));
+          sessionStorage.setItem("apparels", JSON.stringify([]));
           setApparels([]);
-          localStorage.setItem(
+          sessionStorage.setItem(
             "selectedCategory",
             JSON.stringify({
               OUTER: false,

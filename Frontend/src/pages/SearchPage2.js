@@ -91,7 +91,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function SearchPage2(props) {
-  const local_gender = localStorage.getItem("gender");
+  const local_gender = sessionStorage.getItem("gender");
   const images = [
     {
       url: `/images/${local_gender}_outer.jpg`,
@@ -120,7 +120,7 @@ function SearchPage2(props) {
   const [detailWarning, setDetailWarning] = useState(false);
 
   const local_selectedCategory = JSON.parse(
-    localStorage.getItem("selectedCategory")
+    sessionStorage.getItem("selectedCategory")
   ) || {
     OUTER: false,
     TOP: false,
