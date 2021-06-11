@@ -20,11 +20,15 @@ function SearchResult({
 
   useEffect(() => {
     {
+<<<<<<< Frontend/src/components/Codies/SearchResult.js
+      setNewSearchResult(codies);
+=======
       if (codies.length < 20) {
         setNewSearchResult([]);
       } else {
         setNewSearchResult(codies);
       }
+>>>>>>> Frontend/src/components/Codies/SearchResult.js
     }
   }, [codies]);
 
@@ -68,11 +72,7 @@ function SearchResult({
         setCodies(updatedCodies);
         setCurrentPage(currentPage + 20);
       }
-      if (newCodies.length < 20) {
-        setNewSearchResult([]);
-      } else {
-        setNewSearchResult(newCodies);
-      }
+      setNewSearchResult(newCodies);
     });
   };
 
