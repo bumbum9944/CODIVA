@@ -13,7 +13,17 @@ function PageButton(props) {
         <Button
           variant="contained"
           onClick={() => {
+            localStorage.setItem("apparels", JSON.stringify([]));
             props.setApparels([]);
+            localStorage.setItem(
+              "selectedCategory",
+              JSON.stringify({
+                OUTER: false,
+                TOP: false,
+                BOTTOM: false,
+                "ONE PIECE": false
+              })
+            );
             props.setSelectedCategory({
               OUTER: false,
               TOP: false,

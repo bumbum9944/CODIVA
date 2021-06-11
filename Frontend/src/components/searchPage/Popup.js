@@ -23,6 +23,8 @@ function Popup({ apparels, setApparels, setSelectedCategory, gender }) {
   const { state } = useContext(UserContext);
   const { user } = state;
 
+  const local_apparels = JSON.parse(localStorage.getItem("apparels")) || [];
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -37,10 +39,11 @@ function Popup({ apparels, setApparels, setSelectedCategory, gender }) {
 
   async function buttonClick(e) {
     e.preventDefault();
-    if (apparels.length === 0) {
+    if (local_apparels.length === 0) {
       setDetailWarning(true);
     } else {
       handleClose();
+      localStorage.removeItem("selectedCategory");
       history.push("/codies");
     }
   }
