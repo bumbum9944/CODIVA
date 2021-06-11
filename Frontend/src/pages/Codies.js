@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { React, useState, useEffect, useContext } from "react";
 import Header from "../components/common/Header/Header";
 import CodyList from "../components/Codies/CodyList";
@@ -73,29 +74,6 @@ function Codies({ gender, apparels, folderList, addFolder }) {
           .querySelector(".search-result-message")
           .classList.add("active");
       });
-  }, []);
-
-  useEffect(async () => {
-    let liked;
-    let saved;
-    if (user) {
-      liked = new Set(
-        await requestWithJWT("get", `/like/${user}`).then(
-          response => response.data.user_like_codies
-        )
-      );
-      saved = new Set(
-        await requestWithJWT("get", `/saved/${user}`).then(
-          response => response.data.data
-        )
-      );
-    }
-    const copiedCodies = JSON.parse(JSON.stringify(codies));
-    for (let cody of copiedCodies) {
-      cody.isLiked = !user ? false : liked.has(cody.id) ? true : false;
-      cody.isSaved = !user ? false : saved.has(cody.id) ? true : false;
-    }
-    setCodies(copiedCodies);
   }, [user]);
 
   function toggleLiked(codyId, targetIndex) {
