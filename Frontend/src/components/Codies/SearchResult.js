@@ -20,7 +20,15 @@ function SearchResult({
 
   useEffect(() => {
     {
+<<<<<<< Frontend/src/components/Codies/SearchResult.js
       setNewSearchResult(codies);
+=======
+      if (codies.length < 20) {
+        setNewSearchResult([]);
+      } else {
+        setNewSearchResult(codies);
+      }
+>>>>>>> Frontend/src/components/Codies/SearchResult.js
     }
   }, [codies]);
 
@@ -58,7 +66,7 @@ function SearchResult({
           isSaved: !user ? false : saved.has(itemId) ? true : false
         };
       });
-      if (newCodies.length) {
+      if (newCodies.length > 0) {
         const copiedCodies = JSON.parse(JSON.stringify(codies));
         const updatedCodies = copiedCodies.concat(newCodies);
         setCodies(updatedCodies);

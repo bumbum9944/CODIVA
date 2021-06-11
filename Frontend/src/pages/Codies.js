@@ -51,22 +51,28 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
       );
     }
     await request("post", "/codi/search", {
-      gender: local_gender,
-      apparels: local_apparels
-    }).then(response => {
-      const newCodies = response.data.data.map(item => {
-        const itemId = item.id;
-        return {
-          id: itemId,
-          imageUrl: item.url,
-          likeCnt: item.like_cnt,
-          viewCnt: item.hits,
-          isLiked: !user ? false : liked.has(itemId) ? true : false,
-          isSaved: !user ? false : saved.has(itemId) ? true : false
-        };
+      gender: gender,
+      apparels: apparels
+    })
+      .then(response => {
+        const newCodies = response.data.data.map(item => {
+          const itemId = item.id;
+          return {
+            id: itemId,
+            imageUrl: item.url,
+            likeCnt: item.like_cnt,
+            viewCnt: item.hits,
+            isLiked: !user ? false : liked.has(itemId) ? true : false,
+            isSaved: !user ? false : saved.has(itemId) ? true : false
+          };
+        });
+        setCodies(newCodies);
+      })
+      .then(() => {
+        document
+          .querySelector(".search-result-message")
+          .classList.add("active");
       });
-      setCodies(newCodies);
-    });
   }, []);
 
   useEffect(async () => {
@@ -115,7 +121,6 @@ function Codies({ gender, apparels, selectedOption, folderList, addFolder }) {
       console.log({ id: targetItemId });
       requestWithJWT("delete", `/saved/${user}`, { id: targetItemId })
         .then(response => console.log(response.data))
-        // .then(response => response.data)
         .catch(err => console.log(err.message));
     } else {
       requestWithJWT("post", `/saved/${user}/${targetFolderId}/${targetItemId}`)
