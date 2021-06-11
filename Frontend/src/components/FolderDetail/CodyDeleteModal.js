@@ -21,7 +21,8 @@ function CodyDeleteModal({ deleteItems, setSelectedItem, setMode }) {
             className="delete-button"
             style={{
               width: "15vw",
-              fontSize: "5w"
+              fontSize: "5w",
+              marginRight: "10%"
             }}
             onClick={() => {
               closeModal();
