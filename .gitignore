@@ -7,3 +7,4 @@ data/resized_images/
 data/train_images/
 data/test_images/
 *.env
+*.log

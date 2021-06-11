@@ -7245,10 +7245,8 @@
     "id": 475,
     "url": "https://codiba.s3.us-east-2.amazonaws.com/images/w121.jpg",
     "apparels": [
-      {
-        "category": "onepiece",
-        "color": "gray"
-      }
+      {"category": "long_sleeved_tee", "color": "beige"},
+      {"category": "skirts", "color": "black"}
     ]
   },
   {

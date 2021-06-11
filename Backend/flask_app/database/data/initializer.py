@@ -1,4 +1,6 @@
 import os, json, sys
+from database import connect_db
+from database.elasticsearch import connect_es
 
 sys.path.append(
     os.path.dirname(
@@ -41,12 +43,10 @@ def make_bulk_data():
         print(count)
 
 
-def initialize_db():
-    from database import connect_db
-
+def update_db(fname: str):
     with connect_db() as connection:
         with connection.cursor() as cursor:
-            with open(os.path.join("codies.json"), "r") as f:
+            with open(os.path.join(fname), "r") as f:
                 json_data = json.load(f)
                 docs, cache = [], {}
                 for data in json_data:
@@ -70,5 +70,5 @@ def initialize_db():
 
 
 if __name__ == "__main__":
-    initialize_db()
     make_bulk_data()
+    update_db()
